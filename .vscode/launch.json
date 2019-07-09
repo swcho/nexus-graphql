@@ -8,6 +8,39 @@
       "preLaunchTask": "typescript",
       "program": "${workspaceFolder}/example/src/index.ts",
       "outFiles": ["${workspaceFolder}/example/dist/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug with ts-node",
+      "protocol": "inspector",
+      "cwd":"${workspaceRoot}/examples",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "args": [
+        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts",
+        "--output",
+        "temp"
+      ],
+      "restart": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug with ts-node-dev",
+      "protocol": "inspector",
+      // "cwd":"${workspaceRoot}/examples",
+      "cwd":"${workspaceRoot}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
+      "sourceMaps": true,
+      "args": [
+        // "--inspect",
+        // "--no-notify",
+        // "--respawn",
+        "--transpileOnly",
+        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts"
+      ],
+      "restart": true
     }
   ]
 }
