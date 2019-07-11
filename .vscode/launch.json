@@ -22,7 +22,7 @@
         "--schema",
         "src/generated/schema.graphql",
         "--output",
-        "temp"
+        "src/generated"
       ],
       "restart": true
     },
