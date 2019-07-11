@@ -1,5 +1,5 @@
 {
-  "name": "nexus-prisma",
+  "name": "nexus-graphql",
   "version": "0.3.7",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -11,12 +11,12 @@
   "author": "Prisma",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prisma/nexus-prisma-plugin.git"
+    "url": "git+https://github.com/swcho/nexus-graphql.git"
   },
   "bugs": {
-    "url": "https://github.com/prisma/nexus-prisma-plugin/issues"
+    "url": "https://github.com/swcho/nexus-graphql/issues"
   },
-  "homepage": "https://github.com/prisma/nexus-prisma-plugin#readme",
+  "homepage": "https://github.com/swcho/nexus-graphql#readme",
   "scripts": {
     "prepublish": "rm -rf example/node_modules && npm test && npm run build",
     "build": "tsc --declaration",
@@ -36,8 +36,6 @@
     "jest": "24.7.1",
     "nexus": "0.11.6",
     "prettier": "1.17.0",
-    "prisma": "1.30.2",
-    "prisma-client-lib": "1.30.2",
     "ts-jest": "24.0.2",
     "typescript": "3.4.5"
   },
