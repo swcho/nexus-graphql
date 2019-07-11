@@ -1,5 +1,5 @@
 import { stringArg } from 'nexus'
-import { prismaObjectType } from 'nexus-prisma'
+import { prismaObjectType } from 'nexus-graphql'
 
 export const Query = prismaObjectType({
   name: 'Query',
