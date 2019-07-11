@@ -12,7 +12,24 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug with ts-node",
+      "name": "example gql",
+      "protocol": "inspector",
+      "cwd":"${workspaceRoot}/examples-gql",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "args": [
+        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts",
+        "--schema",
+        "src/generated/schema.graphql",
+        "--output",
+        "temp"
+      ],
+      "restart": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "example",
       "protocol": "inspector",
       "cwd":"${workspaceRoot}/examples",
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
@@ -27,7 +44,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug with ts-node-dev",
+      "name": "[Not Working] Debug with ts-node-dev",
       "protocol": "inspector",
       // "cwd":"${workspaceRoot}/examples",
       "cwd":"${workspaceRoot}",

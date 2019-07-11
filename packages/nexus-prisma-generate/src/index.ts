@@ -28,6 +28,7 @@ import {
 } from './config'
 import { getFinalType, getTypeName, isList, isRequired } from './graphql'
 import { NEXUS_PRISMA_HEADER } from './header'
+import { generateFromSchema } from './schema';
 
 const cli = meow(
   `
@@ -43,6 +44,7 @@ const cli = meow(
     --project (optional): Path to Prisma definition file (prisma.yml)
     --client  (optional): Path to your prisma-client directory (eg: ./generated/prisma-client/)
     --js      (optional): Whether to generate the types for Javascript
+    --schema  (optional): Path to graphql schema
 `,
   {
     flags: {
@@ -59,6 +61,9 @@ const cli = meow(
       project: {
         type: 'string',
       },
+      schema: {
+        type: 'string',
+      },
     },
   },
 )
@@ -71,11 +76,16 @@ function main(cli: meow.Result) {
     output,
     js: jsMode,
     project: prismaYmlPath,
+    schema,
   } = cli.flags
 
   if (!output) {
     console.log('ERROR: Missing argument --output')
     process.exit(1)
+  }
+
+  if (schema) {
+    return generateFromSchema(schema, output);
   }
 
   const rootPath = findRootDirectory()
