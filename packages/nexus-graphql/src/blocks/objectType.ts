@@ -156,7 +156,5 @@ Are you trying to create a new type? Use \`objectType\` instead of \`prismaObjec
 
   return objectTypeFieldsToNexus(
     graphqlType,
-    builderConfig.prisma.client,
-    datamodelInfo,
   )
 }

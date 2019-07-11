@@ -149,7 +149,5 @@ export function prismaTypeExtend(
 
   return objectTypeFieldsToNexus(
     graphqlType,
-    builderConfig.prisma.client,
-    datamodelInfo,
   )
 }

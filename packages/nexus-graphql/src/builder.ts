@@ -23,8 +23,6 @@ export class PrismaSchemaBuilder extends core.SchemaBuilder {
       return graphqlTypeToNexus(
         this,
         type,
-        this.config.prisma.client,
-        datamodelInfo,
       )
     }
 

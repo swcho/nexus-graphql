@@ -11,32 +11,32 @@ export const Query = prismaObjectType({
      */
 
     // An empty array removes all fields from the underlying object type
-    t.prismaFields([])
+    t.prismaFields(['*'])
 
-    t.list.field('feed', {
-      type: 'Post',
-      resolve: (parent, args, ctx) => {
-        return ctx.prisma.posts({
-          where: { published: true },
-        })
-      },
-    })
+    // t.list.field('feed', {
+    //   type: 'Post',
+    //   resolve: (parent, args, ctx) => {
+    //     return ctx.prisma.posts({
+    //       where: { published: true },
+    //     })
+    //   },
+    // })
 
-    t.list.field('filterPosts', {
-      type: 'Post',
-      args: {
-        searchString: stringArg(),
-      },
-      resolve: (parent, { searchString }, ctx) => {
-        return ctx.prisma.posts({
-          where: {
-            OR: [
-              { title_contains: searchString },
-              { content_contains: searchString },
-            ],
-          },
-        })
-      },
-    })
+    // t.list.field('filterPosts', {
+    //   type: 'Post',
+    //   args: {
+    //     searchString: stringArg(),
+    //   },
+    //   resolve: (parent, { searchString }, ctx) => {
+    //     return ctx.prisma.posts({
+    //       where: {
+    //         OR: [
+    //           { title_contains: searchString },
+    //           { content_contains: searchString },
+    //         ],
+    //       },
+    //     })
+    //   },
+    // })
   },
 })
