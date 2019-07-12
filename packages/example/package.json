@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "petstore:run": "docker run -d -e OPENAPI_BASE_PATH=/v3 -p 80:8080 openapitools/openapi-petstore",
+    "gen:openapi-to-graphql": "openapi-to-graphql src/swagger/petstore.json --save src/generated/petstore.graphql",
+    "swagger": "curl https://raw.githubusercontent.com/johnpapa/star-wars-api/master/.azurefunctions/swagger/swagger.json > src/generated/swapi.yaml",
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "build": "tsc",
     "gen": "graphql-codegen --config codegen.yml"
@@ -20,6 +23,7 @@
     "@graphql-codegen/typescript": "1.3.1",
     "@types/graphql": "14.2.0",
     "@types/node": "10.14.5",
+    "openapi-to-graphql-cli": "^1.1.0",
     "ts-node": "8.1.0",
     "ts-node-dev": "1.0.0-pre.32",
     "typescript": "3.4.5"
