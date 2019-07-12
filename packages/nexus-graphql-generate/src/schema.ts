@@ -77,7 +77,6 @@ ${enumTypes.map(renderEnumType).join(EOL)}
 }
 
 export async function generateFromSchema(pathSchema: string, typePath: string, pathOutput: string) {
-  console.log({ pathSchema, pathOutput });
   // read schema and make GraphQLSchema
   const rootPath = findRootDirectory()
   const resolvedOutput = pathOutput.startsWith('/') ? pathOutput : join(rootPath, pathOutput)
@@ -110,7 +109,6 @@ export async function generateFromSchema(pathSchema: string, typePath: string, p
 
   writeFileSync(nexusPrismaTypesPath, nexusPrismaTypes)
 
-  console.log('end')
 
   // Generate
 }

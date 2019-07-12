@@ -81,7 +81,7 @@ export function generateEmptyResolver(
   }
 
   return (root, args, ctx, info) => {
-    console.log({ isTopLevel, parentName, fieldName })
+    // console.log({ isTopLevel, parentName, fieldName })
     // const prismaClient = getPrismaClient(prismaClientInput, ctx)
 
     // Resolve top-level fields
@@ -101,7 +101,7 @@ export function generateEmptyResolver(
         args = args.where
       }
 
-      console.log(args);
+      // console.log(args);
       debugger;
       throw "I don't know how to resolve top level";
 
@@ -119,7 +119,7 @@ export function generateEmptyResolver(
     // return prismaClient[parentName]({
     //   [uniqFieldName!]: root[uniqFieldName!],
     // })[fieldName](args)
-    console.log({ root, args, ctx, info })
+    // console.log({ root, args, ctx, info })
     if (root[fieldName]) {
       return root[fieldName];
     }

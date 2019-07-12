@@ -11,7 +11,6 @@ export const Pet = prismaObjectType({
       type: 'Float',
       resolve(root) {
         const pet = root as types.Pet;
-        console.log({ root })
         return pet && pet.tags && pet.tags.length || 0;
       }
     });
