@@ -1,5 +1,6 @@
 import { stringArg } from 'nexus'
 import { prismaObjectType } from 'nexus-graphql'
+import { PetApi } from '../generated/tslib';
 
 export const Query = prismaObjectType({
   name: 'Query',
@@ -12,6 +13,14 @@ export const Query = prismaObjectType({
 
     // An empty array removes all fields from the underlying object type
     t.prismaFields(['*'])
+
+    t.field('petFindByStatus', {
+      ...t.prismaType.petFindByStatus,
+      async resolve(root, args, ctx) {
+        const resp = await ctx.apis.pet.findPetsByStatus(args.status).then(r => r.data);
+        return resp;
+      }
+    })
 
     // t.list.field('feed', {
     //   type: 'Post',

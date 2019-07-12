@@ -3,16 +3,18 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "petstore:run": "docker run -d -e OPENAPI_BASE_PATH=/v3 -p 80:8080 openapitools/openapi-petstore",
+    "petstore:run": "docker run -d -e DISABLE_OAUTH=1 -e OPENAPI_BASE_PATH=/v3 -p 80:8080 openapitools/openapi-petstore",
     "gen": "yarn gen:openapi-to-graphql && yarn gen:openapi-to-tslib && yarn gen:graphql-to-types && yarn gen:nexus-graphql",
     "gen:openapi-to-graphql": "openapi-to-graphql --no-viewer src/swagger/petstore.json --save src/generated/graphql/petstore.graphql",
-    "gen:openapi-to-tslib": "openapi-generator generate -g typescript-fetch -i src/swagger/petstore.json -o src/generated/tslib",
+    "gen:openapi-to-tslib": "openapi-generator generate -g typescript-axios -i src/swagger/petstore.json -o src/generated/tslib",
     "gen:graphql-to-types": "graphql-codegen --config codegen.yml",
     "gen:nexus-graphql": "nexus-graphql-generate --schema src/generated/graphql/petstore.graphql --typepath ../types/types --output src/generated/nexus-graphql",
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "build": "tsc"
   },
   "dependencies": {
+    "@types/node": "^12.6.2",
+    "axios": "^0.19.0",
     "graphql": "14.2.1",
     "graphql-yoga": "1.17.4",
     "nexus": "0.11.6",

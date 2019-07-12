@@ -81,27 +81,32 @@ export function generateEmptyResolver(
   }
 
   return (root, args, ctx, info) => {
+    console.log({ isTopLevel, parentName, fieldName })
     // const prismaClient = getPrismaClient(prismaClientInput, ctx)
 
-    // // Resolve top-level fields
-    // if (isTopLevel) {
-    //   throwIfUnknownClientFunction(prismaClient, fieldName, typeName, info)
+    // Resolve top-level fields
+    if (isTopLevel) {
+      // throwIfUnknownClientFunction(prismaClient, fieldName, typeName, info)
 
-    //   if (isCreateMutation(typeName, fieldName)) {
-    //     args = args.data
-    //   } else if (isDeleteMutation(typeName, fieldName)) {
-    //     args = args.where
-    //   } else if (
-    //     // If is "findOne" query (eg: `user`, or `post`)
-    //     isNotArrayOrConnectionType(fieldToResolve) &&
-    //     (typeName !== 'Node' && fieldName !== 'node') &&
-    //     typeName !== 'Mutation'
-    //   ) {
-    //     args = args.where
-    //   }
+      if (isCreateMutation(typeName, fieldName)) {
+        args = args.data
+      } else if (isDeleteMutation(typeName, fieldName)) {
+        args = args.where
+      } else if (
+        // If is "findOne" query (eg: `user`, or `post`)
+        isNotArrayOrConnectionType(fieldToResolve) &&
+        (typeName !== 'Node' && fieldName !== 'node') &&
+        typeName !== 'Mutation'
+      ) {
+        args = args.where
+      }
+
+      console.log(args);
+      debugger;
+      throw "I don't know how to resolve top level";
 
     //   return prismaClient[fieldName](args)
-    // }
+    }
 
     // throwIfUnknownClientFunction(prismaClient, parentName, typeName, info)
 
@@ -114,6 +119,12 @@ export function generateEmptyResolver(
     // return prismaClient[parentName]({
     //   [uniqFieldName!]: root[uniqFieldName!],
     // })[fieldName](args)
+    console.log({ root, args, ctx, info })
+    if (root[fieldName]) {
+      return root[fieldName];
+    }
+
+    debugger;
     throw "Should implement resolver";
   }
 }

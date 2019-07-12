@@ -12,7 +12,11 @@ export const schema = makePrismaSchema({
 
   prisma: {
     datamodelInfo: {
-      uniqueFieldsByModel: {},
+      uniqueFieldsByModel: {
+        User: ['id', 'email'],
+        Pet: ['id'],
+        GENDER: []
+      },
       embeddedTypes: [],
       clientPath: 'does not mean',
       schema: require('./generated/types/graphql.schema.json'),
