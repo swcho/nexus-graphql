@@ -14,8 +14,8 @@ export const schema = makePrismaSchema({
     datamodelInfo: {
       uniqueFieldsByModel: {},
       embeddedTypes: [],
-      clientPath: 'src/generated/prisma-client',
-      schema: require('./generated/graphql.schema.json'),
+      clientPath: 'does not mean',
+      schema: require('./generated/types/graphql.schema.json'),
     },
     client: {} as any,
   },

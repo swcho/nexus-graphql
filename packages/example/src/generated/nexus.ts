@@ -11,104 +11,130 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  OrderInput: { // input type
+    complete?: boolean | null; // Boolean
+    id?: number | null; // Float
+    petId?: number | null; // Float
+    quantity?: number | null; // Int
+    shipDate?: string | null; // String
+    status?: NexusGenEnums['Status2'] | null; // Status2
+  }
 }
 
 export interface NexusGenEnums {
+  Status: "available" | "pending" | "sold"
+  Status2: "approved" | "delivered" | "placed"
+  Status3ListItem: "available" | "pending" | "sold"
 }
 
 export interface NexusGenRootTypes {
-  Meta: {};
+  ApiResponse: {};
+  Category: {};
   Mutation: {};
-  Notification: {};
+  Order: {};
+  Pet: {};
   Query: {};
-  Stat: {};
-  Tweet: {};
+  Tag: {};
   User: {};
   String: string;
   Int: number;
   Float: number;
   Boolean: boolean;
   ID: string;
-  Date: any;
-  Url: any;
+  JSON: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  OrderInput: NexusGenInputs['OrderInput'];
+  Status: NexusGenEnums['Status'];
+  Status2: NexusGenEnums['Status2'];
+  Status3ListItem: NexusGenEnums['Status3ListItem'];
 }
 
 export interface NexusGenFieldTypes {
-  Meta: { // field return type
-    count: number | null; // Int
-  }
-  Mutation: { // field return type
-    createTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
-    deleteTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
-    markTweetRead: boolean | null; // Boolean
-  }
-  Notification: { // field return type
-    date: any | null; // Date
-    id: string | null; // ID
+  ApiResponse: { // field return type
+    code: number | null; // Int
+    message: string | null; // String
     type: string | null; // String
   }
+  Category: { // field return type
+    id: number | null; // Float
+    name: string | null; // String
+  }
+  Mutation: { // field return type
+    placeOrder: NexusGenRootTypes['Order'] | null; // Order
+    uploadFile: NexusGenRootTypes['ApiResponse'] | null; // ApiResponse
+  }
+  Order: { // field return type
+    complete: boolean | null; // Boolean
+    id: number | null; // Float
+    petId: number | null; // Float
+    quantity: number | null; // Int
+    shipDate: string | null; // String
+    status: NexusGenEnums['Status2'] | null; // Status2
+  }
+  Pet: { // field return type
+    category: NexusGenRootTypes['Category'] | null; // Category
+    id: number | null; // Float
+    name: string | null; // String
+    photoUrls: string[] | null; // [String!]
+    status: NexusGenEnums['Status'] | null; // Status
+    tags: NexusGenRootTypes['Tag'][] | null; // [Tag!]
+  }
   Query: { // field return type
-    Notifications: NexusGenRootTypes['Notification'][] | null; // [Notification!]
-    NotificationsMeta: NexusGenRootTypes['Meta'] | null; // Meta
-    Tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
-    Tweets: NexusGenRootTypes['Tweet'][] | null; // [Tweet!]
-    TweetsMeta: NexusGenRootTypes['Meta'] | null; // Meta
-    User: NexusGenRootTypes['User'] | null; // User
+    order: NexusGenRootTypes['Order'] | null; // Order
+    pet: NexusGenRootTypes['Pet'] | null; // Pet
+    petFindByStatus: NexusGenRootTypes['Pet'][] | null; // [Pet!]
+    petFindByTags: NexusGenRootTypes['Pet'][] | null; // [Pet!]
+    storeInventory: any | null; // JSON
+    user: NexusGenRootTypes['User'] | null; // User
+    userLogin: string | null; // String
   }
-  Stat: { // field return type
-    likes: number | null; // Int
-    responses: number | null; // Int
-    retweets: number | null; // Int
-    views: number | null; // Int
-  }
-  Tweet: { // field return type
-    Author: NexusGenRootTypes['User'] | null; // User
-    body: string | null; // String
-    date: any | null; // Date
-    id: string; // ID!
-    Stats: NexusGenRootTypes['Stat'] | null; // Stat
+  Tag: { // field return type
+    id: number | null; // Float
+    name: string | null; // String
   }
   User: { // field return type
-    avatar_url: any | null; // Url
-    first_name: string | null; // String
-    full_name: string | null; // String
-    id: string; // ID!
-    last_name: string | null; // String
-    name: string | null; // String
+    email: string | null; // String
+    firstName: string | null; // String
+    id: number | null; // Float
+    lastName: string | null; // String
+    password: string | null; // String
+    phone: string | null; // String
     username: string | null; // String
+    userStatus: number | null; // Int
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createTweet: { // args
-      body?: string | null; // String
+    placeOrder: { // args
+      orderInput: NexusGenInputs['OrderInput']; // OrderInput!
     }
-    deleteTweet: { // args
-      id: string; // ID!
-    }
-    markTweetRead: { // args
-      id: string; // ID!
+    uploadFile: { // args
+      multipartFormDataInput?: string | null; // String
+      petId: number; // Float!
     }
   }
   Query: {
-    Notifications: { // args
-      limit?: number | null; // Int
+    order: { // args
+      orderId: number; // Float!
     }
-    Tweet: { // args
-      id: string; // ID!
+    pet: { // args
+      petId: number; // Float!
     }
-    Tweets: { // args
-      limit?: number | null; // Int
-      skip?: number | null; // Int
-      sort_field?: string | null; // String
-      sort_order?: string | null; // String
+    petFindByStatus: { // args
+      status: NexusGenEnums['Status3ListItem'][]; // [Status3ListItem!]!
     }
-    User: { // args
-      id: string; // ID!
+    petFindByTags: { // args
+      tags: string[]; // [String!]!
+    }
+    user: { // args
+      username: string; // String!
+    }
+    userLogin: { // args
+      password: string; // String!
+      username: string; // String!
     }
   }
 }
@@ -118,15 +144,15 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Meta" | "Mutation" | "Notification" | "Query" | "Stat" | "Tweet" | "User";
+export type NexusGenObjectNames = "ApiResponse" | "Category" | "Mutation" | "Order" | "Pet" | "Query" | "Tag" | "User";
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = "OrderInput";
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "Status" | "Status2" | "Status3ListItem";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Date" | "Float" | "ID" | "Int" | "String" | "Url";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "JSON" | "String";
 
 export type NexusGenUnionNames = never;
 
