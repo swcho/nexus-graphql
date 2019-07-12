@@ -1,12 +1,11 @@
-# Examples
+# Openapi Generator
 
 [`openapi-generator` options](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-cli/src/main/java/org/openapitools/codegen/cmd/Generate.java)
 
 * `--skip-validate-spec`: skip spec validation
+* `--template-dir`: folder containing template files
 
-You can find some easy-to-run example projects based on `nexus-prisma` in the [`prisma-examples`](https://github.com/prisma/prisma-examples/):
+[typescript-axios codegen](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/TypeScriptAxiosClientCodegen.java)
 
-- [GraphQL](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql): Simple setup keeping the entire schema in a single file.
-- [GraphQL (Apollo Server)](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-apollo-server): Simple setup keeping the entire schema in a single file using `apollo-server`.
-- [GraphQL CRUD](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-crud): Full CRUD operations with minimal boilerplate.
-- [GraphQL + Auth](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-auth): Advanced setup including authentication and authorization and a modularized schema. 
+[typescript-axios api template](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/resources/typescript-axios/api.mustache)
+

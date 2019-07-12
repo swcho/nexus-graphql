@@ -6,7 +6,7 @@
     "petstore:run": "docker run -d -e DISABLE_OAUTH=1 -e OPENAPI_BASE_PATH=/v3 -p 80:8080 openapitools/openapi-petstore",
     "gen": "yarn gen:openapi-to-graphql && yarn gen:openapi-to-tslib && yarn gen:graphql-to-types && yarn gen:nexus-graphql",
     "gen:openapi-to-graphql": "openapi-to-graphql --no-viewer src/swagger/openapi.json --save src/generated/graphql/schema.graphql",
-    "gen:openapi-to-tslib": "openapi-generator generate --skip-validate-spec -g typescript-axios -i src/swagger/openapi.json -o src/generated/tslib",
+    "gen:openapi-to-tslib": "openapi-generator generate --skip-validate-spec --template-dir src/typescript-axios-templates -g typescript-axios -i src/swagger/openapi.json -o src/generated/tslib",
     "gen:graphql-to-types": "graphql-codegen --config codegen.yml",
     "gen:nexus-graphql": "nexus-graphql-generate --schema src/generated/graphql/schema.graphql --typepath ../types/types --output src/generated/nexus-graphql",
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
