@@ -8,6 +8,7 @@
     "gen:openapi-to-graphql": "openapi-to-graphql src/swagger/petstore.json --save src/generated/graphql/petstore.graphql",
     "gen:openapi-to-tslib": "openapi-generator generate -g typescript-fetch -i src/swagger/petstore.json -o src/generated/tslib",
     "gen:graphql-to-types": "graphql-codegen --config codegen.yml",
+    "gen:nexus-graphql": "nexus-graphql-generate --schema src/generated/graphql/petstore.graphql --output src/generated/nexus-graphql",
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "build": "tsc"
   },
