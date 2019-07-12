@@ -1,0 +1,2108 @@
+"""No description available."""
+type AccessToken {
+  """No description available."""
+  created: String
+
+  """No description available."""
+  id: String
+
+  """Array of scopes granted to this access token."""
+  scopes: [String]
+
+  """time to live in seconds (2 weeks by default)"""
+  ttl: Float
+
+  """No description available."""
+  userId: Float
+}
+
+"""No description available."""
+input AccessTokenInput {
+  """No description available."""
+  created: String
+
+  """No description available."""
+  id: String
+
+  """Array of scopes granted to this access token."""
+  scopes: [String]
+
+  """time to live in seconds (2 weeks by default)"""
+  ttl: Float
+
+  """No description available."""
+  userId: Float
+}
+
+"""No description available."""
+type Account {
+  """No description available."""
+  balance: Float
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+input AccountInput {
+  """No description available."""
+  balance: Float
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+type Address {
+  """No description available."""
+  city: String
+
+  """No description available."""
+  id: String
+
+  """No description available."""
+  state: String
+
+  """No description available."""
+  street: String
+
+  """No description available."""
+  zipCode: String
+}
+
+"""No description available."""
+input AddressInput {
+  """No description available."""
+  city: String
+
+  """No description available."""
+  id: String
+
+  """No description available."""
+  state: String
+
+  """No description available."""
+  street: String
+
+  """No description available."""
+  zipCode: String
+}
+
+"""No description available."""
+type Book {
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  links: [Link]
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+input BookInput {
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  links: [LinkInput]
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+type Books2 {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type BooksCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type BooksExists {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type BooksPeopleCount {
+  """No description available."""
+  count: Float
+}
+
+"""Information related to the outcome of the operation"""
+type BooksUpdate {
+  """The number of instances updated"""
+  count: Float
+}
+
+"""No description available."""
+type Customer {
+  """No description available."""
+  accountIds: [Float]
+
+  """No description available."""
+  age: Float
+
+  """No description available."""
+  billingAddress: Address
+
+  """No description available."""
+  emailList: [EmailAddress]
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+input CustomerInput {
+  """No description available."""
+  accountIds: [Float]
+
+  """No description available."""
+  age: Float
+
+  """No description available."""
+  billingAddress: AddressInput
+
+  """No description available."""
+  emailList: [EmailAddressInput]
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  name: String
+}
+
+"""No description available."""
+type Customers2 {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type CustomersAccountsCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type CustomersCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type CustomersEmailsCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type CustomersExists {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type CustomersOrdersCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type CustomersOrdersShipmentsCount {
+  """No description available."""
+  count: Float
+}
+
+"""Information related to the outcome of the operation"""
+type CustomersUpdate {
+  """The number of instances updated"""
+  count: Float
+}
+
+"""No description available."""
+type EmailAddress {
+  """No description available."""
+  address: String
+
+  """No description available."""
+  id: String
+
+  """No description available."""
+  label: String
+}
+
+"""No description available."""
+input EmailAddressInput {
+  """No description available."""
+  address: String
+
+  """No description available."""
+  id: String
+
+  """No description available."""
+  label: String
+}
+
+"""No description available."""
+type Link {
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  linkedId: Float
+
+  """No description available."""
+  linkedType: String
+
+  """No description available."""
+  name: String
+
+  """No description available."""
+  notes: String
+}
+
+"""No description available."""
+input LinkInput {
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  linkedId: Float
+
+  """No description available."""
+  linkedType: String
+
+  """No description available."""
+  name: String
+
+  """No description available."""
+  notes: String
+}
+
+"""The start of any mutation"""
+type Mutation {
+  """
+  Create a new instance of the model and persist it into the data source.
+  
+  Equivalent to POST /Books
+  """
+  bookCreate(
+    """No description available."""
+    bookInput: BookInput
+  ): Book
+
+  """
+  Create a change stream.
+  
+  Equivalent to POST /Books/change-stream
+  """
+  bookCreateChangeStreamPostBooksChangeStream(
+    """application/x-www-form-urlencoded request placeholder object"""
+    applicationXWwwFormUrlencodedInput: String
+  ): String
+
+  """
+  Delete a model instance by {{id}} from the data source.
+  
+  Equivalent to DELETE /Books/{id}
+  """
+  bookDeleteById(
+    """Model id"""
+    id: String!
+  ): String
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to HEAD /Books/{id}
+  """
+  bookExistsHeadBooksId(
+    """Model id"""
+    id: String!
+  ): Books2
+
+  """
+  Patch an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PATCH /Books
+  """
+  bookPatchOrCreate(
+    """No description available."""
+    bookInput: BookInput
+  ): Book
+
+  """
+  이 모델의 people에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Books/{id}/people
+  """
+  bookPrototypeCreatePeople(
+    """Book id"""
+    id: String!
+
+    """No description available."""
+    linkInput: LinkInput
+  ): Link
+
+  """
+  Patch attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PATCH /Books/{id}
+  """
+  bookPrototypePatchAttributes(
+    """No description available."""
+    bookInput: BookInput
+
+    """Book id"""
+    id: String!
+  ): Book
+
+  """
+  people에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Books/{id}/people/{fk}
+  """
+  bookPrototypeUpdateByIdPeople(
+    """people의 외부 키"""
+    fk: String!
+
+    """Book id"""
+    id: String!
+
+    """No description available."""
+    linkInput: LinkInput
+  ): Link
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to POST /Books/{id}/replace
+  """
+  bookReplaceByIdPostBooksIdReplace(
+    """No description available."""
+    bookInput: BookInput
+
+    """Model id"""
+    id: String!
+  ): Book
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PUT /Books/{id}
+  """
+  bookReplaceByIdPutBooksId(
+    """No description available."""
+    bookInput: BookInput
+
+    """Model id"""
+    id: String!
+  ): Book
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to POST /Books/replaceOrCreate
+  """
+  bookReplaceOrCreatePostBooksReplaceOrCreate(
+    """No description available."""
+    bookInput: BookInput
+  ): Book
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PUT /Books
+  """
+  bookReplaceOrCreatePutBooks(
+    """No description available."""
+    bookInput: BookInput
+  ): Book
+
+  """
+  Update instances of the model matched by {{where}} from the data source.
+  
+  Equivalent to POST /Books/update
+  """
+  bookUpdateAll(
+    """No description available."""
+    bookInput: BookInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): BooksUpdate
+
+  """
+  Update an existing model instance or insert a new one into the data source based on the where criteria.
+  
+  Equivalent to POST /Books/upsertWithWhere
+  """
+  bookUpsertWithWhere(
+    """No description available."""
+    bookInput: BookInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): Book
+
+  """
+  Create a new instance of the model and persist it into the data source.
+  
+  Equivalent to POST /Customers
+  """
+  customerCreate(
+    """No description available."""
+    customerInput: CustomerInput
+  ): Customer
+
+  """
+  Create a change stream.
+  
+  Equivalent to POST /Customers/change-stream
+  """
+  customerCreateChangeStreamPostCustomersChangeStream(
+    """application/x-www-form-urlencoded request placeholder object"""
+    applicationXWwwFormUrlencodedInput: String
+  ): String
+
+  """
+  Delete a model instance by {{id}} from the data source.
+  
+  Equivalent to DELETE /Customers/{id}
+  """
+  customerDeleteById(
+    """Model id"""
+    id: String!
+  ): String
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to HEAD /Customers/{id}
+  """
+  customerExistsHeadCustomersId(
+    """Model id"""
+    id: String!
+  ): Customers2
+
+  """
+  Patch an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PATCH /Customers
+  """
+  customerPatchOrCreate(
+    """No description available."""
+    customerInput: CustomerInput
+  ): Customer
+
+  """
+  이 모델의 accounts에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Customers/{id}/accounts
+  """
+  customerPrototypeCreateAccounts(
+    """No description available."""
+    accountInput: AccountInput
+
+    """Customer id"""
+    id: String!
+  ): Account
+
+  """
+  이 모델의 address에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Customers/{id}/address
+  """
+  customerPrototypeCreateAddress(
+    """No description available."""
+    addressInput: AddressInput
+
+    """Customer id"""
+    id: String!
+  ): Address
+
+  """
+  이 모델의 emails에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Customers/{id}/emails
+  """
+  customerPrototypeCreateEmails(
+    """No description available."""
+    emailAddressInput: EmailAddressInput
+
+    """Customer id"""
+    id: String!
+  ): EmailAddress
+
+  """
+  이 모델의 orders에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Customers/{id}/orders
+  """
+  customerPrototypeCreateOrders(
+    """Customer id"""
+    id: String!
+
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  이 모델의 shipments에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Customers/{id}/orders/{nk}/shipments
+  """
+  customerPrototypeCreateOrdersShipments(
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  ID로 항목에 대한 accounts 관계의 존재를 확인하십시오.
+  
+  Equivalent to HEAD /Customers/{id}/accounts/rel/{fk}
+  """
+  customerPrototypeExistsAccounts(
+    """accounts의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): Boolean
+
+  """
+  accounts에 대해 ID로 관련 항목을 추가하십시오.
+  
+  Equivalent to PUT /Customers/{id}/accounts/rel/{fk}
+  """
+  customerPrototypeLinkAccounts(
+    """accounts의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): Account
+
+  """
+  Patch attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PATCH /Customers/{id}
+  """
+  customerPrototypePatchAttributes(
+    """No description available."""
+    customerInput: CustomerInput
+
+    """Customer id"""
+    id: String!
+  ): Customer
+
+  """
+  이 모델의 address을(를) 업데이트하십시오.
+  
+  Equivalent to PUT /Customers/{id}/address
+  """
+  customerPrototypeUpdateAddress(
+    """No description available."""
+    addressInput: AddressInput
+
+    """Customer id"""
+    id: String!
+  ): Address
+
+  """
+  accounts에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Customers/{id}/accounts/{fk}
+  """
+  customerPrototypeUpdateByIdAccounts(
+    """No description available."""
+    accountInput: AccountInput
+
+    """accounts의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): Account
+
+  """
+  emails에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Customers/{id}/emails/{fk}
+  """
+  customerPrototypeUpdateByIdEmails(
+    """No description available."""
+    emailAddressInput: EmailAddressInput
+
+    """emails의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): EmailAddress
+
+  """
+  orders에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Customers/{id}/orders/{fk}
+  """
+  customerPrototypeUpdateByIdOrders(
+    """orders의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  shipments에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Customers/{id}/orders/{nk}/shipments/{fk}
+  """
+  customerPrototypeUpdateByIdOrdersShipments(
+    """shipments의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to POST /Customers/{id}/replace
+  """
+  customerReplaceByIdPostCustomersIdReplace(
+    """No description available."""
+    customerInput: CustomerInput
+
+    """Model id"""
+    id: String!
+  ): Customer
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PUT /Customers/{id}
+  """
+  customerReplaceByIdPutCustomersId(
+    """No description available."""
+    customerInput: CustomerInput
+
+    """Model id"""
+    id: String!
+  ): Customer
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to POST /Customers/replaceOrCreate
+  """
+  customerReplaceOrCreatePostCustomersReplaceOrCreate(
+    """No description available."""
+    customerInput: CustomerInput
+  ): Customer
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PUT /Customers
+  """
+  customerReplaceOrCreatePutCustomers(
+    """No description available."""
+    customerInput: CustomerInput
+  ): Customer
+
+  """
+  Update instances of the model matched by {{where}} from the data source.
+  
+  Equivalent to POST /Customers/update
+  """
+  customerUpdateAll(
+    """No description available."""
+    customerInput: CustomerInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersUpdate
+
+  """
+  Update an existing model instance or insert a new one into the data source based on the where criteria.
+  
+  Equivalent to POST /Customers/upsertWithWhere
+  """
+  customerUpsertWithWhere(
+    """No description available."""
+    customerInput: CustomerInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): Customer
+
+  """
+  Create a new instance of the model and persist it into the data source.
+  
+  Equivalent to POST /Orders
+  """
+  orderCreate(
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  Create a change stream.
+  
+  Equivalent to POST /Orders/change-stream
+  """
+  orderCreateChangeStreamPostOrdersChangeStream(
+    """application/x-www-form-urlencoded request placeholder object"""
+    applicationXWwwFormUrlencodedInput: String
+  ): String
+
+  """
+  Delete a model instance by {{id}} from the data source.
+  
+  Equivalent to DELETE /Orders/{id}
+  """
+  orderDeleteById(
+    """Model id"""
+    id: String!
+  ): String
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to HEAD /Orders/{id}
+  """
+  orderExistsHeadOrdersId(
+    """Model id"""
+    id: String!
+  ): Orders2
+
+  """
+  Patch an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PATCH /Orders
+  """
+  orderPatchOrCreate(
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  이 모델의 shipments에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Orders/{id}/shipments
+  """
+  orderPrototypeCreateShipments(
+    """Order id"""
+    id: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Patch attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PATCH /Orders/{id}
+  """
+  orderPrototypePatchAttributes(
+    """Order id"""
+    id: String!
+
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  shipments에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Orders/{id}/shipments/{fk}
+  """
+  orderPrototypeUpdateByIdShipments(
+    """shipments의 외부 키"""
+    fk: String!
+
+    """Order id"""
+    id: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to POST /Orders/{id}/replace
+  """
+  orderReplaceByIdPostOrdersIdReplace(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PUT /Orders/{id}
+  """
+  orderReplaceByIdPutOrdersId(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to POST /Orders/replaceOrCreate
+  """
+  orderReplaceOrCreatePostOrdersReplaceOrCreate(
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PUT /Orders
+  """
+  orderReplaceOrCreatePutOrders(
+    """No description available."""
+    orderInput: OrderInput
+  ): Order
+
+  """
+  Update instances of the model matched by {{where}} from the data source.
+  
+  Equivalent to POST /Orders/update
+  """
+  orderUpdateAll(
+    """No description available."""
+    orderInput: OrderInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): OrdersUpdate
+
+  """
+  Update an existing model instance or insert a new one into the data source based on the where criteria.
+  
+  Equivalent to POST /Orders/upsertWithWhere
+  """
+  orderUpsertWithWhere(
+    """No description available."""
+    orderInput: OrderInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): Order
+
+  """
+  Create a new instance of the model and persist it into the data source.
+  
+  Equivalent to POST /Shipments
+  """
+  shipmentCreate(
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Create a change stream.
+  
+  Equivalent to POST /Shipments/change-stream
+  """
+  shipmentCreateChangeStreamPostShipmentsChangeStream(
+    """application/x-www-form-urlencoded request placeholder object"""
+    applicationXWwwFormUrlencodedInput: String
+  ): String
+
+  """
+  Delete a model instance by {{id}} from the data source.
+  
+  Equivalent to DELETE /Shipments/{id}
+  """
+  shipmentDeleteById(
+    """Model id"""
+    id: String!
+  ): String
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to HEAD /Shipments/{id}
+  """
+  shipmentExistsHeadShipmentsId(
+    """Model id"""
+    id: String!
+  ): Shipments2
+
+  """
+  Patch an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PATCH /Shipments
+  """
+  shipmentPatchOrCreate(
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Patch attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PATCH /Shipments/{id}
+  """
+  shipmentPrototypePatchAttributes(
+    """Shipment id"""
+    id: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to POST /Shipments/{id}/replace
+  """
+  shipmentReplaceByIdPostShipmentsIdReplace(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PUT /Shipments/{id}
+  """
+  shipmentReplaceByIdPutShipmentsId(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to POST /Shipments/replaceOrCreate
+  """
+  shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PUT /Shipments
+  """
+  shipmentReplaceOrCreatePutShipments(
+    """No description available."""
+    shipmentInput: ShipmentInput
+  ): Shipment
+
+  """
+  Update instances of the model matched by {{where}} from the data source.
+  
+  Equivalent to POST /Shipments/update
+  """
+  shipmentUpdateAll(
+    """No description available."""
+    shipmentInput: ShipmentInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): ShipmentsUpdate
+
+  """
+  Update an existing model instance or insert a new one into the data source based on the where criteria.
+  
+  Equivalent to POST /Shipments/upsertWithWhere
+  """
+  shipmentUpsertWithWhere(
+    """No description available."""
+    shipmentInput: ShipmentInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): Shipment
+
+  """
+  Create a new instance of the model and persist it into the data source.
+  
+  Equivalent to POST /Users
+  """
+  userCreate(
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  Create a change stream.
+  
+  Equivalent to POST /Users/change-stream
+  """
+  userCreateChangeStreamPostUsersChangeStream(
+    """application/x-www-form-urlencoded request placeholder object"""
+    applicationXWwwFormUrlencodedInput: String
+  ): String
+
+  """
+  Delete a model instance by {{id}} from the data source.
+  
+  Equivalent to DELETE /Users/{id}
+  """
+  userDeleteById(
+    """Model id"""
+    id: String!
+  ): String
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to HEAD /Users/{id}
+  """
+  userExistsHeadUsersId(
+    """Model id"""
+    id: String!
+  ): Users2
+
+  """
+  Login a user with username/email and password.
+  
+  Equivalent to POST /Users/login
+  """
+  userLogin(
+    """
+    Related objects to include in the response. See the description of return value for more details.
+    """
+    include: String
+
+    """No description available."""
+    usersLoginInput: String!
+  ): String
+
+  """
+  Patch an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PATCH /Users
+  """
+  userPatchOrCreate(
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  이 모델의 accessTokens에서 새 인스턴스를 작성합니다.
+  
+  Equivalent to POST /Users/{id}/accessTokens
+  """
+  userPrototypeCreateAccessTokens(
+    """No description available."""
+    accessTokenInput: AccessTokenInput
+
+    """User id"""
+    id: String!
+  ): AccessToken
+
+  """
+  Patch attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PATCH /Users/{id}
+  """
+  userPrototypePatchAttributes(
+    """User id"""
+    id: String!
+
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.
+  
+  Equivalent to PUT /Users/{id}/accessTokens/{fk}
+  """
+  userPrototypeUpdateByIdAccessTokens(
+    """No description available."""
+    accessTokenInput: AccessTokenInput
+
+    """accessTokens의 외부 키"""
+    fk: String!
+
+    """User id"""
+    id: String!
+  ): AccessToken
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to POST /Users/{id}/replace
+  """
+  userReplaceByIdPostUsersIdReplace(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  Replace attributes for a model instance and persist it into the data source.
+  
+  Equivalent to PUT /Users/{id}
+  """
+  userReplaceByIdPutUsersId(
+    """Model id"""
+    id: String!
+
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to POST /Users/replaceOrCreate
+  """
+  userReplaceOrCreatePostUsersReplaceOrCreate(
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  Replace an existing model instance or insert a new one into the data source.
+  
+  Equivalent to PUT /Users
+  """
+  userReplaceOrCreatePutUsers(
+    """No description available."""
+    userInput: UserInput
+  ): User
+
+  """
+  Update instances of the model matched by {{where}} from the data source.
+  
+  Equivalent to POST /Users/update
+  """
+  userUpdateAll(
+    """No description available."""
+    userInput: UserInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): UsersUpdate
+
+  """
+  Update an existing model instance or insert a new one into the data source based on the where criteria.
+  
+  Equivalent to POST /Users/upsertWithWhere
+  """
+  userUpsertWithWhere(
+    """No description available."""
+    userInput: UserInput
+
+    """Criteria to match model instances"""
+    where: String
+  ): User
+}
+
+"""No description available."""
+type Order {
+  """No description available."""
+  customerId: Float
+
+  """No description available."""
+  date: String
+
+  """No description available."""
+  description: String
+
+  """No description available."""
+  id: Float
+}
+
+"""No description available."""
+input OrderInput {
+  """No description available."""
+  customerId: Float
+
+  """No description available."""
+  date: String
+
+  """No description available."""
+  description: String
+
+  """No description available."""
+  id: Float
+}
+
+"""No description available."""
+type Orders2 {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type OrdersCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type OrdersExists {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type OrdersShipmentsCount {
+  """No description available."""
+  count: Float
+}
+
+"""Information related to the outcome of the operation"""
+type OrdersUpdate {
+  """The number of instances updated"""
+  count: Float
+}
+
+"""The start of any query"""
+type Query {
+  """
+  accessTokens에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Users/{id}/accessTokens/{fk}
+  """
+  accessToken(
+    """accessTokens의 외부 키"""
+    fk: String!
+
+    """User id"""
+    id: String!
+  ): AccessToken
+
+  """
+  accounts에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Customers/{id}/accounts/{fk}
+  """
+  account(
+    """accounts의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): Account
+
+  """
+  페치에 하나의 관계 address이(가) 있습니다.
+  
+  Equivalent to GET /Customers/{id}/address
+  """
+  address(
+    """Customer id"""
+    id: String!
+    refresh: Boolean
+  ): Address
+
+  """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Books/findOne
+  """
+  book(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): Book
+
+  """
+  Find a model instance by {{id}} from the data source.
+  
+  Equivalent to GET /Books/{id}
+  """
+  bookFindById(
+    """
+    Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
+    """
+    filter: String
+
+    """Model id"""
+    id: String!
+  ): Book
+
+  """
+  Find all instances of the model matched by filter from the data source.
+  
+  Equivalent to GET /Books
+  """
+  books(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): [Book]
+
+  """
+  Create a change stream.
+  
+  Equivalent to GET /Books/change-stream
+  """
+  booksChangeStream(options: String): String
+
+  """
+  Count instances of the model matched by where from the data source.
+  
+  Equivalent to GET /Books/count
+  """
+  booksCount(
+    """Criteria to match model instances"""
+    where: String
+  ): BooksCount
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to GET /Books/{id}/exists
+  """
+  booksExists(
+    """Model id"""
+    id: String!
+  ): BooksExists
+
+  """
+  Book의 people을(를) 조회합니다.
+  
+  Equivalent to GET /Books/{id}/people
+  """
+  booksPeople(
+    filter: String
+
+    """Book id"""
+    id: String!
+  ): [Link]
+
+  """
+  Book의 people을(를) 계수합니다.
+  
+  Equivalent to GET /Books/{id}/people/count
+  """
+  booksPeopleCount(
+    """Book id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): BooksPeopleCount
+
+  """
+  페치가 관계 customer에 속합니다.
+  
+  Equivalent to GET /Orders/{id}/customer
+  """
+  customer(
+    """Order id"""
+    id: String!
+    refresh: Boolean
+  ): Customer
+
+  """
+  Find a model instance by {{id}} from the data source.
+  
+  Equivalent to GET /Customers/{id}
+  """
+  customerFindById(
+    """
+    Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
+    """
+    filter: String
+
+    """Model id"""
+    id: String!
+  ): Customer
+
+  """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Customers/findOne
+  """
+  customerFindOne(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): Customer
+
+  """
+  orders에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Customers/{id}/orders/{fk}
+  """
+  customerPrototypeFindByIdOrders(
+    """orders의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): Order
+
+  """
+  shipments에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}
+  """
+  customerPrototypeFindByIdOrdersShipments(
+    """shipments의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+  ): Shipment
+
+  """
+  페치가 관계 customer에 속합니다.
+  
+  Equivalent to GET /Customers/{id}/orders/{nk}/customer
+  """
+  customerPrototypeGetOrdersCustomer(
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+    refresh: Boolean
+  ): Customer
+
+  """
+  Find all instances of the model matched by filter from the data source.
+  
+  Equivalent to GET /Customers
+  """
+  customers(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): [Customer]
+
+  """
+  Customer의 accounts을(를) 조회합니다.
+  
+  Equivalent to GET /Customers/{id}/accounts
+  """
+  customersAccounts(
+    filter: String
+
+    """Customer id"""
+    id: String!
+  ): [Account]
+
+  """
+  Customer의 accounts을(를) 계수합니다.
+  
+  Equivalent to GET /Customers/{id}/accounts/count
+  """
+  customersAccountsCount(
+    """Customer id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersAccountsCount
+
+  """
+  Create a change stream.
+  
+  Equivalent to GET /Customers/change-stream
+  """
+  customersChangeStream(options: String): String
+
+  """
+  Count instances of the model matched by where from the data source.
+  
+  Equivalent to GET /Customers/count
+  """
+  customersCount(
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersCount
+
+  """
+  Customer의 emails을(를) 조회합니다.
+  
+  Equivalent to GET /Customers/{id}/emails
+  """
+  customersEmails(
+    filter: String
+
+    """Customer id"""
+    id: String!
+  ): [EmailAddress]
+
+  """
+  Customer의 emails을(를) 계수합니다.
+  
+  Equivalent to GET /Customers/{id}/emails/count
+  """
+  customersEmailsCount(
+    """Customer id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersEmailsCount
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to GET /Customers/{id}/exists
+  """
+  customersExists(
+    """Model id"""
+    id: String!
+  ): CustomersExists
+
+  """
+  Customer의 orders을(를) 조회합니다.
+  
+  Equivalent to GET /Customers/{id}/orders
+  """
+  customersOrders(
+    filter: String
+
+    """Customer id"""
+    id: String!
+  ): [Order]
+
+  """
+  Customer의 orders을(를) 계수합니다.
+  
+  Equivalent to GET /Customers/{id}/orders/count
+  """
+  customersOrdersCount(
+    """Customer id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersOrdersCount
+
+  """
+  Order의 shipments을(를) 조회합니다.
+  
+  Equivalent to GET /Customers/{id}/orders/{nk}/shipments
+  """
+  customersOrdersShipments(
+    filter: String
+
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+  ): [Shipment]
+
+  """
+  Order의 shipments을(를) 계수합니다.
+  
+  Equivalent to GET /Customers/{id}/orders/{nk}/shipments/count
+  """
+  customersOrdersShipmentsCount(
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): CustomersOrdersShipmentsCount
+
+  """
+  emails에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Customers/{id}/emails/{fk}
+  """
+  emailAddress(
+    """emails의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+  ): EmailAddress
+
+  """
+  people에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Books/{id}/people/{fk}
+  """
+  link(
+    """people의 외부 키"""
+    fk: String!
+
+    """Book id"""
+    id: String!
+  ): Link
+
+  """
+  페치가 관계 order에 속합니다.
+  
+  Equivalent to GET /Shipments/{id}/order
+  """
+  order(
+    """Shipment id"""
+    id: String!
+    refresh: Boolean
+  ): Order
+
+  """
+  Find a model instance by {{id}} from the data source.
+  
+  Equivalent to GET /Orders/{id}
+  """
+  orderFindById(
+    """
+    Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
+    """
+    filter: String
+
+    """Model id"""
+    id: String!
+  ): Order
+
+  """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Orders/findOne
+  """
+  orderFindOne(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): Order
+
+  """
+  shipments에 대해 ID로 관련 항목을 찾으십시오.
+  
+  Equivalent to GET /Orders/{id}/shipments/{fk}
+  """
+  orderPrototypeFindByIdShipments(
+    """shipments의 외부 키"""
+    fk: String!
+
+    """Order id"""
+    id: String!
+  ): Shipment
+
+  """
+  Find all instances of the model matched by filter from the data source.
+  
+  Equivalent to GET /Orders
+  """
+  orders(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): [Order]
+
+  """
+  Create a change stream.
+  
+  Equivalent to GET /Orders/change-stream
+  """
+  ordersChangeStream(options: String): String
+
+  """
+  Count instances of the model matched by where from the data source.
+  
+  Equivalent to GET /Orders/count
+  """
+  ordersCount(
+    """Criteria to match model instances"""
+    where: String
+  ): OrdersCount
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to GET /Orders/{id}/exists
+  """
+  ordersExists(
+    """Model id"""
+    id: String!
+  ): OrdersExists
+
+  """
+  Order의 shipments을(를) 조회합니다.
+  
+  Equivalent to GET /Orders/{id}/shipments
+  """
+  ordersShipments(
+    filter: String
+
+    """Order id"""
+    id: String!
+  ): [Shipment]
+
+  """
+  Order의 shipments을(를) 계수합니다.
+  
+  Equivalent to GET /Orders/{id}/shipments/count
+  """
+  ordersShipmentsCount(
+    """Order id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): OrdersShipmentsCount
+
+  """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Shipments/findOne
+  """
+  shipment(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): Shipment
+
+  """
+  Find a model instance by {{id}} from the data source.
+  
+  Equivalent to GET /Shipments/{id}
+  """
+  shipmentFindById(
+    """
+    Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
+    """
+    filter: String
+
+    """Model id"""
+    id: String!
+  ): Shipment
+
+  """
+  Find all instances of the model matched by filter from the data source.
+  
+  Equivalent to GET /Shipments
+  """
+  shipments(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): [Shipment]
+
+  """
+  Create a change stream.
+  
+  Equivalent to GET /Shipments/change-stream
+  """
+  shipmentsChangeStream(options: String): String
+
+  """
+  Count instances of the model matched by where from the data source.
+  
+  Equivalent to GET /Shipments/count
+  """
+  shipmentsCount(
+    """Criteria to match model instances"""
+    where: String
+  ): ShipmentsCount
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to GET /Shipments/{id}/exists
+  """
+  shipmentsExists(
+    """Model id"""
+    id: String!
+  ): ShipmentsExists
+
+  """
+  Find a model instance by {{id}} from the data source.
+  
+  Equivalent to GET /Users/{id}
+  """
+  user(
+    """
+    Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
+    """
+    filter: String
+
+    """Model id"""
+    id: String!
+  ): User
+
+  """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Users/findOne
+  """
+  userFindOne(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): User
+
+  """
+  Find all instances of the model matched by filter from the data source.
+  
+  Equivalent to GET /Users
+  """
+  users(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): [User]
+
+  """
+  User의 accessTokens을(를) 조회합니다.
+  
+  Equivalent to GET /Users/{id}/accessTokens
+  """
+  usersAccessTokens(
+    filter: String
+
+    """User id"""
+    id: String!
+  ): [AccessToken]
+
+  """
+  User의 accessTokens을(를) 계수합니다.
+  
+  Equivalent to GET /Users/{id}/accessTokens/count
+  """
+  usersAccessTokensCount(
+    """User id"""
+    id: String!
+
+    """Criteria to match model instances"""
+    where: String
+  ): UsersAccessTokensCount
+
+  """
+  Create a change stream.
+  
+  Equivalent to GET /Users/change-stream
+  """
+  usersChangeStream(options: String): String
+
+  """
+  Count instances of the model matched by where from the data source.
+  
+  Equivalent to GET /Users/count
+  """
+  usersCount(
+    """Criteria to match model instances"""
+    where: String
+  ): UsersCount
+
+  """
+  Check whether a model instance exists in the data source.
+  
+  Equivalent to GET /Users/{id}/exists
+  """
+  usersExists(
+    """Model id"""
+    id: String!
+  ): UsersExists
+}
+
+"""No description available."""
+type Shipment {
+  """No description available."""
+  date: String
+
+  """No description available."""
+  description: String
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  orderId: Float
+}
+
+"""No description available."""
+input ShipmentInput {
+  """No description available."""
+  date: String
+
+  """No description available."""
+  description: String
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  orderId: Float
+}
+
+"""No description available."""
+type Shipments2 {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type ShipmentsCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type ShipmentsExists {
+  """No description available."""
+  exists: Boolean
+}
+
+"""Information related to the outcome of the operation"""
+type ShipmentsUpdate {
+  """The number of instances updated"""
+  count: Float
+}
+
+"""No description available."""
+type User {
+  """No description available."""
+  email: String
+
+  """No description available."""
+  emailVerified: Boolean
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  realm: String
+
+  """No description available."""
+  username: String
+}
+
+"""No description available."""
+input UserInput {
+  """No description available."""
+  email: String
+
+  """No description available."""
+  emailVerified: Boolean
+
+  """No description available."""
+  id: Float
+
+  """No description available."""
+  realm: String
+
+  """No description available."""
+  username: String
+}
+
+"""No description available."""
+type Users2 {
+  """No description available."""
+  exists: Boolean
+}
+
+"""No description available."""
+type UsersAccessTokensCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type UsersCount {
+  """No description available."""
+  count: Float
+}
+
+"""No description available."""
+type UsersExists {
+  """No description available."""
+  exists: Boolean
+}
+
+"""Information related to the outcome of the operation"""
+type UsersUpdate {
+  """The number of instances updated"""
+  count: Float
+}

@@ -10,18 +10,390 @@
         "description": "The start of any query",
         "fields": [
           {
-            "name": "order",
-            "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions\n\nEquivalent to GET /store/order/{orderId}",
+            "name": "accessToken",
+            "description": "accessTokens에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Users/{id}/accessTokens/{fk}",
             "args": [
               {
-                "name": "orderId",
-                "description": "ID of pet that needs to be fetched",
+                "name": "fk",
+                "description": "accessTokens의 외부 키",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Float",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "User id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "AccessToken", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "account",
+            "description": "accounts에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Customers/{id}/accounts/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "accounts의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Account", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "address",
+            "description": "페치에 하나의 관계 address이(가) 있습니다.\n\nEquivalent to GET /Customers/{id}/address",
+            "args": [
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "refresh",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Address", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "book",
+            "description": "Find first instance of the model matched by filter from the data source.\n\nEquivalent to GET /Books/findOne",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookFindById",
+            "description": "Find a model instance by {{id}} from the data source.\n\nEquivalent to GET /Books/{id}",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields and include - must be a JSON-encoded string ({\"something\":\"value\"})",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "books",
+            "description": "Find all instances of the model matched by filter from the data source.\n\nEquivalent to GET /Books",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Book", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "booksChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to GET /Books/change-stream",
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "booksCount",
+            "description": "Count instances of the model matched by where from the data source.\n\nEquivalent to GET /Books/count",
+            "args": [
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "BooksCount", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "booksExists",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to GET /Books/{id}/exists",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "BooksExists", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "booksPeople",
+            "description": "Book의 people을(를) 조회합니다.\n\nEquivalent to GET /Books/{id}/people",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Link", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "booksPeopleCount",
+            "description": "Book의 people을(를) 계수합니다.\n\nEquivalent to GET /Books/{id}/people/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BooksPeopleCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customer",
+            "description": "페치가 관계 customer에 속합니다.\n\nEquivalent to GET /Orders/{id}/customer",
+            "args": [
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "refresh",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerFindById",
+            "description": "Find a model instance by {{id}} from the data source.\n\nEquivalent to GET /Customers/{id}",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields and include - must be a JSON-encoded string ({\"something\":\"value\"})",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerFindOne",
+            "description": "Find first instance of the model matched by filter from the data source.\n\nEquivalent to GET /Customers/findOne",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeFindByIdOrders",
+            "description": "orders에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Customers/{id}/orders/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "orders의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -33,46 +405,138 @@
             "deprecationReason": null
           },
           {
-            "name": "pet",
-            "description": "Returns a single pet\n\nEquivalent to GET /pet/{petId}",
+            "name": "customerPrototypeFindByIdOrdersShipments",
+            "description": "shipments에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}",
             "args": [
               {
-                "name": "petId",
-                "description": "ID of pet to return",
+                "name": "fk",
+                "description": "shipments의 외부 키",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Float",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
                     "ofType": null
                   }
                 },
                 "defaultValue": null
               }
             ],
-            "type": { "kind": "OBJECT", "name": "Pet", "ofType": null },
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "petFindByStatus",
-            "description": "Multiple status values can be provided with comma separated strings\n\nEquivalent to GET /pet/findByStatus",
+            "name": "customerPrototypeGetOrdersCustomer",
+            "description": "페치가 관계 customer에 속합니다.\n\nEquivalent to GET /Customers/{id}/orders/{nk}/customer",
             "args": [
               {
-                "name": "status",
-                "description": "Status values that need to be considered for filter",
+                "name": "id",
+                "description": "Customer id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "Status3ListItem",
-                      "ofType": null
-                    }
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "refresh",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customers",
+            "description": "Find all instances of the model matched by filter from the data source.\n\nEquivalent to GET /Customers",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Customer", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersAccounts",
+            "description": "Customer의 accounts을(를) 조회합니다.\n\nEquivalent to GET /Customers/{id}/accounts",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
                   }
                 },
                 "defaultValue": null
@@ -81,29 +545,98 @@
             "type": {
               "kind": "LIST",
               "name": null,
-              "ofType": { "kind": "OBJECT", "name": "Pet", "ofType": null }
+              "ofType": { "kind": "OBJECT", "name": "Account", "ofType": null }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "petFindByTags",
-            "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.\n\nEquivalent to GET /pet/findByTags",
+            "name": "customersAccountsCount",
+            "description": "Customer의 accounts을(를) 계수합니다.\n\nEquivalent to GET /Customers/{id}/accounts/count",
             "args": [
               {
-                "name": "tags",
-                "description": "Tags to filter by",
+                "name": "id",
+                "description": "Customer id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersAccountsCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to GET /Customers/change-stream",
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersCount",
+            "description": "Count instances of the model matched by where from the data source.\n\nEquivalent to GET /Customers/count",
+            "args": [
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersEmails",
+            "description": "Customer의 emails을(를) 조회합니다.\n\nEquivalent to GET /Customers/{id}/emails",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
                   }
                 },
                 "defaultValue": null
@@ -112,26 +645,702 @@
             "type": {
               "kind": "LIST",
               "name": null,
-              "ofType": { "kind": "OBJECT", "name": "Pet", "ofType": null }
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "EmailAddress",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "storeInventory",
-            "description": "Returns a map of status codes to quantities\n\nEquivalent to GET /store/inventory",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "JSON", "ofType": null },
+            "name": "customersEmailsCount",
+            "description": "Customer의 emails을(를) 계수합니다.\n\nEquivalent to GET /Customers/{id}/emails/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersEmailsCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersExists",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to GET /Customers/{id}/exists",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersExists",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersOrders",
+            "description": "Customer의 orders을(를) 조회합니다.\n\nEquivalent to GET /Customers/{id}/orders",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Order", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersOrdersCount",
+            "description": "Customer의 orders을(를) 계수합니다.\n\nEquivalent to GET /Customers/{id}/orders/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersOrdersCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersOrdersShipments",
+            "description": "Order의 shipments을(를) 조회합니다.\n\nEquivalent to GET /Customers/{id}/orders/{nk}/shipments",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Shipment", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customersOrdersShipmentsCount",
+            "description": "Order의 shipments을(를) 계수합니다.\n\nEquivalent to GET /Customers/{id}/orders/{nk}/shipments/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersOrdersShipmentsCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "emailAddress",
+            "description": "emails에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Customers/{id}/emails/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "emails의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "EmailAddress",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "link",
+            "description": "people에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Books/{id}/people/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "people의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Link", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "order",
+            "description": "페치가 관계 order에 속합니다.\n\nEquivalent to GET /Shipments/{id}/order",
+            "args": [
+              {
+                "name": "id",
+                "description": "Shipment id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "refresh",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderFindById",
+            "description": "Find a model instance by {{id}} from the data source.\n\nEquivalent to GET /Orders/{id}",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields and include - must be a JSON-encoded string ({\"something\":\"value\"})",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderFindOne",
+            "description": "Find first instance of the model matched by filter from the data source.\n\nEquivalent to GET /Orders/findOne",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderPrototypeFindByIdShipments",
+            "description": "shipments에 대해 ID로 관련 항목을 찾으십시오.\n\nEquivalent to GET /Orders/{id}/shipments/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "shipments의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orders",
+            "description": "Find all instances of the model matched by filter from the data source.\n\nEquivalent to GET /Orders",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Order", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to GET /Orders/change-stream",
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordersCount",
+            "description": "Count instances of the model matched by where from the data source.\n\nEquivalent to GET /Orders/count",
+            "args": [
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "OrdersCount", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordersExists",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to GET /Orders/{id}/exists",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "OrdersExists",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordersShipments",
+            "description": "Order의 shipments을(를) 조회합니다.\n\nEquivalent to GET /Orders/{id}/shipments",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Shipment", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordersShipmentsCount",
+            "description": "Order의 shipments을(를) 계수합니다.\n\nEquivalent to GET /Orders/{id}/shipments/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "OrdersShipmentsCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipment",
+            "description": "Find first instance of the model matched by filter from the data source.\n\nEquivalent to GET /Shipments/findOne",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentFindById",
+            "description": "Find a model instance by {{id}} from the data source.\n\nEquivalent to GET /Shipments/{id}",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields and include - must be a JSON-encoded string ({\"something\":\"value\"})",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipments",
+            "description": "Find all instances of the model matched by filter from the data source.\n\nEquivalent to GET /Shipments",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "Shipment", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentsChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to GET /Shipments/change-stream",
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentsCount",
+            "description": "Count instances of the model matched by where from the data source.\n\nEquivalent to GET /Shipments/count",
+            "args": [
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ShipmentsCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentsExists",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to GET /Shipments/{id}/exists",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ShipmentsExists",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "user",
-            "description": "Get user by user name\n\nEquivalent to GET /user/{username}",
+            "description": "Find a model instance by {{id}} from the data source.\n\nEquivalent to GET /Users/{id}",
             "args": [
               {
-                "name": "username",
-                "description": "The name that needs to be fetched. Use user1 for testing.",
+                "name": "filter",
+                "description": "Filter defining fields and include - must be a JSON-encoded string ({\"something\":\"value\"})",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -149,26 +1358,52 @@
             "deprecationReason": null
           },
           {
-            "name": "userLogin",
-            "description": "Logs user into the system\n\nEquivalent to GET /user/login",
+            "name": "userFindOne",
+            "description": "Find first instance of the model matched by filter from the data source.\n\nEquivalent to GET /Users/findOne",
             "args": [
               {
-                "name": "password",
-                "description": "The password for login in clear text",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "users",
+            "description": "Find all instances of the model matched by filter from the data source.\n\nEquivalent to GET /Users",
+            "args": [
+              {
+                "name": "filter",
+                "description": "Filter defining fields, where, include, order, offset, and limit - must be a\nJSON-encoded string (`{\"where\":{\"something\":\"value\"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries\nfor more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "OBJECT", "name": "User", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usersAccessTokens",
+            "description": "User의 accessTokens을(를) 조회합니다.\n\nEquivalent to GET /Users/{id}/accessTokens",
+            "args": [
+              {
+                "name": "filter",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
                 "defaultValue": null
               },
               {
-                "name": "username",
-                "description": "The user name for login",
+                "name": "id",
+                "description": "User id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -181,7 +1416,166 @@
                 "defaultValue": null
               }
             ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AccessToken",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usersAccessTokensCount",
+            "description": "User의 accessTokens을(를) 계수합니다.\n\nEquivalent to GET /Users/{id}/accessTokens/count",
+            "args": [
+              {
+                "name": "id",
+                "description": "User id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UsersAccessTokensCount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to GET /Users/change-stream",
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usersCount",
+            "description": "Count instances of the model matched by where from the data source.\n\nEquivalent to GET /Users/count",
+            "args": [
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "UsersCount", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usersExists",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to GET /Users/{id}/exists",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "UsersExists", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AccessToken",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "created",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "scopes",
+            "description": "Array of scopes granted to this access token.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ttl",
+            "description": "time to live in seconds (2 weeks by default)",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userId",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -203,14 +1597,14 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Order",
-        "description": "An order for a pets from the pet store",
+        "name": "Account",
+        "description": "No description available.",
         "fields": [
           {
-            "name": "complete",
+            "name": "balance",
             "description": "No description available.",
             "args": [],
-            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -223,34 +1617,10 @@
             "deprecationReason": null
           },
           {
-            "name": "petId",
-            "description": "No description available.",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "quantity",
-            "description": "No description available.",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "shipDate",
+            "name": "name",
             "description": "No description available.",
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
-            "description": "Order Status",
-            "args": [],
-            "type": { "kind": "ENUM", "name": "Status2", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -271,67 +1641,61 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "Status2",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+        "kind": "OBJECT",
+        "name": "Address",
+        "description": "No description available.",
+        "fields": [
           {
-            "name": "placed",
-            "description": null,
+            "name": "city",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "approved",
-            "description": null,
+            "name": "id",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "delivered",
-            "description": null,
+            "name": "state",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "street",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "zipCode",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
-        "name": "Pet",
-        "description": "A pet for sale in the pet store",
+        "name": "Book",
+        "description": "No description available.",
         "fields": [
-          {
-            "name": "category",
-            "description": "A category for a pet",
-            "args": [],
-            "type": { "kind": "OBJECT", "name": "Category", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": "No description available.",
@@ -341,56 +1705,188 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
-            "description": "No description available.",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "photoUrls",
+            "name": "links",
             "description": "No description available.",
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+              "ofType": { "kind": "OBJECT", "name": "Link", "ofType": null }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "status",
-            "description": "pet status in the store",
+            "name": "name",
+            "description": "No description available.",
             "args": [],
-            "type": { "kind": "ENUM", "name": "Status", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Link",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "id",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "tags",
+            "name": "linkedId",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "linkedType",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notes",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BooksCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BooksExists",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BooksPeopleCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Customer",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "accountIds",
             "description": "No description available.",
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
-              "ofType": { "kind": "OBJECT", "name": "Tag", "ofType": null }
+              "ofType": { "kind": "SCALAR", "name": "Float", "ofType": null }
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Category",
-        "description": "A category for a pet",
-        "fields": [
+          },
+          {
+            "name": "age",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "billingAddress",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Address", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "emailList",
+            "description": "No description available.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "EmailAddress",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "id",
             "description": "No description available.",
@@ -414,49 +1910,28 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "Status",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "available",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pending",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sold",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
-        "name": "Tag",
-        "description": "A tag for a pet",
+        "name": "EmailAddress",
+        "description": "No description available.",
         "fields": [
+          {
+            "name": "address",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "id",
             "description": "No description available.",
             "args": [],
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "label",
             "description": "No description available.",
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
@@ -470,48 +1945,304 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "Status3ListItem",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+        "kind": "OBJECT",
+        "name": "Order",
+        "description": "No description available.",
+        "fields": [
           {
-            "name": "available",
-            "description": null,
+            "name": "customerId",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "pending",
-            "description": null,
+            "name": "date",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "sold",
-            "description": null,
+            "name": "description",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "JSON",
-        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
-        "fields": null,
+        "kind": "OBJECT",
+        "name": "Shipment",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "date",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderId",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "inputFields": null,
-        "interfaces": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersAccountsCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersEmailsCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersExists",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersOrdersCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersOrdersShipmentsCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrdersCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrdersExists",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrdersShipmentsCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ShipmentsCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ShipmentsExists",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
         "name": "User",
-        "description": "A User who is purchasing from the pet store",
+        "description": "No description available.",
         "fields": [
           {
             "name": "email",
@@ -522,10 +2253,10 @@
             "deprecationReason": null
           },
           {
-            "name": "firstName",
+            "name": "emailVerified",
             "description": "No description available.",
             "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -538,34 +2269,10 @@
             "deprecationReason": null
           },
           {
-            "name": "lastName",
+            "name": "realm",
             "description": "No description available.",
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "password",
-            "description": "No description available.",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": "No description available.",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "userStatus",
-            "description": "User Status",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -585,24 +2292,659 @@
       },
       {
         "kind": "OBJECT",
+        "name": "UsersAccessTokensCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UsersCount",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "count",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UsersExists",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "Mutation",
         "description": "The start of any mutation",
         "fields": [
           {
-            "name": "placeOrder",
-            "description": "Place an order for a pet\n\nEquivalent to POST /store/order",
+            "name": "bookCreate",
+            "description": "Create a new instance of the model and persist it into the data source.\n\nEquivalent to POST /Books",
             "args": [
               {
-                "name": "orderInput",
-                "description": "An order for a pets from the pet store",
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookCreateChangeStreamPostBooksChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to POST /Books/change-stream",
+            "args": [
+              {
+                "name": "applicationXWwwFormUrlencodedInput",
+                "description": "application/x-www-form-urlencoded request placeholder object",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookDeleteById",
+            "description": "Delete a model instance by {{id}} from the data source.\n\nEquivalent to DELETE /Books/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "OrderInput",
+                    "kind": "SCALAR",
+                    "name": "String",
                     "ofType": null
                   }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookExistsHeadBooksId",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to HEAD /Books/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Books2", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookPatchOrCreate",
+            "description": "Patch an existing model instance or insert a new one into the data source.\n\nEquivalent to PATCH /Books",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookPrototypeCreatePeople",
+            "description": "이 모델의 people에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Books/{id}/people",
+            "args": [
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "linkInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "LinkInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Link", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookPrototypePatchAttributes",
+            "description": "Patch attributes for a model instance and persist it into the data source.\n\nEquivalent to PATCH /Books/{id}",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookPrototypeUpdateByIdPeople",
+            "description": "people에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Books/{id}/people/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "people의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Book id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "linkInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "LinkInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Link", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookReplaceByIdPostBooksIdReplace",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to POST /Books/{id}/replace",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookReplaceByIdPutBooksId",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to PUT /Books/{id}",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookReplaceOrCreatePostBooksReplaceOrCreate",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to POST /Books/replaceOrCreate",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookReplaceOrCreatePutBooks",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to PUT /Books",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookUpdateAll",
+            "description": "Update instances of the model matched by {{where}} from the data source.\n\nEquivalent to POST /Books/update",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "BooksUpdate", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookUpsertWithWhere",
+            "description": "Update an existing model instance or insert a new one into the data source based on the where criteria.\n\nEquivalent to POST /Books/upsertWithWhere",
+            "args": [
+              {
+                "name": "bookInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BookInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Book", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerCreate",
+            "description": "Create a new instance of the model and persist it into the data source.\n\nEquivalent to POST /Customers",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerCreateChangeStreamPostCustomersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to POST /Customers/change-stream",
+            "args": [
+              {
+                "name": "applicationXWwwFormUrlencodedInput",
+                "description": "application/x-www-form-urlencoded request placeholder object",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerDeleteById",
+            "description": "Delete a model instance by {{id}} from the data source.\n\nEquivalent to DELETE /Customers/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerExistsHeadCustomersId",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to HEAD /Customers/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customers2", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPatchOrCreate",
+            "description": "Patch an existing model instance or insert a new one into the data source.\n\nEquivalent to PATCH /Customers",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeCreateAccounts",
+            "description": "이 모델의 accounts에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Customers/{id}/accounts",
+            "args": [
+              {
+                "name": "accountInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AccountInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Account", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeCreateAddress",
+            "description": "이 모델의 address에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Customers/{id}/address",
+            "args": [
+              {
+                "name": "addressInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AddressInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Address", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeCreateEmails",
+            "description": "이 모델의 emails에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Customers/{id}/emails",
+            "args": [
+              {
+                "name": "emailAddressInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "EmailAddressInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "EmailAddress",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeCreateOrders",
+            "description": "이 모델의 orders에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Customers/{id}/orders",
+            "args": [
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
                 },
                 "defaultValue": null
               }
@@ -612,31 +2954,1608 @@
             "deprecationReason": null
           },
           {
-            "name": "uploadFile",
-            "description": "uploads an image\n\nEquivalent to POST /pet/{petId}/uploadImage",
+            "name": "customerPrototypeCreateOrdersShipments",
+            "description": "이 모델의 shipments에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Customers/{id}/orders/{nk}/shipments",
             "args": [
               {
-                "name": "multipartFormDataInput",
-                "description": "multipart/form-data request placeholder object",
-                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-                "defaultValue": null
-              },
-              {
-                "name": "petId",
-                "description": "ID of pet to update",
+                "name": "id",
+                "description": "Customer id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Float",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeExistsAccounts",
+            "description": "ID로 항목에 대한 accounts 관계의 존재를 확인하십시오.\n\nEquivalent to HEAD /Customers/{id}/accounts/rel/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "accounts의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
                     "ofType": null
                   }
                 },
                 "defaultValue": null
               }
             ],
-            "type": { "kind": "OBJECT", "name": "ApiResponse", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeLinkAccounts",
+            "description": "accounts에 대해 ID로 관련 항목을 추가하십시오.\n\nEquivalent to PUT /Customers/{id}/accounts/rel/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "accounts의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Account", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypePatchAttributes",
+            "description": "Patch attributes for a model instance and persist it into the data source.\n\nEquivalent to PATCH /Customers/{id}",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeUpdateAddress",
+            "description": "이 모델의 address을(를) 업데이트하십시오.\n\nEquivalent to PUT /Customers/{id}/address",
+            "args": [
+              {
+                "name": "addressInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AddressInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Address", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeUpdateByIdAccounts",
+            "description": "accounts에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Customers/{id}/accounts/{fk}",
+            "args": [
+              {
+                "name": "accountInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AccountInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fk",
+                "description": "accounts의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Account", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeUpdateByIdEmails",
+            "description": "emails에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Customers/{id}/emails/{fk}",
+            "args": [
+              {
+                "name": "emailAddressInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "EmailAddressInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fk",
+                "description": "emails의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "EmailAddress",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeUpdateByIdOrders",
+            "description": "orders에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Customers/{id}/orders/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "orders의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerPrototypeUpdateByIdOrdersShipments",
+            "description": "shipments에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Customers/{id}/orders/{nk}/shipments/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "shipments의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Customer id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "nk",
+                "description": "orders의 외부 키입니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerReplaceByIdPostCustomersIdReplace",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to POST /Customers/{id}/replace",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerReplaceByIdPutCustomersId",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to PUT /Customers/{id}",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerReplaceOrCreatePostCustomersReplaceOrCreate",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to POST /Customers/replaceOrCreate",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerReplaceOrCreatePutCustomers",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to PUT /Customers",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerUpdateAll",
+            "description": "Update instances of the model matched by {{where}} from the data source.\n\nEquivalent to POST /Customers/update",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomersUpdate",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerUpsertWithWhere",
+            "description": "Update an existing model instance or insert a new one into the data source based on the where criteria.\n\nEquivalent to POST /Customers/upsertWithWhere",
+            "args": [
+              {
+                "name": "customerInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderCreate",
+            "description": "Create a new instance of the model and persist it into the data source.\n\nEquivalent to POST /Orders",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderCreateChangeStreamPostOrdersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to POST /Orders/change-stream",
+            "args": [
+              {
+                "name": "applicationXWwwFormUrlencodedInput",
+                "description": "application/x-www-form-urlencoded request placeholder object",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderDeleteById",
+            "description": "Delete a model instance by {{id}} from the data source.\n\nEquivalent to DELETE /Orders/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderExistsHeadOrdersId",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to HEAD /Orders/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Orders2", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderPatchOrCreate",
+            "description": "Patch an existing model instance or insert a new one into the data source.\n\nEquivalent to PATCH /Orders",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderPrototypeCreateShipments",
+            "description": "이 모델의 shipments에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Orders/{id}/shipments",
+            "args": [
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderPrototypePatchAttributes",
+            "description": "Patch attributes for a model instance and persist it into the data source.\n\nEquivalent to PATCH /Orders/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderPrototypeUpdateByIdShipments",
+            "description": "shipments에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Orders/{id}/shipments/{fk}",
+            "args": [
+              {
+                "name": "fk",
+                "description": "shipments의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "Order id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderReplaceByIdPostOrdersIdReplace",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to POST /Orders/{id}/replace",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderReplaceByIdPutOrdersId",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to PUT /Orders/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderReplaceOrCreatePostOrdersReplaceOrCreate",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to POST /Orders/replaceOrCreate",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderReplaceOrCreatePutOrders",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to PUT /Orders",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderUpdateAll",
+            "description": "Update instances of the model matched by {{where}} from the data source.\n\nEquivalent to POST /Orders/update",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "OrdersUpdate",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderUpsertWithWhere",
+            "description": "Update an existing model instance or insert a new one into the data source based on the where criteria.\n\nEquivalent to POST /Orders/upsertWithWhere",
+            "args": [
+              {
+                "name": "orderInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentCreate",
+            "description": "Create a new instance of the model and persist it into the data source.\n\nEquivalent to POST /Shipments",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentCreateChangeStreamPostShipmentsChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to POST /Shipments/change-stream",
+            "args": [
+              {
+                "name": "applicationXWwwFormUrlencodedInput",
+                "description": "application/x-www-form-urlencoded request placeholder object",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentDeleteById",
+            "description": "Delete a model instance by {{id}} from the data source.\n\nEquivalent to DELETE /Shipments/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentExistsHeadShipmentsId",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to HEAD /Shipments/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipments2", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentPatchOrCreate",
+            "description": "Patch an existing model instance or insert a new one into the data source.\n\nEquivalent to PATCH /Shipments",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentPrototypePatchAttributes",
+            "description": "Patch attributes for a model instance and persist it into the data source.\n\nEquivalent to PATCH /Shipments/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Shipment id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentReplaceByIdPostShipmentsIdReplace",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to POST /Shipments/{id}/replace",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentReplaceByIdPutShipmentsId",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to PUT /Shipments/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentReplaceOrCreatePostShipmentsReplaceOrCreate",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to POST /Shipments/replaceOrCreate",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentReplaceOrCreatePutShipments",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to PUT /Shipments",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentUpdateAll",
+            "description": "Update instances of the model matched by {{where}} from the data source.\n\nEquivalent to POST /Shipments/update",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ShipmentsUpdate",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipmentUpsertWithWhere",
+            "description": "Update an existing model instance or insert a new one into the data source based on the where criteria.\n\nEquivalent to POST /Shipments/upsertWithWhere",
+            "args": [
+              {
+                "name": "shipmentInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShipmentInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Shipment", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userCreate",
+            "description": "Create a new instance of the model and persist it into the data source.\n\nEquivalent to POST /Users",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userCreateChangeStreamPostUsersChangeStream",
+            "description": "Create a change stream.\n\nEquivalent to POST /Users/change-stream",
+            "args": [
+              {
+                "name": "applicationXWwwFormUrlencodedInput",
+                "description": "application/x-www-form-urlencoded request placeholder object",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userDeleteById",
+            "description": "Delete a model instance by {{id}} from the data source.\n\nEquivalent to DELETE /Users/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userExistsHeadUsersId",
+            "description": "Check whether a model instance exists in the data source.\n\nEquivalent to HEAD /Users/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Users2", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userLogin",
+            "description": "Login a user with username/email and password.\n\nEquivalent to POST /Users/login",
+            "args": [
+              {
+                "name": "include",
+                "description": "Related objects to include in the response. See the description of return value for more details.",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              },
+              {
+                "name": "usersLoginInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userPatchOrCreate",
+            "description": "Patch an existing model instance or insert a new one into the data source.\n\nEquivalent to PATCH /Users",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userPrototypeCreateAccessTokens",
+            "description": "이 모델의 accessTokens에서 새 인스턴스를 작성합니다.\n\nEquivalent to POST /Users/{id}/accessTokens",
+            "args": [
+              {
+                "name": "accessTokenInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AccessTokenInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "User id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "AccessToken", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userPrototypePatchAttributes",
+            "description": "Patch attributes for a model instance and persist it into the data source.\n\nEquivalent to PATCH /Users/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "User id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userPrototypeUpdateByIdAccessTokens",
+            "description": "accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.\n\nEquivalent to PUT /Users/{id}/accessTokens/{fk}",
+            "args": [
+              {
+                "name": "accessTokenInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AccessTokenInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fk",
+                "description": "accessTokens의 외부 키",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": "User id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "AccessToken", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userReplaceByIdPostUsersIdReplace",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to POST /Users/{id}/replace",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userReplaceByIdPutUsersId",
+            "description": "Replace attributes for a model instance and persist it into the data source.\n\nEquivalent to PUT /Users/{id}",
+            "args": [
+              {
+                "name": "id",
+                "description": "Model id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userReplaceOrCreatePostUsersReplaceOrCreate",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to POST /Users/replaceOrCreate",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userReplaceOrCreatePutUsers",
+            "description": "Replace an existing model instance or insert a new one into the data source.\n\nEquivalent to PUT /Users",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userUpdateAll",
+            "description": "Update instances of the model matched by {{where}} from the data source.\n\nEquivalent to POST /Users/update",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "UsersUpdate", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userUpsertWithWhere",
+            "description": "Update an existing model instance or insert a new one into the data source based on the where criteria.\n\nEquivalent to POST /Users/upsertWithWhere",
+            "args": [
+              {
+                "name": "userInput",
+                "description": "No description available.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "Criteria to match model instances",
+                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -648,12 +4567,480 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "OrderInput",
-        "description": "An order for a pets from the pet store",
+        "name": "BookInput",
+        "description": "No description available.",
         "fields": null,
         "inputFields": [
           {
-            "name": "complete",
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "links",
+            "description": "No description available.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "LinkInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "LinkInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "linkedId",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "linkedType",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "notes",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Books2",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BooksUpdate",
+        "description": "Information related to the outcome of the operation",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The number of instances updated",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CustomerInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "accountIds",
+            "description": "No description available.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "Float", "ofType": null }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "age",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "billingAddress",
+            "description": "No description available.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AddressInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "emailList",
+            "description": "No description available.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "EmailAddressInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AddressInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "city",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "street",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "zipCode",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "EmailAddressInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "address",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "label",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Customers2",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AccountInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "balance",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "OrderInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "customerId",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "date",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "description",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ShipmentInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "date",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "description",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "orderId",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomersUpdate",
+        "description": "Information related to the outcome of the operation",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The number of instances updated",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Orders2",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrdersUpdate",
+        "description": "Information related to the outcome of the operation",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The number of instances updated",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Shipments2",
+        "description": "No description available.",
+        "fields": [
+          {
+            "name": "exists",
+            "description": "No description available.",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ShipmentsUpdate",
+        "description": "Information related to the outcome of the operation",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The number of instances updated",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UserInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "email",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "emailVerified",
             "description": "No description available.",
             "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
             "defaultValue": null
@@ -665,27 +5052,15 @@
             "defaultValue": null
           },
           {
-            "name": "petId",
-            "description": "No description available.",
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
-            "defaultValue": null
-          },
-          {
-            "name": "quantity",
-            "description": "No description available.",
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
-            "defaultValue": null
-          },
-          {
-            "name": "shipDate",
+            "name": "realm",
             "description": "No description available.",
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "defaultValue": null
           },
           {
-            "name": "status",
-            "description": "Order Status",
-            "type": { "kind": "ENUM", "name": "Status2", "ofType": null },
+            "name": "username",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "defaultValue": null
           }
         ],
@@ -695,30 +5070,78 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ApiResponse",
-        "description": "Describes the result of uploading an image resource",
+        "name": "Users2",
+        "description": "No description available.",
         "fields": [
           {
-            "name": "code",
+            "name": "exists",
             "description": "No description available.",
             "args": [],
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AccessTokenInput",
+        "description": "No description available.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "created",
+            "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
           },
           {
-            "name": "message",
+            "name": "id",
             "description": "No description available.",
-            "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "defaultValue": null
           },
           {
-            "name": "type",
+            "name": "scopes",
+            "description": "Array of scopes granted to this access token.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ttl",
+            "description": "time to live in seconds (2 weeks by default)",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "userId",
             "description": "No description available.",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UsersUpdate",
+        "description": "Information related to the outcome of the operation",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The number of instances updated",
             "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }

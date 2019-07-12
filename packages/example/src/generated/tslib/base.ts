@@ -1,8 +1,8 @@
 // tslint:disable
 /// <reference path="./custom.d.ts" />
 /**
- * OpenAPI Petstore
- * This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters. For OAuth2 flow, you may use `user` as both username and password when asked to login.
+ * loopback-example-relations
+ * LoopBack model relations example
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,7 +16,7 @@
 import { Configuration } from "./configuration";
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 
-export const BASE_PATH = "http://localhost/v3".replace(/\/+$/, "");
+export const BASE_PATH = "http://localhost/api".replace(/\/+$/, "");
 
 /**
  *
