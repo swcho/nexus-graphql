@@ -16,9 +16,8 @@ export const Query = prismaObjectType({
 
     t.field('petFindByStatus', {
       ...t.prismaType.petFindByStatus,
-      async resolve(root, args, ctx) {
-        const resp = await ctx.apis.pet.findPetsByStatus(args.status).then(r => r.data);
-        return resp;
+      resolve(root, args, ctx) {
+        return ctx.apis.pet.findPetsByStatus(args.status).then(r => r.data);
       }
     })
 
