@@ -13,15 +13,19 @@ const cli = meow(
     
     Inputs should be relative to the root of your project
 
-    --output  (required): Path to directory where you want to output the typings (eg: ./generated/nexus-graphql)
-    --schema  (optional): Path to graphql schema
+    --schema   (required): Path to graphql schema
+    --typepath (required): Path to graphql types
+    --output   (required): Path to directory where you want to output the typings (eg: ./generated/nexus-graphql)
 `,
   {
     flags: {
-      output: {
+      schema: {
         type: 'string',
       },
-      schema: {
+      typepath: {
+        type: 'string',
+      },
+      output: {
         type: 'string',
       },
     },
@@ -32,8 +36,9 @@ main(cli)
 
 function main(cli: meow.Result) {
   const {
-    output,
     schema,
+    typepath,
+    output,
   } = cli.flags
 
   if (!output) {
@@ -42,6 +47,6 @@ function main(cli: meow.Result) {
   }
 
   if (schema) {
-    return generateFromSchema(schema, output);
+    return generateFromSchema(schema, typepath, output);
   }
 }

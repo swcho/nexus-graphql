@@ -27,15 +27,17 @@
       "request": "launch",
       "name": "example gql",
       "protocol": "inspector",
-      "cwd":"${workspaceRoot}/examples-gql",
+      "cwd":"${workspaceRoot}/packages/example",
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "sourceMaps": true,
       "args": [
-        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts",
+        "${workspaceRoot}/packages/nexus-graphql-generate/src/index.ts",
         "--schema",
-        "src/generated/schema.graphql",
+        "src/generated/graphql/petstore.graphql",
+        "--typepath",
+        "../types/types",
         "--output",
-        "src/generated"
+        "src/generated/nexus-graphql"
       ],
       "restart": true
     },

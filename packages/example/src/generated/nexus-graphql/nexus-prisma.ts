@@ -20,8 +20,6 @@ export interface NexusPrismaTypes {
       Category: CategoryObject
       Tag: TagObject
       User: UserObject
-      viewerApiKey: viewerApiKeyObject
-      viewerAnyAuth: viewerAnyAuthObject
       Mutation: MutationObject
       ApiResponse: ApiResponseObject
     }
@@ -32,22 +30,19 @@ export interface NexusPrismaTypes {
       Category: CategoryFieldDetails
       Tag: TagFieldDetails
       User: UserFieldDetails
-      viewerApiKey: viewerApiKeyFieldDetails
-      viewerAnyAuth: viewerAnyAuthFieldDetails
       Mutation: MutationFieldDetails
       ApiResponse: ApiResponseFieldDetails
     }
   }
   inputTypes: {
     fields: {
-      ApiKeyInput: ApiKeyInputInputObject
       OrderInput: OrderInputInputObject
     }
   }
   enumTypes: {
     Status2: Status2Values,
-    Status3ListItem: Status3ListItemValues,
     Status: StatusValues,
+    Status3ListItem: Status3ListItemValues,
   }
 }
 
@@ -56,25 +51,27 @@ export interface NexusPrismaTypes {
 type QueryObject =
   | QueryFields
   | { name: 'order', args?: QueryOrderArgs[] | false, alias?: string  } 
+  | { name: 'pet', args?: QueryPetArgs[] | false, alias?: string  } 
   | { name: 'petFindByStatus', args?: QueryPetFindByStatusArgs[] | false, alias?: string  } 
   | { name: 'petFindByTags', args?: QueryPetFindByTagsArgs[] | false, alias?: string  } 
+  | { name: 'storeInventory', args?: [] | false, alias?: string  } 
   | { name: 'user', args?: QueryUserArgs[] | false, alias?: string  } 
   | { name: 'userLogin', args?: QueryUserLoginArgs[] | false, alias?: string  } 
-  | { name: 'viewerApiKey', args?: QueryViewerApiKeyArgs[] | false, alias?: string  } 
-  | { name: 'viewerAnyAuth', args?: QueryViewerAnyAuthArgs[] | false, alias?: string  } 
 
 type QueryFields =
   | 'order'
+  | 'pet'
   | 'petFindByStatus'
   | 'petFindByTags'
+  | 'storeInventory'
   | 'user'
   | 'userLogin'
-  | 'viewerApiKey'
-  | 'viewerAnyAuth'
 
 
 type QueryOrderArgs =
   | 'orderId'
+type QueryPetArgs =
+  | 'petId'
 type QueryPetFindByStatusArgs =
   | 'status'
 type QueryPetFindByTagsArgs =
@@ -84,10 +81,6 @@ type QueryUserArgs =
 type QueryUserLoginArgs =
   | 'password'
   | 'username'
-type QueryViewerApiKeyArgs =
-  | 'apiKey'
-type QueryViewerAnyAuthArgs =
-  | 'apiKey'
   
 
 export interface QueryFieldDetails {
@@ -103,6 +96,19 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Order | null> | prisma.Order | null
+  }
+  pet: {
+    type: 'Pet'
+    args: Record<QueryPetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { petId: number }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Pet | null> | prisma.Pet | null
   }
   petFindByStatus: {
     type: 'Pet'
@@ -130,6 +136,14 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Pet[] | null> | prisma.Pet[] | null
   }
+  storeInventory: {
+    type: 'JSON'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   user: {
     type: 'User'
     args: Record<QueryUserArgs, core.NexusArgDef<string>>
@@ -150,32 +164,6 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: true
     resolve: undefined
-  }
-  viewerApiKey: {
-    type: 'viewerApiKey'
-    args: Record<QueryViewerApiKeyArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { apiKey: string }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.viewerApiKey | null> | prisma.viewerApiKey | null
-  }
-  viewerAnyAuth: {
-    type: 'viewerAnyAuth'
-    args: Record<QueryViewerAnyAuthArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { apiKey?: ApiKeyInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.viewerAnyAuth | null> | prisma.viewerAnyAuth | null
   }
 }
   
@@ -515,88 +503,6 @@ export interface UserFieldDetails {
 }
   
 
-// Types for viewerApiKey
-
-type viewerApiKeyObject =
-  | viewerApiKeyFields
-  | { name: 'pet', args?: viewerApiKeyPetArgs[] | false, alias?: string  } 
-  | { name: 'storeInventory', args?: [] | false, alias?: string  } 
-
-type viewerApiKeyFields =
-  | 'pet'
-  | 'storeInventory'
-
-
-type viewerApiKeyPetArgs =
-  | 'petId'
-  
-
-export interface viewerApiKeyFieldDetails {
-  pet: {
-    type: 'Pet'
-    args: Record<viewerApiKeyPetArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"viewerApiKey">,
-      args: { petId: number }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Pet | null> | prisma.Pet | null
-  }
-  storeInventory: {
-    type: 'JSON'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-}
-  
-
-// Types for viewerAnyAuth
-
-type viewerAnyAuthObject =
-  | viewerAnyAuthFields
-  | { name: 'pet', args?: viewerAnyAuthPetArgs[] | false, alias?: string  } 
-  | { name: 'storeInventory', args?: [] | false, alias?: string  } 
-
-type viewerAnyAuthFields =
-  | 'pet'
-  | 'storeInventory'
-
-
-type viewerAnyAuthPetArgs =
-  | 'petId'
-  
-
-export interface viewerAnyAuthFieldDetails {
-  pet: {
-    type: 'Pet'
-    args: Record<viewerAnyAuthPetArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"viewerAnyAuth">,
-      args: { petId: number }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Pet | null> | prisma.Pet | null
-  }
-  storeInventory: {
-    type: 'JSON'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-}
-  
-
 // Types for Mutation
 
 type MutationObject =
@@ -692,13 +598,6 @@ export interface ApiResponseFieldDetails {
   
 
 
-  export interface ApiKeyInput {
-    apiKey?: string | null
-  }
-  export type ApiKeyInputInputObject =
-    | Extract<keyof ApiKeyInput, string>
-    | { name: 'apiKey', alias?: string  } 
-    
   export interface OrderInput {
     complete?: boolean | null
   id?: number | null
@@ -722,12 +621,12 @@ export type Status2Values =
   | 'approved'
   | 'delivered'
   
-export type Status3ListItemValues =
+export type StatusValues =
   | 'available'
   | 'pending'
   | 'sold'
   
-export type StatusValues =
+export type Status3ListItemValues =
   | 'available'
   | 'pending'
   | 'sold'

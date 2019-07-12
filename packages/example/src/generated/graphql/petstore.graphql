@@ -1,9 +1,3 @@
-"""API key credentials for the security protocol 'api_key'"""
-input ApiKeyInput {
-  """No description available."""
-  apiKey: String
-}
-
 """Describes the result of uploading an image resource"""
 type ApiResponse {
   """No description available."""
@@ -132,6 +126,16 @@ type Query {
   ): Order
 
   """
+  Returns a single pet
+  
+  Equivalent to GET /pet/{petId}
+  """
+  pet(
+    """ID of pet to return"""
+    petId: Float!
+  ): Pet
+
+  """
   Multiple status values can be provided with comma separated strings
   
   Equivalent to GET /pet/findByStatus
@@ -150,6 +154,13 @@ type Query {
     """Tags to filter by"""
     tags: [String]!
   ): [Pet]
+
+  """
+  Returns a map of status codes to quantities
+  
+  Equivalent to GET /store/inventory
+  """
+  storeInventory: JSON
 
   """
   Get user by user name
@@ -173,16 +184,6 @@ type Query {
     """The user name for login"""
     username: String!
   ): String
-
-  """
-  A viewer that wraps all operations authenticated via security scheme 'api_key', which is of type 'apiKey'
-  """
-  viewerApiKey(apiKey: String!): viewerApiKey
-
-  """
-  A viewer that wraps operations for all available authentication mechanisms
-  """
-  viewerAnyAuth(apiKey: ApiKeyInput): viewerAnyAuth
 }
 
 enum Status {
@@ -237,44 +238,4 @@ type User {
 
   """No description available."""
   username: String
-}
-
-"""Warning: Not every request will work with this viewer type"""
-type viewerAnyAuth {
-  """
-  Returns a single pet
-  
-  Equivalent to GET /pet/{petId}
-  """
-  pet(
-    """ID of pet to return"""
-    petId: Float!
-  ): Pet
-
-  """
-  Returns a map of status codes to quantities
-  
-  Equivalent to GET /store/inventory
-  """
-  storeInventory: JSON
-}
-
-"""A viewer for security scheme 'api_key'"""
-type viewerApiKey {
-  """
-  Returns a single pet
-  
-  Equivalent to GET /pet/{petId}
-  """
-  pet(
-    """ID of pet to return"""
-    petId: Float!
-  ): Pet
-
-  """
-  Returns a map of status codes to quantities
-  
-  Equivalent to GET /store/inventory
-  """
-  storeInventory: JSON
 }
