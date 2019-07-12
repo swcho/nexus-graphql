@@ -77,6 +77,7 @@ export interface NexusGenFieldTypes {
     category: NexusGenRootTypes['Category'] | null; // Category
     id: number | null; // Float
     name: string | null; // String
+    noOfTags: number; // Float!
     photoUrls: string[] | null; // [String!]
     status: NexusGenEnums['Status'] | null; // Status
     tags: NexusGenRootTypes['Tag'][] | null; // [Tag!]

@@ -1,6 +1,22 @@
 import { stringArg } from 'nexus'
 import { prismaObjectType } from 'nexus-graphql'
 import { PetApi } from '../generated/tslib';
+import * as types from '../generated/types/types';
+
+export const Pet = prismaObjectType({
+  name: 'Pet',
+  definition(t) {
+    t.prismaFields(['*'])
+    t.field('noOfTags', {
+      type: 'Float',
+      resolve(root) {
+        const pet = root as types.Pet;
+        console.log({ root })
+        return pet && pet.tags && pet.tags.length || 0;
+      }
+    });
+  }
+})
 
 export const Query = prismaObjectType({
   name: 'Query',
