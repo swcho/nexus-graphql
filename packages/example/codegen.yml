@@ -1,10 +1,10 @@
 overwrite: true
-schema: "src/generated/petstore.graphql"
+schema: "src/generated/graphql/petstore.graphql"
 documents: null
 generates:
-  src/generated/types.ts:
+  src/generated/types/types.ts:
     plugins:
       - "typescript"
-  src/generated/graphql.schema.json:
+  src/generated/types/graphql.schema.json:
     plugins:
       - "introspection"

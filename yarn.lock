@@ -1071,6 +1071,11 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
+"@openapitools/openapi-generator-cli@^0.0.16-4.0.3":
+  version "0.0.16-4.0.3"
+  resolved "https://registry.yarnpkg.com/@openapitools/openapi-generator-cli/-/openapi-generator-cli-0.0.16-4.0.3.tgz#c123e6af65c51138c7e32d5d109d732436de44a1"
+  integrity sha512-5zdiSCnGikzFUSB8YO06JN6PSb/9USRctZFYJpg+2dMDgynB/DI84938KW1OWHXQMtPLGF5Yn0HUxpSYTlItOg==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
