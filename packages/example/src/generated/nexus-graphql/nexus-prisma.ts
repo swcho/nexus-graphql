@@ -25,13 +25,13 @@ export interface NexusPrismaTypes {
       BooksPeopleCount: BooksPeopleCountObject
       Customer: CustomerObject
       EmailAddress: EmailAddressObject
-      Order: OrderObject
-      Shipment: ShipmentObject
       CustomersAccountsCount: CustomersAccountsCountObject
       CustomersCount: CustomersCountObject
       CustomersEmailsCount: CustomersEmailsCountObject
       CustomersExists: CustomersExistsObject
+      Order: OrderObject
       CustomersOrdersCount: CustomersOrdersCountObject
+      Shipment: ShipmentObject
       CustomersOrdersShipmentsCount: CustomersOrdersShipmentsCountObject
       OrdersCount: OrdersCountObject
       OrdersExists: OrdersExistsObject
@@ -43,15 +43,15 @@ export interface NexusPrismaTypes {
       UsersCount: UsersCountObject
       UsersExists: UsersExistsObject
       Mutation: MutationObject
-      Books2: Books2Object
+      Books3: Books3Object
       BooksUpdate: BooksUpdateObject
-      Customers2: Customers2Object
+      Customers3: Customers3Object
       CustomersUpdate: CustomersUpdateObject
-      Orders2: Orders2Object
+      Orders3: Orders3Object
       OrdersUpdate: OrdersUpdateObject
-      Shipments2: Shipments2Object
+      Shipments3: Shipments3Object
       ShipmentsUpdate: ShipmentsUpdateObject
-      Users2: Users2Object
+      Users3: Users3Object
       UsersUpdate: UsersUpdateObject
     }
     fieldsDetails: {
@@ -66,13 +66,13 @@ export interface NexusPrismaTypes {
       BooksPeopleCount: BooksPeopleCountFieldDetails
       Customer: CustomerFieldDetails
       EmailAddress: EmailAddressFieldDetails
-      Order: OrderFieldDetails
-      Shipment: ShipmentFieldDetails
       CustomersAccountsCount: CustomersAccountsCountFieldDetails
       CustomersCount: CustomersCountFieldDetails
       CustomersEmailsCount: CustomersEmailsCountFieldDetails
       CustomersExists: CustomersExistsFieldDetails
+      Order: OrderFieldDetails
       CustomersOrdersCount: CustomersOrdersCountFieldDetails
+      Shipment: ShipmentFieldDetails
       CustomersOrdersShipmentsCount: CustomersOrdersShipmentsCountFieldDetails
       OrdersCount: OrdersCountFieldDetails
       OrdersExists: OrdersExistsFieldDetails
@@ -84,15 +84,15 @@ export interface NexusPrismaTypes {
       UsersCount: UsersCountFieldDetails
       UsersExists: UsersExistsFieldDetails
       Mutation: MutationFieldDetails
-      Books2: Books2FieldDetails
+      Books3: Books3FieldDetails
       BooksUpdate: BooksUpdateFieldDetails
-      Customers2: Customers2FieldDetails
+      Customers3: Customers3FieldDetails
       CustomersUpdate: CustomersUpdateFieldDetails
-      Orders2: Orders2FieldDetails
+      Orders3: Orders3FieldDetails
       OrdersUpdate: OrdersUpdateFieldDetails
-      Shipments2: Shipments2FieldDetails
+      Shipments3: Shipments3FieldDetails
       ShipmentsUpdate: ShipmentsUpdateFieldDetails
-      Users2: Users2FieldDetails
+      Users3: Users3FieldDetails
       UsersUpdate: UsersUpdateFieldDetails
     }
   }
@@ -125,21 +125,16 @@ type QueryObject =
   | { name: 'book', args?: QueryBookArgs[] | false, alias?: string  } 
   | { name: 'bookFindById', args?: QueryBookFindByIdArgs[] | false, alias?: string  } 
   | { name: 'books', args?: QueryBooksArgs[] | false, alias?: string  } 
-  | { name: 'booksChangeStream', args?: QueryBooksChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'booksCount', args?: QueryBooksCountArgs[] | false, alias?: string  } 
   | { name: 'booksExists', args?: QueryBooksExistsArgs[] | false, alias?: string  } 
   | { name: 'booksPeople', args?: QueryBooksPeopleArgs[] | false, alias?: string  } 
   | { name: 'booksPeopleCount', args?: QueryBooksPeopleCountArgs[] | false, alias?: string  } 
   | { name: 'customer', args?: QueryCustomerArgs[] | false, alias?: string  } 
   | { name: 'customerFindById', args?: QueryCustomerFindByIdArgs[] | false, alias?: string  } 
-  | { name: 'customerFindOne', args?: QueryCustomerFindOneArgs[] | false, alias?: string  } 
-  | { name: 'customerPrototypeFindByIdOrders', args?: QueryCustomerPrototypeFindByIdOrdersArgs[] | false, alias?: string  } 
-  | { name: 'customerPrototypeFindByIdOrdersShipments', args?: QueryCustomerPrototypeFindByIdOrdersShipmentsArgs[] | false, alias?: string  } 
   | { name: 'customerPrototypeGetOrdersCustomer', args?: QueryCustomerPrototypeGetOrdersCustomerArgs[] | false, alias?: string  } 
   | { name: 'customers', args?: QueryCustomersArgs[] | false, alias?: string  } 
   | { name: 'customersAccounts', args?: QueryCustomersAccountsArgs[] | false, alias?: string  } 
   | { name: 'customersAccountsCount', args?: QueryCustomersAccountsCountArgs[] | false, alias?: string  } 
-  | { name: 'customersChangeStream', args?: QueryCustomersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'customersCount', args?: QueryCustomersCountArgs[] | false, alias?: string  } 
   | { name: 'customersEmails', args?: QueryCustomersEmailsArgs[] | false, alias?: string  } 
   | { name: 'customersEmailsCount', args?: QueryCustomersEmailsCountArgs[] | false, alias?: string  } 
@@ -154,24 +149,24 @@ type QueryObject =
   | { name: 'orderFindById', args?: QueryOrderFindByIdArgs[] | false, alias?: string  } 
   | { name: 'orderFindOne', args?: QueryOrderFindOneArgs[] | false, alias?: string  } 
   | { name: 'orderPrototypeFindByIdShipments', args?: QueryOrderPrototypeFindByIdShipmentsArgs[] | false, alias?: string  } 
+  | { name: 'orderPrototypeGetCustomer', args?: QueryOrderPrototypeGetCustomerArgs[] | false, alias?: string  } 
   | { name: 'orders', args?: QueryOrdersArgs[] | false, alias?: string  } 
-  | { name: 'ordersChangeStream', args?: QueryOrdersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'ordersCount', args?: QueryOrdersCountArgs[] | false, alias?: string  } 
   | { name: 'ordersExists', args?: QueryOrdersExistsArgs[] | false, alias?: string  } 
   | { name: 'ordersShipments', args?: QueryOrdersShipmentsArgs[] | false, alias?: string  } 
   | { name: 'ordersShipmentsCount', args?: QueryOrdersShipmentsCountArgs[] | false, alias?: string  } 
   | { name: 'shipment', args?: QueryShipmentArgs[] | false, alias?: string  } 
   | { name: 'shipmentFindById', args?: QueryShipmentFindByIdArgs[] | false, alias?: string  } 
+  | { name: 'shipmentFindOne', args?: QueryShipmentFindOneArgs[] | false, alias?: string  } 
+  | { name: 'shipmentPrototypeGetOrder', args?: QueryShipmentPrototypeGetOrderArgs[] | false, alias?: string  } 
   | { name: 'shipments', args?: QueryShipmentsArgs[] | false, alias?: string  } 
-  | { name: 'shipmentsChangeStream', args?: QueryShipmentsChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'shipmentsCount', args?: QueryShipmentsCountArgs[] | false, alias?: string  } 
   | { name: 'shipmentsExists', args?: QueryShipmentsExistsArgs[] | false, alias?: string  } 
   | { name: 'user', args?: QueryUserArgs[] | false, alias?: string  } 
-  | { name: 'userFindOne', args?: QueryUserFindOneArgs[] | false, alias?: string  } 
+  | { name: 'userFindById', args?: QueryUserFindByIdArgs[] | false, alias?: string  } 
   | { name: 'users', args?: QueryUsersArgs[] | false, alias?: string  } 
   | { name: 'usersAccessTokens', args?: QueryUsersAccessTokensArgs[] | false, alias?: string  } 
   | { name: 'usersAccessTokensCount', args?: QueryUsersAccessTokensCountArgs[] | false, alias?: string  } 
-  | { name: 'usersChangeStream', args?: QueryUsersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'usersCount', args?: QueryUsersCountArgs[] | false, alias?: string  } 
   | { name: 'usersExists', args?: QueryUsersExistsArgs[] | false, alias?: string  } 
 
@@ -182,21 +177,16 @@ type QueryFields =
   | 'book'
   | 'bookFindById'
   | 'books'
-  | 'booksChangeStream'
   | 'booksCount'
   | 'booksExists'
   | 'booksPeople'
   | 'booksPeopleCount'
   | 'customer'
   | 'customerFindById'
-  | 'customerFindOne'
-  | 'customerPrototypeFindByIdOrders'
-  | 'customerPrototypeFindByIdOrdersShipments'
   | 'customerPrototypeGetOrdersCustomer'
   | 'customers'
   | 'customersAccounts'
   | 'customersAccountsCount'
-  | 'customersChangeStream'
   | 'customersCount'
   | 'customersEmails'
   | 'customersEmailsCount'
@@ -211,24 +201,24 @@ type QueryFields =
   | 'orderFindById'
   | 'orderFindOne'
   | 'orderPrototypeFindByIdShipments'
+  | 'orderPrototypeGetCustomer'
   | 'orders'
-  | 'ordersChangeStream'
   | 'ordersCount'
   | 'ordersExists'
   | 'ordersShipments'
   | 'ordersShipmentsCount'
   | 'shipment'
   | 'shipmentFindById'
+  | 'shipmentFindOne'
+  | 'shipmentPrototypeGetOrder'
   | 'shipments'
-  | 'shipmentsChangeStream'
   | 'shipmentsCount'
   | 'shipmentsExists'
   | 'user'
-  | 'userFindOne'
+  | 'userFindById'
   | 'users'
   | 'usersAccessTokens'
   | 'usersAccessTokensCount'
-  | 'usersChangeStream'
   | 'usersCount'
   | 'usersExists'
 
@@ -249,8 +239,6 @@ type QueryBookFindByIdArgs =
   | 'id'
 type QueryBooksArgs =
   | 'filter'
-type QueryBooksChangeStreamArgs =
-  | 'options'
 type QueryBooksCountArgs =
   | 'where'
 type QueryBooksExistsArgs =
@@ -262,20 +250,10 @@ type QueryBooksPeopleCountArgs =
   | 'id'
   | 'where'
 type QueryCustomerArgs =
-  | 'id'
-  | 'refresh'
+  | 'filter'
 type QueryCustomerFindByIdArgs =
   | 'filter'
   | 'id'
-type QueryCustomerFindOneArgs =
-  | 'filter'
-type QueryCustomerPrototypeFindByIdOrdersArgs =
-  | 'fk'
-  | 'id'
-type QueryCustomerPrototypeFindByIdOrdersShipmentsArgs =
-  | 'fk'
-  | 'id'
-  | 'nk'
 type QueryCustomerPrototypeGetOrdersCustomerArgs =
   | 'id'
   | 'nk'
@@ -288,8 +266,6 @@ type QueryCustomersAccountsArgs =
 type QueryCustomersAccountsCountArgs =
   | 'id'
   | 'where'
-type QueryCustomersChangeStreamArgs =
-  | 'options'
 type QueryCustomersCountArgs =
   | 'where'
 type QueryCustomersEmailsArgs =
@@ -321,8 +297,8 @@ type QueryLinkArgs =
   | 'fk'
   | 'id'
 type QueryOrderArgs =
+  | 'fk'
   | 'id'
-  | 'refresh'
 type QueryOrderFindByIdArgs =
   | 'filter'
   | 'id'
@@ -331,10 +307,11 @@ type QueryOrderFindOneArgs =
 type QueryOrderPrototypeFindByIdShipmentsArgs =
   | 'fk'
   | 'id'
+type QueryOrderPrototypeGetCustomerArgs =
+  | 'id'
+  | 'refresh'
 type QueryOrdersArgs =
   | 'filter'
-type QueryOrdersChangeStreamArgs =
-  | 'options'
 type QueryOrdersCountArgs =
   | 'where'
 type QueryOrdersExistsArgs =
@@ -346,23 +323,28 @@ type QueryOrdersShipmentsCountArgs =
   | 'id'
   | 'where'
 type QueryShipmentArgs =
-  | 'filter'
+  | 'fk'
+  | 'id'
+  | 'nk'
 type QueryShipmentFindByIdArgs =
   | 'filter'
   | 'id'
+type QueryShipmentFindOneArgs =
+  | 'filter'
+type QueryShipmentPrototypeGetOrderArgs =
+  | 'id'
+  | 'refresh'
 type QueryShipmentsArgs =
   | 'filter'
-type QueryShipmentsChangeStreamArgs =
-  | 'options'
 type QueryShipmentsCountArgs =
   | 'where'
 type QueryShipmentsExistsArgs =
   | 'id'
 type QueryUserArgs =
   | 'filter'
-  | 'id'
-type QueryUserFindOneArgs =
+type QueryUserFindByIdArgs =
   | 'filter'
+  | 'id'
 type QueryUsersArgs =
   | 'filter'
 type QueryUsersAccessTokensArgs =
@@ -371,8 +353,6 @@ type QueryUsersAccessTokensArgs =
 type QueryUsersAccessTokensCountArgs =
   | 'id'
   | 'where'
-type QueryUsersChangeStreamArgs =
-  | 'options'
 type QueryUsersCountArgs =
   | 'where'
 type QueryUsersExistsArgs =
@@ -458,14 +438,6 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Book[] | null> | prisma.Book[] | null
   }
-  booksChangeStream: {
-    type: 'String'
-    args: Record<QueryBooksChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   booksCount: {
     type: 'BooksCount'
     args: Record<QueryBooksCountArgs, core.NexusArgDef<string>>
@@ -526,7 +498,7 @@ export interface QueryFieldDetails {
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { id: string, refresh?: boolean | null }  ,
+      args: { filter?: string | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Customer | null> | prisma.Customer | null
@@ -543,45 +515,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Customer | null> | prisma.Customer | null
-  }
-  customerFindOne: {
-    type: 'Customer'
-    args: Record<QueryCustomerFindOneArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { filter?: string | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Customer | null> | prisma.Customer | null
-  }
-  customerPrototypeFindByIdOrders: {
-    type: 'Order'
-    args: Record<QueryCustomerPrototypeFindByIdOrdersArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { fk: string, id: string }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Order | null> | prisma.Order | null
-  }
-  customerPrototypeFindByIdOrdersShipments: {
-    type: 'Shipment'
-    args: Record<QueryCustomerPrototypeFindByIdOrdersShipmentsArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: (
-      root: core.RootValue<"Query">,
-      args: { fk: string, id: string, nk: string }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
   }
   customerPrototypeGetOrdersCustomer: {
     type: 'Customer'
@@ -634,14 +567,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.CustomersAccountsCount | null> | prisma.CustomersAccountsCount | null
-  }
-  customersChangeStream: {
-    type: 'String'
-    args: Record<QueryCustomersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
   }
   customersCount: {
     type: 'CustomersCount'
@@ -781,7 +706,7 @@ export interface QueryFieldDetails {
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { id: string, refresh?: boolean | null }  ,
+      args: { fk: string, id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Order | null> | prisma.Order | null
@@ -825,6 +750,19 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
   }
+  orderPrototypeGetCustomer: {
+    type: 'Customer'
+    args: Record<QueryOrderPrototypeGetCustomerArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { id: string, refresh?: boolean | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Customer | null> | prisma.Customer | null
+  }
   orders: {
     type: 'Order'
     args: Record<QueryOrdersArgs, core.NexusArgDef<string>>
@@ -837,14 +775,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Order[] | null> | prisma.Order[] | null
-  }
-  ordersChangeStream: {
-    type: 'String'
-    args: Record<QueryOrdersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
   }
   ordersCount: {
     type: 'OrdersCount'
@@ -906,7 +836,7 @@ export interface QueryFieldDetails {
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { filter?: string | null }  ,
+      args: { fk: string, id: string, nk: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
@@ -924,6 +854,32 @@ export interface QueryFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
   }
+  shipmentFindOne: {
+    type: 'Shipment'
+    args: Record<QueryShipmentFindOneArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { filter?: string | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
+  }
+  shipmentPrototypeGetOrder: {
+    type: 'Order'
+    args: Record<QueryShipmentPrototypeGetOrderArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { id: string, refresh?: boolean | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Order | null> | prisma.Order | null
+  }
   shipments: {
     type: 'Shipment'
     args: Record<QueryShipmentsArgs, core.NexusArgDef<string>>
@@ -936,14 +892,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Shipment[] | null> | prisma.Shipment[] | null
-  }
-  shipmentsChangeStream: {
-    type: 'String'
-    args: Record<QueryShipmentsChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
   }
   shipmentsCount: {
     type: 'ShipmentsCount'
@@ -979,20 +927,20 @@ export interface QueryFieldDetails {
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { filter?: string | null, id: string }  ,
+      args: { filter?: string | null }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.User | null> | prisma.User | null
   }
-  userFindOne: {
+  userFindById: {
     type: 'User'
-    args: Record<QueryUserFindOneArgs, core.NexusArgDef<string>>
+    args: Record<QueryUserFindByIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
     nullable: true
     resolve: (
       root: core.RootValue<"Query">,
-      args: { filter?: string | null }  ,
+      args: { filter?: string | null, id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.User | null> | prisma.User | null
@@ -1035,14 +983,6 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.UsersAccessTokensCount | null> | prisma.UsersAccessTokensCount | null
-  }
-  usersChangeStream: {
-    type: 'String'
-    args: Record<QueryUsersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
   }
   usersCount: {
     type: 'UsersCount'
@@ -1568,116 +1508,6 @@ export interface EmailAddressFieldDetails {
 }
   
 
-// Types for Order
-
-type OrderObject =
-  | OrderFields
-  | { name: 'customerId', args?: [] | false, alias?: string  } 
-  | { name: 'date', args?: [] | false, alias?: string  } 
-  | { name: 'description', args?: [] | false, alias?: string  } 
-  | { name: 'id', args?: [] | false, alias?: string  } 
-
-type OrderFields =
-  | 'customerId'
-  | 'date'
-  | 'description'
-  | 'id'
-
-
-
-  
-
-export interface OrderFieldDetails {
-  customerId: {
-    type: 'Float'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  date: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  description: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  id: {
-    type: 'Float'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-}
-  
-
-// Types for Shipment
-
-type ShipmentObject =
-  | ShipmentFields
-  | { name: 'date', args?: [] | false, alias?: string  } 
-  | { name: 'description', args?: [] | false, alias?: string  } 
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'orderId', args?: [] | false, alias?: string  } 
-
-type ShipmentFields =
-  | 'date'
-  | 'description'
-  | 'id'
-  | 'orderId'
-
-
-
-  
-
-export interface ShipmentFieldDetails {
-  date: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  description: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  id: {
-    type: 'Float'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  orderId: {
-    type: 'Float'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-}
-  
-
 // Types for CustomersAccountsCount
 
 type CustomersAccountsCountObject =
@@ -1778,6 +1608,61 @@ export interface CustomersExistsFieldDetails {
 }
   
 
+// Types for Order
+
+type OrderObject =
+  | OrderFields
+  | { name: 'customerId', args?: [] | false, alias?: string  } 
+  | { name: 'date', args?: [] | false, alias?: string  } 
+  | { name: 'description', args?: [] | false, alias?: string  } 
+  | { name: 'id', args?: [] | false, alias?: string  } 
+
+type OrderFields =
+  | 'customerId'
+  | 'date'
+  | 'description'
+  | 'id'
+
+
+
+  
+
+export interface OrderFieldDetails {
+  customerId: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  date: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  description: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  id: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+}
+  
+
 // Types for CustomersOrdersCount
 
 type CustomersOrdersCountObject =
@@ -1793,6 +1678,61 @@ type CustomersOrdersCountFields =
 
 export interface CustomersOrdersCountFieldDetails {
   count: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+}
+  
+
+// Types for Shipment
+
+type ShipmentObject =
+  | ShipmentFields
+  | { name: 'date', args?: [] | false, alias?: string  } 
+  | { name: 'description', args?: [] | false, alias?: string  } 
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'orderId', args?: [] | false, alias?: string  } 
+
+type ShipmentFields =
+  | 'date'
+  | 'description'
+  | 'id'
+  | 'orderId'
+
+
+
+  
+
+export interface ShipmentFieldDetails {
+  date: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  description: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  id: {
+    type: 'Float'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  orderId: {
     type: 'Float'
     args: {}
     description: string
@@ -2098,7 +2038,6 @@ export interface UsersExistsFieldDetails {
 type MutationObject =
   | MutationFields
   | { name: 'bookCreate', args?: MutationBookCreateArgs[] | false, alias?: string  } 
-  | { name: 'bookCreateChangeStreamPostBooksChangeStream', args?: MutationBookCreateChangeStreamPostBooksChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'bookDeleteById', args?: MutationBookDeleteByIdArgs[] | false, alias?: string  } 
   | { name: 'bookExistsHeadBooksId', args?: MutationBookExistsHeadBooksIdArgs[] | false, alias?: string  } 
   | { name: 'bookPatchOrCreate', args?: MutationBookPatchOrCreateArgs[] | false, alias?: string  } 
@@ -2112,7 +2051,6 @@ type MutationObject =
   | { name: 'bookUpdateAll', args?: MutationBookUpdateAllArgs[] | false, alias?: string  } 
   | { name: 'bookUpsertWithWhere', args?: MutationBookUpsertWithWhereArgs[] | false, alias?: string  } 
   | { name: 'customerCreate', args?: MutationCustomerCreateArgs[] | false, alias?: string  } 
-  | { name: 'customerCreateChangeStreamPostCustomersChangeStream', args?: MutationCustomerCreateChangeStreamPostCustomersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'customerDeleteById', args?: MutationCustomerDeleteByIdArgs[] | false, alias?: string  } 
   | { name: 'customerExistsHeadCustomersId', args?: MutationCustomerExistsHeadCustomersIdArgs[] | false, alias?: string  } 
   | { name: 'customerPatchOrCreate', args?: MutationCustomerPatchOrCreateArgs[] | false, alias?: string  } 
@@ -2136,7 +2074,6 @@ type MutationObject =
   | { name: 'customerUpdateAll', args?: MutationCustomerUpdateAllArgs[] | false, alias?: string  } 
   | { name: 'customerUpsertWithWhere', args?: MutationCustomerUpsertWithWhereArgs[] | false, alias?: string  } 
   | { name: 'orderCreate', args?: MutationOrderCreateArgs[] | false, alias?: string  } 
-  | { name: 'orderCreateChangeStreamPostOrdersChangeStream', args?: MutationOrderCreateChangeStreamPostOrdersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'orderDeleteById', args?: MutationOrderDeleteByIdArgs[] | false, alias?: string  } 
   | { name: 'orderExistsHeadOrdersId', args?: MutationOrderExistsHeadOrdersIdArgs[] | false, alias?: string  } 
   | { name: 'orderPatchOrCreate', args?: MutationOrderPatchOrCreateArgs[] | false, alias?: string  } 
@@ -2150,7 +2087,6 @@ type MutationObject =
   | { name: 'orderUpdateAll', args?: MutationOrderUpdateAllArgs[] | false, alias?: string  } 
   | { name: 'orderUpsertWithWhere', args?: MutationOrderUpsertWithWhereArgs[] | false, alias?: string  } 
   | { name: 'shipmentCreate', args?: MutationShipmentCreateArgs[] | false, alias?: string  } 
-  | { name: 'shipmentCreateChangeStreamPostShipmentsChangeStream', args?: MutationShipmentCreateChangeStreamPostShipmentsChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'shipmentDeleteById', args?: MutationShipmentDeleteByIdArgs[] | false, alias?: string  } 
   | { name: 'shipmentExistsHeadShipmentsId', args?: MutationShipmentExistsHeadShipmentsIdArgs[] | false, alias?: string  } 
   | { name: 'shipmentPatchOrCreate', args?: MutationShipmentPatchOrCreateArgs[] | false, alias?: string  } 
@@ -2162,7 +2098,6 @@ type MutationObject =
   | { name: 'shipmentUpdateAll', args?: MutationShipmentUpdateAllArgs[] | false, alias?: string  } 
   | { name: 'shipmentUpsertWithWhere', args?: MutationShipmentUpsertWithWhereArgs[] | false, alias?: string  } 
   | { name: 'userCreate', args?: MutationUserCreateArgs[] | false, alias?: string  } 
-  | { name: 'userCreateChangeStreamPostUsersChangeStream', args?: MutationUserCreateChangeStreamPostUsersChangeStreamArgs[] | false, alias?: string  } 
   | { name: 'userDeleteById', args?: MutationUserDeleteByIdArgs[] | false, alias?: string  } 
   | { name: 'userExistsHeadUsersId', args?: MutationUserExistsHeadUsersIdArgs[] | false, alias?: string  } 
   | { name: 'userLogin', args?: MutationUserLoginArgs[] | false, alias?: string  } 
@@ -2179,7 +2114,6 @@ type MutationObject =
 
 type MutationFields =
   | 'bookCreate'
-  | 'bookCreateChangeStreamPostBooksChangeStream'
   | 'bookDeleteById'
   | 'bookExistsHeadBooksId'
   | 'bookPatchOrCreate'
@@ -2193,7 +2127,6 @@ type MutationFields =
   | 'bookUpdateAll'
   | 'bookUpsertWithWhere'
   | 'customerCreate'
-  | 'customerCreateChangeStreamPostCustomersChangeStream'
   | 'customerDeleteById'
   | 'customerExistsHeadCustomersId'
   | 'customerPatchOrCreate'
@@ -2217,7 +2150,6 @@ type MutationFields =
   | 'customerUpdateAll'
   | 'customerUpsertWithWhere'
   | 'orderCreate'
-  | 'orderCreateChangeStreamPostOrdersChangeStream'
   | 'orderDeleteById'
   | 'orderExistsHeadOrdersId'
   | 'orderPatchOrCreate'
@@ -2231,7 +2163,6 @@ type MutationFields =
   | 'orderUpdateAll'
   | 'orderUpsertWithWhere'
   | 'shipmentCreate'
-  | 'shipmentCreateChangeStreamPostShipmentsChangeStream'
   | 'shipmentDeleteById'
   | 'shipmentExistsHeadShipmentsId'
   | 'shipmentPatchOrCreate'
@@ -2243,7 +2174,6 @@ type MutationFields =
   | 'shipmentUpdateAll'
   | 'shipmentUpsertWithWhere'
   | 'userCreate'
-  | 'userCreateChangeStreamPostUsersChangeStream'
   | 'userDeleteById'
   | 'userExistsHeadUsersId'
   | 'userLogin'
@@ -2261,8 +2191,6 @@ type MutationFields =
 
 type MutationBookCreateArgs =
   | 'bookInput'
-type MutationBookCreateChangeStreamPostBooksChangeStreamArgs =
-  | 'applicationXWwwFormUrlencodedInput'
 type MutationBookDeleteByIdArgs =
   | 'id'
 type MutationBookExistsHeadBooksIdArgs =
@@ -2297,8 +2225,6 @@ type MutationBookUpsertWithWhereArgs =
   | 'where'
 type MutationCustomerCreateArgs =
   | 'customerInput'
-type MutationCustomerCreateChangeStreamPostCustomersChangeStreamArgs =
-  | 'applicationXWwwFormUrlencodedInput'
 type MutationCustomerDeleteByIdArgs =
   | 'id'
 type MutationCustomerExistsHeadCustomersIdArgs =
@@ -2368,8 +2294,6 @@ type MutationCustomerUpsertWithWhereArgs =
   | 'where'
 type MutationOrderCreateArgs =
   | 'orderInput'
-type MutationOrderCreateChangeStreamPostOrdersChangeStreamArgs =
-  | 'applicationXWwwFormUrlencodedInput'
 type MutationOrderDeleteByIdArgs =
   | 'id'
 type MutationOrderExistsHeadOrdersIdArgs =
@@ -2404,8 +2328,6 @@ type MutationOrderUpsertWithWhereArgs =
   | 'where'
 type MutationShipmentCreateArgs =
   | 'shipmentInput'
-type MutationShipmentCreateChangeStreamPostShipmentsChangeStreamArgs =
-  | 'applicationXWwwFormUrlencodedInput'
 type MutationShipmentDeleteByIdArgs =
   | 'id'
 type MutationShipmentExistsHeadShipmentsIdArgs =
@@ -2433,8 +2355,6 @@ type MutationShipmentUpsertWithWhereArgs =
   | 'where'
 type MutationUserCreateArgs =
   | 'userInput'
-type MutationUserCreateChangeStreamPostUsersChangeStreamArgs =
-  | 'applicationXWwwFormUrlencodedInput'
 type MutationUserDeleteByIdArgs =
   | 'id'
 type MutationUserExistsHeadUsersIdArgs =
@@ -2486,14 +2406,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Book | null> | prisma.Book | null
   }
-  bookCreateChangeStreamPostBooksChangeStream: {
-    type: 'String'
-    args: Record<MutationBookCreateChangeStreamPostBooksChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   bookDeleteById: {
     type: 'String'
     args: Record<MutationBookDeleteByIdArgs, core.NexusArgDef<string>>
@@ -2503,7 +2415,7 @@ export interface MutationFieldDetails {
     resolve: undefined
   }
   bookExistsHeadBooksId: {
-    type: 'Books2'
+    type: 'Books3'
     args: Record<MutationBookExistsHeadBooksIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
@@ -2513,7 +2425,7 @@ export interface MutationFieldDetails {
       args: { id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Books2 | null> | prisma.Books2 | null
+    ) => Promise<prisma.Books3 | null> | prisma.Books3 | null
   }
   bookPatchOrCreate: {
     type: 'Book'
@@ -2658,14 +2570,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Customer | null> | prisma.Customer | null
   }
-  customerCreateChangeStreamPostCustomersChangeStream: {
-    type: 'String'
-    args: Record<MutationCustomerCreateChangeStreamPostCustomersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   customerDeleteById: {
     type: 'String'
     args: Record<MutationCustomerDeleteByIdArgs, core.NexusArgDef<string>>
@@ -2675,7 +2579,7 @@ export interface MutationFieldDetails {
     resolve: undefined
   }
   customerExistsHeadCustomersId: {
-    type: 'Customers2'
+    type: 'Customers3'
     args: Record<MutationCustomerExistsHeadCustomersIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
@@ -2685,7 +2589,7 @@ export interface MutationFieldDetails {
       args: { id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Customers2 | null> | prisma.Customers2 | null
+    ) => Promise<prisma.Customers3 | null> | prisma.Customers3 | null
   }
   customerPatchOrCreate: {
     type: 'Customer'
@@ -2955,14 +2859,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Order | null> | prisma.Order | null
   }
-  orderCreateChangeStreamPostOrdersChangeStream: {
-    type: 'String'
-    args: Record<MutationOrderCreateChangeStreamPostOrdersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   orderDeleteById: {
     type: 'String'
     args: Record<MutationOrderDeleteByIdArgs, core.NexusArgDef<string>>
@@ -2972,7 +2868,7 @@ export interface MutationFieldDetails {
     resolve: undefined
   }
   orderExistsHeadOrdersId: {
-    type: 'Orders2'
+    type: 'Orders3'
     args: Record<MutationOrderExistsHeadOrdersIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
@@ -2982,7 +2878,7 @@ export interface MutationFieldDetails {
       args: { id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Orders2 | null> | prisma.Orders2 | null
+    ) => Promise<prisma.Orders3 | null> | prisma.Orders3 | null
   }
   orderPatchOrCreate: {
     type: 'Order'
@@ -3127,14 +3023,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Shipment | null> | prisma.Shipment | null
   }
-  shipmentCreateChangeStreamPostShipmentsChangeStream: {
-    type: 'String'
-    args: Record<MutationShipmentCreateChangeStreamPostShipmentsChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   shipmentDeleteById: {
     type: 'String'
     args: Record<MutationShipmentDeleteByIdArgs, core.NexusArgDef<string>>
@@ -3144,7 +3032,7 @@ export interface MutationFieldDetails {
     resolve: undefined
   }
   shipmentExistsHeadShipmentsId: {
-    type: 'Shipments2'
+    type: 'Shipments3'
     args: Record<MutationShipmentExistsHeadShipmentsIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
@@ -3154,7 +3042,7 @@ export interface MutationFieldDetails {
       args: { id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Shipments2 | null> | prisma.Shipments2 | null
+    ) => Promise<prisma.Shipments3 | null> | prisma.Shipments3 | null
   }
   shipmentPatchOrCreate: {
     type: 'Shipment'
@@ -3273,14 +3161,6 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.User | null> | prisma.User | null
   }
-  userCreateChangeStreamPostUsersChangeStream: {
-    type: 'String'
-    args: Record<MutationUserCreateChangeStreamPostUsersChangeStreamArgs, core.NexusArgDef<string>>
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
   userDeleteById: {
     type: 'String'
     args: Record<MutationUserDeleteByIdArgs, core.NexusArgDef<string>>
@@ -3290,7 +3170,7 @@ export interface MutationFieldDetails {
     resolve: undefined
   }
   userExistsHeadUsersId: {
-    type: 'Users2'
+    type: 'Users3'
     args: Record<MutationUserExistsHeadUsersIdArgs, core.NexusArgDef<string>>
     description: string
     list: undefined
@@ -3300,7 +3180,7 @@ export interface MutationFieldDetails {
       args: { id: string }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Users2 | null> | prisma.Users2 | null
+    ) => Promise<prisma.Users3 | null> | prisma.Users3 | null
   }
   userLogin: {
     type: 'String'
@@ -3443,20 +3323,20 @@ export interface MutationFieldDetails {
 }
   
 
-// Types for Books2
+// Types for Books3
 
-type Books2Object =
-  | Books2Fields
+type Books3Object =
+  | Books3Fields
   | { name: 'exists', args?: [] | false, alias?: string  } 
 
-type Books2Fields =
+type Books3Fields =
   | 'exists'
 
 
 
   
 
-export interface Books2FieldDetails {
+export interface Books3FieldDetails {
   exists: {
     type: 'Boolean'
     args: {}
@@ -3493,20 +3373,20 @@ export interface BooksUpdateFieldDetails {
 }
   
 
-// Types for Customers2
+// Types for Customers3
 
-type Customers2Object =
-  | Customers2Fields
+type Customers3Object =
+  | Customers3Fields
   | { name: 'exists', args?: [] | false, alias?: string  } 
 
-type Customers2Fields =
+type Customers3Fields =
   | 'exists'
 
 
 
   
 
-export interface Customers2FieldDetails {
+export interface Customers3FieldDetails {
   exists: {
     type: 'Boolean'
     args: {}
@@ -3543,20 +3423,20 @@ export interface CustomersUpdateFieldDetails {
 }
   
 
-// Types for Orders2
+// Types for Orders3
 
-type Orders2Object =
-  | Orders2Fields
+type Orders3Object =
+  | Orders3Fields
   | { name: 'exists', args?: [] | false, alias?: string  } 
 
-type Orders2Fields =
+type Orders3Fields =
   | 'exists'
 
 
 
   
 
-export interface Orders2FieldDetails {
+export interface Orders3FieldDetails {
   exists: {
     type: 'Boolean'
     args: {}
@@ -3593,20 +3473,20 @@ export interface OrdersUpdateFieldDetails {
 }
   
 
-// Types for Shipments2
+// Types for Shipments3
 
-type Shipments2Object =
-  | Shipments2Fields
+type Shipments3Object =
+  | Shipments3Fields
   | { name: 'exists', args?: [] | false, alias?: string  } 
 
-type Shipments2Fields =
+type Shipments3Fields =
   | 'exists'
 
 
 
   
 
-export interface Shipments2FieldDetails {
+export interface Shipments3FieldDetails {
   exists: {
     type: 'Boolean'
     args: {}
@@ -3643,20 +3523,20 @@ export interface ShipmentsUpdateFieldDetails {
 }
   
 
-// Types for Users2
+// Types for Users3
 
-type Users2Object =
-  | Users2Fields
+type Users3Object =
+  | Users3Fields
   | { name: 'exists', args?: [] | false, alias?: string  } 
 
-type Users2Fields =
+type Users3Fields =
   | 'exists'
 
 
 
   
 
-export interface Users2FieldDetails {
+export interface Users3FieldDetails {
   exists: {
     type: 'Boolean'
     args: {}

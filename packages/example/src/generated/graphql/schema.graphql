@@ -119,7 +119,7 @@ input BookInput {
 }
 
 """No description available."""
-type Books2 {
+type Books3 {
   """No description available."""
   exists: Boolean
 }
@@ -191,7 +191,7 @@ input CustomerInput {
 }
 
 """No description available."""
-type Customers2 {
+type Customers3 {
   """No description available."""
   exists: Boolean
 }
@@ -311,16 +311,6 @@ type Mutation {
   ): Book
 
   """
-  Create a change stream.
-  
-  Equivalent to POST /Books/change-stream
-  """
-  bookCreateChangeStreamPostBooksChangeStream(
-    """application/x-www-form-urlencoded request placeholder object"""
-    applicationXWwwFormUrlencodedInput: String
-  ): String
-
-  """
   Delete a model instance by {{id}} from the data source.
   
   Equivalent to DELETE /Books/{id}
@@ -338,7 +328,7 @@ type Mutation {
   bookExistsHeadBooksId(
     """Model id"""
     id: String!
-  ): Books2
+  ): Books3
 
   """
   Patch an existing model instance or insert a new one into the data source.
@@ -475,16 +465,6 @@ type Mutation {
   ): Customer
 
   """
-  Create a change stream.
-  
-  Equivalent to POST /Customers/change-stream
-  """
-  customerCreateChangeStreamPostCustomersChangeStream(
-    """application/x-www-form-urlencoded request placeholder object"""
-    applicationXWwwFormUrlencodedInput: String
-  ): String
-
-  """
   Delete a model instance by {{id}} from the data source.
   
   Equivalent to DELETE /Customers/{id}
@@ -502,7 +482,7 @@ type Mutation {
   customerExistsHeadCustomersId(
     """Model id"""
     id: String!
-  ): Customers2
+  ): Customers3
 
   """
   Patch an existing model instance or insert a new one into the data source.
@@ -784,16 +764,6 @@ type Mutation {
   ): Order
 
   """
-  Create a change stream.
-  
-  Equivalent to POST /Orders/change-stream
-  """
-  orderCreateChangeStreamPostOrdersChangeStream(
-    """application/x-www-form-urlencoded request placeholder object"""
-    applicationXWwwFormUrlencodedInput: String
-  ): String
-
-  """
   Delete a model instance by {{id}} from the data source.
   
   Equivalent to DELETE /Orders/{id}
@@ -811,7 +781,7 @@ type Mutation {
   orderExistsHeadOrdersId(
     """Model id"""
     id: String!
-  ): Orders2
+  ): Orders3
 
   """
   Patch an existing model instance or insert a new one into the data source.
@@ -948,16 +918,6 @@ type Mutation {
   ): Shipment
 
   """
-  Create a change stream.
-  
-  Equivalent to POST /Shipments/change-stream
-  """
-  shipmentCreateChangeStreamPostShipmentsChangeStream(
-    """application/x-www-form-urlencoded request placeholder object"""
-    applicationXWwwFormUrlencodedInput: String
-  ): String
-
-  """
   Delete a model instance by {{id}} from the data source.
   
   Equivalent to DELETE /Shipments/{id}
@@ -975,7 +935,7 @@ type Mutation {
   shipmentExistsHeadShipmentsId(
     """Model id"""
     id: String!
-  ): Shipments2
+  ): Shipments3
 
   """
   Patch an existing model instance or insert a new one into the data source.
@@ -1083,16 +1043,6 @@ type Mutation {
   ): User
 
   """
-  Create a change stream.
-  
-  Equivalent to POST /Users/change-stream
-  """
-  userCreateChangeStreamPostUsersChangeStream(
-    """application/x-www-form-urlencoded request placeholder object"""
-    applicationXWwwFormUrlencodedInput: String
-  ): String
-
-  """
   Delete a model instance by {{id}} from the data source.
   
   Equivalent to DELETE /Users/{id}
@@ -1110,7 +1060,7 @@ type Mutation {
   userExistsHeadUsersId(
     """Model id"""
     id: String!
-  ): Users2
+  ): Users3
 
   """
   Login a user with username/email and password.
@@ -1283,7 +1233,7 @@ input OrderInput {
 }
 
 """No description available."""
-type Orders2 {
+type Orders3 {
   """No description available."""
   exists: Boolean
 }
@@ -1395,13 +1345,6 @@ type Query {
   ): [Book]
 
   """
-  Create a change stream.
-  
-  Equivalent to GET /Books/change-stream
-  """
-  booksChangeStream(options: String): String
-
-  """
   Count instances of the model matched by where from the data source.
   
   Equivalent to GET /Books/count
@@ -1447,14 +1390,17 @@ type Query {
   ): BooksPeopleCount
 
   """
-  페치가 관계 customer에 속합니다.
+  Find first instance of the model matched by filter from the data source.
   
-  Equivalent to GET /Orders/{id}/customer
+  Equivalent to GET /Customers/findOne
   """
   customer(
-    """Order id"""
-    id: String!
-    refresh: Boolean
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
   ): Customer
 
   """
@@ -1471,49 +1417,6 @@ type Query {
     """Model id"""
     id: String!
   ): Customer
-
-  """
-  Find first instance of the model matched by filter from the data source.
-  
-  Equivalent to GET /Customers/findOne
-  """
-  customerFindOne(
-    """
-    Filter defining fields, where, include, order, offset, and limit - must be a
-    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
-    for more details.
-    """
-    filter: String
-  ): Customer
-
-  """
-  orders에 대해 ID로 관련 항목을 찾으십시오.
-  
-  Equivalent to GET /Customers/{id}/orders/{fk}
-  """
-  customerPrototypeFindByIdOrders(
-    """orders의 외부 키"""
-    fk: String!
-
-    """Customer id"""
-    id: String!
-  ): Order
-
-  """
-  shipments에 대해 ID로 관련 항목을 찾으십시오.
-  
-  Equivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}
-  """
-  customerPrototypeFindByIdOrdersShipments(
-    """shipments의 외부 키"""
-    fk: String!
-
-    """Customer id"""
-    id: String!
-
-    """orders의 외부 키입니다."""
-    nk: String!
-  ): Shipment
 
   """
   페치가 관계 customer에 속합니다.
@@ -1567,13 +1470,6 @@ type Query {
     """Criteria to match model instances"""
     where: String
   ): CustomersAccountsCount
-
-  """
-  Create a change stream.
-  
-  Equivalent to GET /Customers/change-stream
-  """
-  customersChangeStream(options: String): String
 
   """
   Count instances of the model matched by where from the data source.
@@ -1703,14 +1599,16 @@ type Query {
   ): Link
 
   """
-  페치가 관계 order에 속합니다.
+  orders에 대해 ID로 관련 항목을 찾으십시오.
   
-  Equivalent to GET /Shipments/{id}/order
+  Equivalent to GET /Customers/{id}/orders/{fk}
   """
   order(
-    """Shipment id"""
+    """orders의 외부 키"""
+    fk: String!
+
+    """Customer id"""
     id: String!
-    refresh: Boolean
   ): Order
 
   """
@@ -1756,6 +1654,17 @@ type Query {
   ): Shipment
 
   """
+  페치가 관계 customer에 속합니다.
+  
+  Equivalent to GET /Orders/{id}/customer
+  """
+  orderPrototypeGetCustomer(
+    """Order id"""
+    id: String!
+    refresh: Boolean
+  ): Customer
+
+  """
   Find all instances of the model matched by filter from the data source.
   
   Equivalent to GET /Orders
@@ -1768,13 +1677,6 @@ type Query {
     """
     filter: String
   ): [Order]
-
-  """
-  Create a change stream.
-  
-  Equivalent to GET /Orders/change-stream
-  """
-  ordersChangeStream(options: String): String
 
   """
   Count instances of the model matched by where from the data source.
@@ -1822,17 +1724,19 @@ type Query {
   ): OrdersShipmentsCount
 
   """
-  Find first instance of the model matched by filter from the data source.
+  shipments에 대해 ID로 관련 항목을 찾으십시오.
   
-  Equivalent to GET /Shipments/findOne
+  Equivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}
   """
   shipment(
-    """
-    Filter defining fields, where, include, order, offset, and limit - must be a
-    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
-    for more details.
-    """
-    filter: String
+    """shipments의 외부 키"""
+    fk: String!
+
+    """Customer id"""
+    id: String!
+
+    """orders의 외부 키입니다."""
+    nk: String!
   ): Shipment
 
   """
@@ -1851,6 +1755,31 @@ type Query {
   ): Shipment
 
   """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Shipments/findOne
+  """
+  shipmentFindOne(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): Shipment
+
+  """
+  페치가 관계 order에 속합니다.
+  
+  Equivalent to GET /Shipments/{id}/order
+  """
+  shipmentPrototypeGetOrder(
+    """Shipment id"""
+    id: String!
+    refresh: Boolean
+  ): Order
+
+  """
   Find all instances of the model matched by filter from the data source.
   
   Equivalent to GET /Shipments
@@ -1863,13 +1792,6 @@ type Query {
     """
     filter: String
   ): [Shipment]
-
-  """
-  Create a change stream.
-  
-  Equivalent to GET /Shipments/change-stream
-  """
-  shipmentsChangeStream(options: String): String
 
   """
   Count instances of the model matched by where from the data source.
@@ -1892,11 +1814,25 @@ type Query {
   ): ShipmentsExists
 
   """
+  Find first instance of the model matched by filter from the data source.
+  
+  Equivalent to GET /Users/findOne
+  """
+  user(
+    """
+    Filter defining fields, where, include, order, offset, and limit - must be a
+    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+    for more details.
+    """
+    filter: String
+  ): User
+
+  """
   Find a model instance by {{id}} from the data source.
   
   Equivalent to GET /Users/{id}
   """
-  user(
+  userFindById(
     """
     Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
     """
@@ -1904,20 +1840,6 @@ type Query {
 
     """Model id"""
     id: String!
-  ): User
-
-  """
-  Find first instance of the model matched by filter from the data source.
-  
-  Equivalent to GET /Users/findOne
-  """
-  userFindOne(
-    """
-    Filter defining fields, where, include, order, offset, and limit - must be a
-    JSON-encoded string (`{"where":{"something":"value"}}`).  See https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
-    for more details.
-    """
-    filter: String
   ): User
 
   """
@@ -1958,13 +1880,6 @@ type Query {
     """Criteria to match model instances"""
     where: String
   ): UsersAccessTokensCount
-
-  """
-  Create a change stream.
-  
-  Equivalent to GET /Users/change-stream
-  """
-  usersChangeStream(options: String): String
 
   """
   Count instances of the model matched by where from the data source.
@@ -2018,7 +1933,7 @@ input ShipmentInput {
 }
 
 """No description available."""
-type Shipments2 {
+type Shipments3 {
   """No description available."""
   exists: Boolean
 }
@@ -2078,7 +1993,7 @@ input UserInput {
 }
 
 """No description available."""
-type Users2 {
+type Users3 {
   """No description available."""
   exists: Boolean
 }

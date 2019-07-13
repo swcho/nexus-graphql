@@ -26,16 +26,16 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface AccessToken {
     /**
      * 
+     * @type {Date}
+     * @memberof AccessToken
+     */
+    created?: Date;
+    /**
+     * 
      * @type {string}
      * @memberof AccessToken
      */
     id: string;
-    /**
-     * time to live in seconds (2 weeks by default)
-     * @type {number}
-     * @memberof AccessToken
-     */
-    ttl?: number;
     /**
      * Array of scopes granted to this access token.
      * @type {Array<string>}
@@ -43,11 +43,11 @@ export interface AccessToken {
      */
     scopes?: Array<string>;
     /**
-     * 
-     * @type {Date}
+     * time to live in seconds (2 weeks by default)
+     * @type {number}
      * @memberof AccessToken
      */
-    created?: Date;
+    ttl?: number;
     /**
      * 
      * @type {number}
@@ -63,12 +63,6 @@ export interface AccessToken {
 export interface Account {
     /**
      * 
-     * @type {string}
-     * @memberof Account
-     */
-    name?: string;
-    /**
-     * 
      * @type {number}
      * @memberof Account
      */
@@ -79,6 +73,12 @@ export interface Account {
      * @memberof Account
      */
     id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    name?: string;
 }
 /**
  * 
@@ -91,13 +91,13 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
-    street?: string;
+    city?: string;
     /**
      * 
      * @type {string}
      * @memberof Address
      */
-    city?: string;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -109,13 +109,13 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
-    zipCode?: string;
+    street?: string;
     /**
      * 
      * @type {string}
      * @memberof Address
      */
-    id?: string;
+    zipCode?: string;
 }
 /**
  * 
@@ -123,12 +123,6 @@ export interface Address {
  * @interface Book
  */
 export interface Book {
-    /**
-     * 
-     * @type {string}
-     * @memberof Book
-     */
-    name?: string;
     /**
      * 
      * @type {number}
@@ -141,6 +135,12 @@ export interface Book {
      * @memberof Book
      */
     links?: Array<Link>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Book
+     */
+    name?: string;
 }
 /**
  * 
@@ -150,22 +150,16 @@ export interface Book {
 export interface Customer {
     /**
      * 
-     * @type {string}
+     * @type {Array<number>}
      * @memberof Customer
      */
-    name?: string;
+    accountIds?: Array<number>;
     /**
      * 
      * @type {number}
      * @memberof Customer
      */
     age?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Customer
-     */
-    id?: number;
     /**
      * 
      * @type {Address}
@@ -180,10 +174,16 @@ export interface Customer {
     emailList?: Array<EmailAddress>;
     /**
      * 
-     * @type {Array<number>}
+     * @type {number}
      * @memberof Customer
      */
-    accountIds?: Array<number>;
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Customer
+     */
+    name?: string;
 }
 /**
  * 
@@ -196,12 +196,6 @@ export interface EmailAddress {
      * @type {string}
      * @memberof EmailAddress
      */
-    label?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailAddress
-     */
     address?: string;
     /**
      * 
@@ -209,6 +203,44 @@ export interface EmailAddress {
      * @memberof EmailAddress
      */
     id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailAddress
+     */
+    label?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject
+ */
+export interface InlineObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject
+     */
+    newPassword?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject
+     */
+    oldPassword: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject1
+ */
+export interface InlineObject1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject1
+     */
+    newPassword: string;
 }
 /**
  * 
@@ -224,30 +256,30 @@ export interface InlineResponse200 {
     count?: number;
 }
 /**
- * 
+ * Information related to the outcome of the operation
  * @export
  * @interface InlineResponse2001
  */
 export interface InlineResponse2001 {
     /**
-     * 
-     * @type {boolean}
+     * The number of instances updated
+     * @type {number}
      * @memberof InlineResponse2001
      */
-    exists?: boolean;
+    count?: number;
 }
 /**
- * Information related to the outcome of the operation
+ * 
  * @export
  * @interface InlineResponse2002
  */
 export interface InlineResponse2002 {
     /**
-     * The number of instances updated
-     * @type {number}
+     * 
+     * @type {boolean}
      * @memberof InlineResponse2002
      */
-    count?: number;
+    exists?: boolean;
 }
 /**
  * 
@@ -263,18 +295,6 @@ export interface Link {
     id: number;
     /**
      * 
-     * @type {string}
-     * @memberof Link
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Link
-     */
-    notes?: string;
-    /**
-     * 
      * @type {number}
      * @memberof Link
      */
@@ -285,6 +305,18 @@ export interface Link {
      * @memberof Link
      */
     linkedType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Link
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Link
+     */
+    notes?: string;
 }
 /**
  * 
@@ -292,6 +324,12 @@ export interface Link {
  * @interface Order
  */
 export interface Order {
+    /**
+     * 
+     * @type {number}
+     * @memberof Order
+     */
+    customerId?: number;
     /**
      * 
      * @type {Date}
@@ -310,12 +348,6 @@ export interface Order {
      * @memberof Order
      */
     id?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Order
-     */
-    customerId?: number;
 }
 /**
  * 
@@ -359,18 +391,6 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    realm?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
-    username?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     email: string;
     /**
      * 
@@ -384,6 +404,18 @@ export interface User {
      * @memberof User
      */
     id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    realm?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    username?: string;
 }
 
 /**
@@ -428,11 +460,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookCreate(data?: Book, httpOptions: any = {}): RequestArgs {
+        bookCreate(book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -451,7 +483,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -510,7 +542,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarQueryParameter = {} as any;
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -734,11 +766,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPatchOrCreate(data?: Book, httpOptions: any = {}): RequestArgs {
+        bookPatchOrCreate(book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -757,7 +789,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -807,11 +839,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary 이 모델의 people에서 새 인스턴스를 작성합니다.
          * @param {string} id Book id
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeCreatePeople(id: string, data?: Link, httpOptions: any = {}): RequestArgs {
+        bookPrototypeCreatePeople(id: string, link?: Link, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling bookPrototypeCreatePeople.');
@@ -835,7 +867,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Link" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(link !== undefined ? link : {}) : (link || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -999,11 +1031,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Book id
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypePatchAttributes(id: string, data?: Book, httpOptions: any = {}): RequestArgs {
+        bookPrototypePatchAttributes(id: string, book?: Book, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling bookPrototypePatchAttributes.');
@@ -1027,7 +1059,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1039,11 +1071,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary people에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Book id
          * @param {string} fk people의 외부 키
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeUpdateByIdPeople(id: string, fk: string, data?: Link, httpOptions: any = {}): RequestArgs {
+        bookPrototypeUpdateByIdPeople(id: string, fk: string, link?: Link, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling bookPrototypeUpdateByIdPeople.');
@@ -1072,7 +1104,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Link" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(link !== undefined ? link : {}) : (link || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1083,11 +1115,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPostBooksidReplace(id: string, data?: Book, httpOptions: any = {}): RequestArgs {
+        bookReplaceByIdPostBooksidReplace(id: string, book?: Book, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling bookReplaceByIdPostBooksidReplace.');
@@ -1111,7 +1143,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1122,11 +1154,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPutBooksid(id: string, data?: Book, httpOptions: any = {}): RequestArgs {
+        bookReplaceByIdPutBooksid(id: string, book?: Book, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling bookReplaceByIdPutBooksid.');
@@ -1150,7 +1182,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1160,11 +1192,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePostBooksReplaceOrCreate(data?: Book, httpOptions: any = {}): RequestArgs {
+        bookReplaceOrCreatePostBooksReplaceOrCreate(book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books/replaceOrCreate`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1183,7 +1215,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1193,11 +1225,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePutBooks(data?: Book, httpOptions: any = {}): RequestArgs {
+        bookReplaceOrCreatePutBooks(book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1216,7 +1248,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1227,11 +1259,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpdateAll(where?: string, data?: Book, httpOptions: any = {}): RequestArgs {
+        bookUpdateAll(where?: string, book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books/update`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1254,7 +1286,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1265,11 +1297,11 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpsertWithWhere(where?: string, data?: Book, httpOptions: any = {}): RequestArgs {
+        bookUpsertWithWhere(where?: string, book?: Book, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Books/upsertWithWhere`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1292,7 +1324,7 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Book" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(book !== undefined ? book : {}) : (book || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1325,12 +1357,12 @@ export const BookApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookCreate(data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreate(data, httpOptions);
+        bookCreate(book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreate(book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1343,7 +1375,7 @@ export const BookApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreateChangeStreamGetBooksChangeStream(options, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1357,7 +1389,7 @@ export const BookApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1385,7 +1417,7 @@ export const BookApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookExistsGetBooksidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        bookExistsGetBooksidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookExistsGetBooksidExists(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1399,7 +1431,7 @@ export const BookApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookExistsHeadBooksid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        bookExistsHeadBooksid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookExistsHeadBooksid(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1452,12 +1484,12 @@ export const BookApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPatchOrCreate(data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPatchOrCreate(data, httpOptions);
+        bookPatchOrCreate(book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPatchOrCreate(book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1482,12 +1514,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 people에서 새 인스턴스를 작성합니다.
          * @param {string} id Book id
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeCreatePeople(id: string, data?: Link, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Link> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypeCreatePeople(id, data, httpOptions);
+        bookPrototypeCreatePeople(id: string, link?: Link, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Link> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypeCreatePeople(id, link, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1556,12 +1588,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Book id
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypePatchAttributes(id: string, data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypePatchAttributes(id, data, httpOptions);
+        bookPrototypePatchAttributes(id: string, book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypePatchAttributes(id, book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1572,12 +1604,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * @summary people에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Book id
          * @param {string} fk people의 외부 키
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeUpdateByIdPeople(id: string, fk: string, data?: Link, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Link> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypeUpdateByIdPeople(id, fk, data, httpOptions);
+        bookPrototypeUpdateByIdPeople(id: string, fk: string, link?: Link, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Link> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookPrototypeUpdateByIdPeople(id, fk, link, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1587,12 +1619,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPostBooksidReplace(id: string, data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceByIdPostBooksidReplace(id, data, httpOptions);
+        bookReplaceByIdPostBooksidReplace(id: string, book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceByIdPostBooksidReplace(id, book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1602,12 +1634,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPutBooksid(id: string, data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceByIdPutBooksid(id, data, httpOptions);
+        bookReplaceByIdPutBooksid(id: string, book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceByIdPutBooksid(id, book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1616,12 +1648,12 @@ export const BookApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePostBooksReplaceOrCreate(data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(data, httpOptions);
+        bookReplaceOrCreatePostBooksReplaceOrCreate(book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1630,12 +1662,12 @@ export const BookApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePutBooks(data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceOrCreatePutBooks(data, httpOptions);
+        bookReplaceOrCreatePutBooks(book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookReplaceOrCreatePutBooks(book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1645,12 +1677,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpdateAll(where?: string, data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookUpdateAll(where, data, httpOptions);
+        bookUpdateAll(where?: string, book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookUpdateAll(where, book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1660,12 +1692,12 @@ export const BookApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpsertWithWhere(where?: string, data?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookUpsertWithWhere(where, data, httpOptions);
+        bookUpsertWithWhere(where?: string, book?: Book, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book> {
+            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookUpsertWithWhere(where, book, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1693,12 +1725,12 @@ export const BookApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookCreate(data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookCreate(data, httpOptions)(axios, basePath);
+        bookCreate(book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookCreate(book, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -1784,12 +1816,12 @@ export const BookApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPatchOrCreate(data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookPatchOrCreate(data, httpOptions)(axios, basePath);
+        bookPatchOrCreate(book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookPatchOrCreate(book, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -1806,12 +1838,12 @@ export const BookApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary 이 모델의 people에서 새 인스턴스를 작성합니다.
          * @param {string} id Book id
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeCreatePeople(id: string, data?: Link, httpOptions?: any) {
-            return BookApiFp(configuration).bookPrototypeCreatePeople(id, data, httpOptions)(axios, basePath);
+        bookPrototypeCreatePeople(id: string, link?: Link, httpOptions?: any) {
+            return BookApiFp(configuration).bookPrototypeCreatePeople(id, link, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -1860,88 +1892,88 @@ export const BookApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Book id
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypePatchAttributes(id: string, data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookPrototypePatchAttributes(id, data, httpOptions)(axios, basePath);
+        bookPrototypePatchAttributes(id: string, book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookPrototypePatchAttributes(id, book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary people에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Book id
          * @param {string} fk people의 외부 키
-         * @param {Link} [data] 
+         * @param {Link} [link] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookPrototypeUpdateByIdPeople(id: string, fk: string, data?: Link, httpOptions?: any) {
-            return BookApiFp(configuration).bookPrototypeUpdateByIdPeople(id, fk, data, httpOptions)(axios, basePath);
+        bookPrototypeUpdateByIdPeople(id: string, fk: string, link?: Link, httpOptions?: any) {
+            return BookApiFp(configuration).bookPrototypeUpdateByIdPeople(id, fk, link, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPostBooksidReplace(id: string, data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookReplaceByIdPostBooksidReplace(id, data, httpOptions)(axios, basePath);
+        bookReplaceByIdPostBooksidReplace(id: string, book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookReplaceByIdPostBooksidReplace(id, book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceByIdPutBooksid(id: string, data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookReplaceByIdPutBooksid(id, data, httpOptions)(axios, basePath);
+        bookReplaceByIdPutBooksid(id: string, book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookReplaceByIdPutBooksid(id, book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePostBooksReplaceOrCreate(data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(data, httpOptions)(axios, basePath);
+        bookReplaceOrCreatePostBooksReplaceOrCreate(book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Book} [data] Model instance data
+         * @param {Book} [book] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookReplaceOrCreatePutBooks(data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookReplaceOrCreatePutBooks(data, httpOptions)(axios, basePath);
+        bookReplaceOrCreatePutBooks(book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookReplaceOrCreatePutBooks(book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpdateAll(where?: string, data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookUpdateAll(where, data, httpOptions)(axios, basePath);
+        bookUpdateAll(where?: string, book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookUpdateAll(where, book, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Book} [data] An object of model property name/value pairs
+         * @param {Book} [book] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        bookUpsertWithWhere(where?: string, data?: Book, httpOptions?: any) {
-            return BookApiFp(configuration).bookUpsertWithWhere(where, data, httpOptions)(axios, basePath);
+        bookUpsertWithWhere(where?: string, book?: Book, httpOptions?: any) {
+            return BookApiFp(configuration).bookUpsertWithWhere(where, book, httpOptions)(axios, basePath);
         },
     };
 };
@@ -1968,13 +2000,13 @@ export class BookApi extends BaseAPI {
     /**
      * 
      * @summary Create a new instance of the model and persist it into the data source.
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookCreate(data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookCreate(data, httpOptions)(this.axios, this.basePath);
+    public bookCreate(book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookCreate(book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -2077,13 +2109,13 @@ export class BookApi extends BaseAPI {
     /**
      * 
      * @summary Patch an existing model instance or insert a new one into the data source.
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookPatchOrCreate(data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookPatchOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public bookPatchOrCreate(book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookPatchOrCreate(book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -2103,13 +2135,13 @@ export class BookApi extends BaseAPI {
      * 
      * @summary 이 모델의 people에서 새 인스턴스를 작성합니다.
      * @param {string} id Book id
-     * @param {Link} [data] 
+     * @param {Link} [link] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookPrototypeCreatePeople(id: string, data?: Link, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookPrototypeCreatePeople(id, data, httpOptions)(this.axios, this.basePath);
+    public bookPrototypeCreatePeople(id: string, link?: Link, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookPrototypeCreatePeople(id, link, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -2167,13 +2199,13 @@ export class BookApi extends BaseAPI {
      * 
      * @summary Patch attributes for a model instance and persist it into the data source.
      * @param {string} id Book id
-     * @param {Book} [data] An object of model property name/value pairs
+     * @param {Book} [book] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookPrototypePatchAttributes(id: string, data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookPrototypePatchAttributes(id, data, httpOptions)(this.axios, this.basePath);
+    public bookPrototypePatchAttributes(id: string, book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookPrototypePatchAttributes(id, book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -2181,89 +2213,89 @@ export class BookApi extends BaseAPI {
      * @summary people에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id Book id
      * @param {string} fk people의 외부 키
-     * @param {Link} [data] 
+     * @param {Link} [link] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookPrototypeUpdateByIdPeople(id: string, fk: string, data?: Link, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookPrototypeUpdateByIdPeople(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public bookPrototypeUpdateByIdPeople(id: string, fk: string, link?: Link, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookPrototypeUpdateByIdPeople(id, fk, link, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookReplaceByIdPostBooksidReplace(id: string, data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookReplaceByIdPostBooksidReplace(id, data, httpOptions)(this.axios, this.basePath);
+    public bookReplaceByIdPostBooksidReplace(id: string, book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookReplaceByIdPostBooksidReplace(id, book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookReplaceByIdPutBooksid(id: string, data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookReplaceByIdPutBooksid(id, data, httpOptions)(this.axios, this.basePath);
+    public bookReplaceByIdPutBooksid(id: string, book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookReplaceByIdPutBooksid(id, book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookReplaceOrCreatePostBooksReplaceOrCreate(data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public bookReplaceOrCreatePostBooksReplaceOrCreate(book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookReplaceOrCreatePostBooksReplaceOrCreate(book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Book} [data] Model instance data
+     * @param {Book} [book] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookReplaceOrCreatePutBooks(data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookReplaceOrCreatePutBooks(data, httpOptions)(this.axios, this.basePath);
+    public bookReplaceOrCreatePutBooks(book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookReplaceOrCreatePutBooks(book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update instances of the model matched by {{where}} from the data source.
      * @param {string} [where] Criteria to match model instances
-     * @param {Book} [data] An object of model property name/value pairs
+     * @param {Book} [book] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookUpdateAll(where?: string, data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookUpdateAll(where, data, httpOptions)(this.axios, this.basePath);
+    public bookUpdateAll(where?: string, book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookUpdateAll(where, book, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
      * @param {string} [where] Criteria to match model instances
-     * @param {Book} [data] An object of model property name/value pairs
+     * @param {Book} [book] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof BookApi
      */
-    public bookUpsertWithWhere(where?: string, data?: Book, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookUpsertWithWhere(where, data, httpOptions)(this.axios, this.basePath);
+    public bookUpsertWithWhere(where?: string, book?: Book, httpOptions?: any) {
+        return BookApiFp(this.configuration).bookUpsertWithWhere(where, book, httpOptions)(this.axios, this.basePath);
     }
 
 }
@@ -2311,11 +2343,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerCreate(data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerCreate(customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -2334,7 +2366,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2393,7 +2425,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2617,11 +2649,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPatchOrCreate(data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerPatchOrCreate(customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -2640,7 +2672,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2813,11 +2845,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary 이 모델의 accounts에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAccounts(id: string, data?: Account, httpOptions: any = {}): RequestArgs {
+        customerPrototypeCreateAccounts(id: string, account?: Account, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeCreateAccounts.');
@@ -2841,7 +2873,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Account" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(account !== undefined ? account : {}) : (account || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2852,11 +2884,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary 이 모델의 address에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAddress(id: string, data?: Address, httpOptions: any = {}): RequestArgs {
+        customerPrototypeCreateAddress(id: string, address?: Address, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeCreateAddress.');
@@ -2880,7 +2912,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Address" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(address !== undefined ? address : {}) : (address || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2891,11 +2923,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary 이 모델의 emails에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateEmails(id: string, data?: EmailAddress, httpOptions: any = {}): RequestArgs {
+        customerPrototypeCreateEmails(id: string, emailAddress?: EmailAddress, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeCreateEmails.');
@@ -2919,7 +2951,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"EmailAddress" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(emailAddress !== undefined ? emailAddress : {}) : (emailAddress || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2930,11 +2962,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary 이 모델의 orders에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrders(id: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        customerPrototypeCreateOrders(id: string, order?: Order, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeCreateOrders.');
@@ -2958,7 +2990,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2970,11 +3002,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrdersShipments(id: string, nk: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        customerPrototypeCreateOrdersShipments(id: string, nk: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeCreateOrdersShipments.');
@@ -3003,7 +3035,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -3848,11 +3880,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Customer id
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypePatchAttributes(id: string, data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerPrototypePatchAttributes(id: string, customer?: Customer, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypePatchAttributes.');
@@ -3876,7 +3908,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -3927,11 +3959,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary 이 모델의 address을(를) 업데이트하십시오.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateAddress(id: string, data?: Address, httpOptions: any = {}): RequestArgs {
+        customerPrototypeUpdateAddress(id: string, address?: Address, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeUpdateAddress.');
@@ -3955,7 +3987,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Address" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(address !== undefined ? address : {}) : (address || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -3967,11 +3999,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * @summary accounts에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk accounts의 외부 키
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdAccounts(id: string, fk: string, data?: Account, httpOptions: any = {}): RequestArgs {
+        customerPrototypeUpdateByIdAccounts(id: string, fk: string, account?: Account, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeUpdateByIdAccounts.');
@@ -4000,7 +4032,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Account" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(account !== undefined ? account : {}) : (account || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4012,11 +4044,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * @summary emails에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk emails의 외부 키
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdEmails(id: string, fk: string, data?: EmailAddress, httpOptions: any = {}): RequestArgs {
+        customerPrototypeUpdateByIdEmails(id: string, fk: string, emailAddress?: EmailAddress, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeUpdateByIdEmails.');
@@ -4045,7 +4077,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"EmailAddress" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(emailAddress !== undefined ? emailAddress : {}) : (emailAddress || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4057,11 +4089,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * @summary orders에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk orders의 외부 키
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrders(id: string, fk: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        customerPrototypeUpdateByIdOrders(id: string, fk: string, order?: Order, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeUpdateByIdOrders.');
@@ -4090,7 +4122,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4103,11 +4135,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerPrototypeUpdateByIdOrdersShipments.');
@@ -4141,7 +4173,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4152,11 +4184,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPostCustomersidReplace(id: string, data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerReplaceByIdPostCustomersidReplace(id: string, customer?: Customer, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerReplaceByIdPostCustomersidReplace.');
@@ -4180,7 +4212,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4191,11 +4223,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPutCustomersid(id: string, data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerReplaceByIdPutCustomersid(id: string, customer?: Customer, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling customerReplaceByIdPutCustomersid.');
@@ -4219,7 +4251,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4229,11 +4261,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePostCustomersReplaceOrCreate(data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerReplaceOrCreatePostCustomersReplaceOrCreate(customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers/replaceOrCreate`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -4252,7 +4284,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4262,11 +4294,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePutCustomers(data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerReplaceOrCreatePutCustomers(customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -4285,7 +4317,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4296,11 +4328,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpdateAll(where?: string, data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerUpdateAll(where?: string, customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers/update`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -4323,7 +4355,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4334,11 +4366,11 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpsertWithWhere(where?: string, data?: Customer, httpOptions: any = {}): RequestArgs {
+        customerUpsertWithWhere(where?: string, customer?: Customer, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Customers/upsertWithWhere`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -4361,7 +4393,7 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4394,12 +4426,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerCreate(data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreate(data, httpOptions);
+        customerCreate(customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreate(customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4412,7 +4444,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreateChangeStreamGetCustomersChangeStream(options, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -4426,7 +4458,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -4454,7 +4486,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerExistsGetCustomersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        customerExistsGetCustomersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerExistsGetCustomersidExists(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -4468,7 +4500,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerExistsHeadCustomersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        customerExistsHeadCustomersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerExistsHeadCustomersid(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -4521,12 +4553,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPatchOrCreate(data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPatchOrCreate(data, httpOptions);
+        customerPatchOrCreate(customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPatchOrCreate(customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4597,12 +4629,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 accounts에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAccounts(id: string, data?: Account, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateAccounts(id, data, httpOptions);
+        customerPrototypeCreateAccounts(id: string, account?: Account, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateAccounts(id, account, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4612,12 +4644,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 address에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAddress(id: string, data?: Address, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Address> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateAddress(id, data, httpOptions);
+        customerPrototypeCreateAddress(id: string, address?: Address, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Address> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateAddress(id, address, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4627,12 +4659,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 emails에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateEmails(id: string, data?: EmailAddress, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAddress> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateEmails(id, data, httpOptions);
+        customerPrototypeCreateEmails(id: string, emailAddress?: EmailAddress, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAddress> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateEmails(id, emailAddress, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4642,12 +4674,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 orders에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrders(id: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateOrders(id, data, httpOptions);
+        customerPrototypeCreateOrders(id: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateOrders(id, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4658,12 +4690,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrdersShipments(id: string, nk: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateOrdersShipments(id, nk, data, httpOptions);
+        customerPrototypeCreateOrdersShipments(id: string, nk: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeCreateOrdersShipments(id, nk, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -4988,12 +5020,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Customer id
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypePatchAttributes(id: string, data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypePatchAttributes(id, data, httpOptions);
+        customerPrototypePatchAttributes(id: string, customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypePatchAttributes(id, customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5018,12 +5050,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 address을(를) 업데이트하십시오.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateAddress(id: string, data?: Address, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Address> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateAddress(id, data, httpOptions);
+        customerPrototypeUpdateAddress(id: string, address?: Address, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Address> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateAddress(id, address, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5034,12 +5066,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @summary accounts에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk accounts의 외부 키
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdAccounts(id: string, fk: string, data?: Account, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdAccounts(id, fk, data, httpOptions);
+        customerPrototypeUpdateByIdAccounts(id: string, fk: string, account?: Account, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdAccounts(id, fk, account, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5050,12 +5082,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @summary emails에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk emails의 외부 키
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdEmails(id: string, fk: string, data?: EmailAddress, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAddress> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdEmails(id, fk, data, httpOptions);
+        customerPrototypeUpdateByIdEmails(id: string, fk: string, emailAddress?: EmailAddress, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EmailAddress> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdEmails(id, fk, emailAddress, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5066,12 +5098,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @summary orders에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk orders의 외부 키
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrders(id: string, fk: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdOrders(id, fk, data, httpOptions);
+        customerPrototypeUpdateByIdOrders(id: string, fk: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdOrders(id, fk, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5083,12 +5115,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, data, httpOptions);
+        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5098,12 +5130,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPostCustomersidReplace(id: string, data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceByIdPostCustomersidReplace(id, data, httpOptions);
+        customerReplaceByIdPostCustomersidReplace(id: string, customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceByIdPostCustomersidReplace(id, customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5113,12 +5145,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPutCustomersid(id: string, data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceByIdPutCustomersid(id, data, httpOptions);
+        customerReplaceByIdPutCustomersid(id: string, customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceByIdPutCustomersid(id, customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5127,12 +5159,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePostCustomersReplaceOrCreate(data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(data, httpOptions);
+        customerReplaceOrCreatePostCustomersReplaceOrCreate(customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5141,12 +5173,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePutCustomers(data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceOrCreatePutCustomers(data, httpOptions);
+        customerReplaceOrCreatePutCustomers(customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerReplaceOrCreatePutCustomers(customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5156,12 +5188,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpdateAll(where?: string, data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerUpdateAll(where, data, httpOptions);
+        customerUpdateAll(where?: string, customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerUpdateAll(where, customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5171,12 +5203,12 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpsertWithWhere(where?: string, data?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerUpsertWithWhere(where, data, httpOptions);
+        customerUpsertWithWhere(where?: string, customer?: Customer, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Customer> {
+            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerUpsertWithWhere(where, customer, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5204,12 +5236,12 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerCreate(data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerCreate(data, httpOptions)(axios, basePath);
+        customerCreate(customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerCreate(customer, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -5295,12 +5327,12 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPatchOrCreate(data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPatchOrCreate(data, httpOptions)(axios, basePath);
+        customerPatchOrCreate(customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPatchOrCreate(customer, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -5351,57 +5383,57 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary 이 모델의 accounts에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAccounts(id: string, data?: Account, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeCreateAccounts(id, data, httpOptions)(axios, basePath);
+        customerPrototypeCreateAccounts(id: string, account?: Account, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeCreateAccounts(id, account, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary 이 모델의 address에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateAddress(id: string, data?: Address, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeCreateAddress(id, data, httpOptions)(axios, basePath);
+        customerPrototypeCreateAddress(id: string, address?: Address, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeCreateAddress(id, address, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary 이 모델의 emails에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateEmails(id: string, data?: EmailAddress, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeCreateEmails(id, data, httpOptions)(axios, basePath);
+        customerPrototypeCreateEmails(id: string, emailAddress?: EmailAddress, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeCreateEmails(id, emailAddress, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary 이 모델의 orders에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrders(id: string, data?: Order, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeCreateOrders(id, data, httpOptions)(axios, basePath);
+        customerPrototypeCreateOrders(id: string, order?: Order, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeCreateOrders(id, order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeCreateOrdersShipments(id: string, nk: string, data?: Shipment, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeCreateOrdersShipments(id, nk, data, httpOptions)(axios, basePath);
+        customerPrototypeCreateOrdersShipments(id: string, nk: string, shipment?: Shipment, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeCreateOrdersShipments(id, nk, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -5638,12 +5670,12 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Customer id
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypePatchAttributes(id: string, data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypePatchAttributes(id, data, httpOptions)(axios, basePath);
+        customerPrototypePatchAttributes(id: string, customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypePatchAttributes(id, customer, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -5660,48 +5692,48 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary 이 모델의 address을(를) 업데이트하십시오.
          * @param {string} id Customer id
-         * @param {Address} [data] 
+         * @param {Address} [address] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateAddress(id: string, data?: Address, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeUpdateAddress(id, data, httpOptions)(axios, basePath);
+        customerPrototypeUpdateAddress(id: string, address?: Address, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeUpdateAddress(id, address, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary accounts에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk accounts의 외부 키
-         * @param {Account} [data] 
+         * @param {Account} [account] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdAccounts(id: string, fk: string, data?: Account, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeUpdateByIdAccounts(id, fk, data, httpOptions)(axios, basePath);
+        customerPrototypeUpdateByIdAccounts(id: string, fk: string, account?: Account, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeUpdateByIdAccounts(id, fk, account, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary emails에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk emails의 외부 키
-         * @param {EmailAddress} [data] 
+         * @param {EmailAddress} [emailAddress] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdEmails(id: string, fk: string, data?: EmailAddress, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeUpdateByIdEmails(id, fk, data, httpOptions)(axios, basePath);
+        customerPrototypeUpdateByIdEmails(id: string, fk: string, emailAddress?: EmailAddress, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeUpdateByIdEmails(id, fk, emailAddress, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary orders에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Customer id
          * @param {string} fk orders의 외부 키
-         * @param {Order} [data] 
+         * @param {Order} [order] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrders(id: string, fk: string, data?: Order, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeUpdateByIdOrders(id, fk, data, httpOptions)(axios, basePath);
+        customerPrototypeUpdateByIdOrders(id: string, fk: string, order?: Order, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeUpdateByIdOrders(id, fk, order, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -5709,76 +5741,76 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
          * @param {string} id Customer id
          * @param {string} nk orders의 외부 키입니다.
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, data?: Shipment, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, data, httpOptions)(axios, basePath);
+        customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, shipment?: Shipment, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPostCustomersidReplace(id: string, data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerReplaceByIdPostCustomersidReplace(id, data, httpOptions)(axios, basePath);
+        customerReplaceByIdPostCustomersidReplace(id: string, customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerReplaceByIdPostCustomersidReplace(id, customer, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceByIdPutCustomersid(id: string, data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerReplaceByIdPutCustomersid(id, data, httpOptions)(axios, basePath);
+        customerReplaceByIdPutCustomersid(id: string, customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerReplaceByIdPutCustomersid(id, customer, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePostCustomersReplaceOrCreate(data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(data, httpOptions)(axios, basePath);
+        customerReplaceOrCreatePostCustomersReplaceOrCreate(customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(customer, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Customer} [data] Model instance data
+         * @param {Customer} [customer] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerReplaceOrCreatePutCustomers(data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerReplaceOrCreatePutCustomers(data, httpOptions)(axios, basePath);
+        customerReplaceOrCreatePutCustomers(customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerReplaceOrCreatePutCustomers(customer, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpdateAll(where?: string, data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerUpdateAll(where, data, httpOptions)(axios, basePath);
+        customerUpdateAll(where?: string, customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerUpdateAll(where, customer, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Customer} [data] An object of model property name/value pairs
+         * @param {Customer} [customer] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        customerUpsertWithWhere(where?: string, data?: Customer, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerUpsertWithWhere(where, data, httpOptions)(axios, basePath);
+        customerUpsertWithWhere(where?: string, customer?: Customer, httpOptions?: any) {
+            return CustomerApiFp(configuration).customerUpsertWithWhere(where, customer, httpOptions)(axios, basePath);
         },
     };
 };
@@ -5805,13 +5837,13 @@ export class CustomerApi extends BaseAPI {
     /**
      * 
      * @summary Create a new instance of the model and persist it into the data source.
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerCreate(data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerCreate(data, httpOptions)(this.axios, this.basePath);
+    public customerCreate(customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerCreate(customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -5914,13 +5946,13 @@ export class CustomerApi extends BaseAPI {
     /**
      * 
      * @summary Patch an existing model instance or insert a new one into the data source.
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPatchOrCreate(data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPatchOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public customerPatchOrCreate(customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPatchOrCreate(customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -5980,52 +6012,52 @@ export class CustomerApi extends BaseAPI {
      * 
      * @summary 이 모델의 accounts에서 새 인스턴스를 작성합니다.
      * @param {string} id Customer id
-     * @param {Account} [data] 
+     * @param {Account} [account] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeCreateAccounts(id: string, data?: Account, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeCreateAccounts(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeCreateAccounts(id: string, account?: Account, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeCreateAccounts(id, account, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary 이 모델의 address에서 새 인스턴스를 작성합니다.
      * @param {string} id Customer id
-     * @param {Address} [data] 
+     * @param {Address} [address] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeCreateAddress(id: string, data?: Address, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeCreateAddress(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeCreateAddress(id: string, address?: Address, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeCreateAddress(id, address, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary 이 모델의 emails에서 새 인스턴스를 작성합니다.
      * @param {string} id Customer id
-     * @param {EmailAddress} [data] 
+     * @param {EmailAddress} [emailAddress] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeCreateEmails(id: string, data?: EmailAddress, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeCreateEmails(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeCreateEmails(id: string, emailAddress?: EmailAddress, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeCreateEmails(id, emailAddress, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary 이 모델의 orders에서 새 인스턴스를 작성합니다.
      * @param {string} id Customer id
-     * @param {Order} [data] 
+     * @param {Order} [order] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeCreateOrders(id: string, data?: Order, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeCreateOrders(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeCreateOrders(id: string, order?: Order, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeCreateOrders(id, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6033,13 +6065,13 @@ export class CustomerApi extends BaseAPI {
      * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
      * @param {string} id Customer id
      * @param {string} nk orders의 외부 키입니다.
-     * @param {Shipment} [data] 
+     * @param {Shipment} [shipment] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeCreateOrdersShipments(id: string, nk: string, data?: Shipment, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeCreateOrdersShipments(id, nk, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeCreateOrdersShipments(id: string, nk: string, shipment?: Shipment, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeCreateOrdersShipments(id, nk, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6319,13 +6351,13 @@ export class CustomerApi extends BaseAPI {
      * 
      * @summary Patch attributes for a model instance and persist it into the data source.
      * @param {string} id Customer id
-     * @param {Customer} [data] An object of model property name/value pairs
+     * @param {Customer} [customer] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypePatchAttributes(id: string, data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypePatchAttributes(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypePatchAttributes(id: string, customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypePatchAttributes(id, customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6345,13 +6377,13 @@ export class CustomerApi extends BaseAPI {
      * 
      * @summary 이 모델의 address을(를) 업데이트하십시오.
      * @param {string} id Customer id
-     * @param {Address} [data] 
+     * @param {Address} [address] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeUpdateAddress(id: string, data?: Address, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeUpdateAddress(id, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeUpdateAddress(id: string, address?: Address, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeUpdateAddress(id, address, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6359,13 +6391,13 @@ export class CustomerApi extends BaseAPI {
      * @summary accounts에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id Customer id
      * @param {string} fk accounts의 외부 키
-     * @param {Account} [data] 
+     * @param {Account} [account] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeUpdateByIdAccounts(id: string, fk: string, data?: Account, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdAccounts(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeUpdateByIdAccounts(id: string, fk: string, account?: Account, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdAccounts(id, fk, account, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6373,13 +6405,13 @@ export class CustomerApi extends BaseAPI {
      * @summary emails에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id Customer id
      * @param {string} fk emails의 외부 키
-     * @param {EmailAddress} [data] 
+     * @param {EmailAddress} [emailAddress] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeUpdateByIdEmails(id: string, fk: string, data?: EmailAddress, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdEmails(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeUpdateByIdEmails(id: string, fk: string, emailAddress?: EmailAddress, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdEmails(id, fk, emailAddress, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6387,13 +6419,13 @@ export class CustomerApi extends BaseAPI {
      * @summary orders에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id Customer id
      * @param {string} fk orders의 외부 키
-     * @param {Order} [data] 
+     * @param {Order} [order] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeUpdateByIdOrders(id: string, fk: string, data?: Order, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdOrders(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeUpdateByIdOrders(id: string, fk: string, order?: Order, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdOrders(id, fk, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6402,89 +6434,89 @@ export class CustomerApi extends BaseAPI {
      * @param {string} id Customer id
      * @param {string} nk orders의 외부 키입니다.
      * @param {string} fk shipments의 외부 키
-     * @param {Shipment} [data] 
+     * @param {Shipment} [shipment] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, data?: Shipment, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, data, httpOptions)(this.axios, this.basePath);
+    public customerPrototypeUpdateByIdOrdersShipments(id: string, nk: string, fk: string, shipment?: Shipment, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerPrototypeUpdateByIdOrdersShipments(id, nk, fk, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerReplaceByIdPostCustomersidReplace(id: string, data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerReplaceByIdPostCustomersidReplace(id, data, httpOptions)(this.axios, this.basePath);
+    public customerReplaceByIdPostCustomersidReplace(id: string, customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerReplaceByIdPostCustomersidReplace(id, customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerReplaceByIdPutCustomersid(id: string, data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerReplaceByIdPutCustomersid(id, data, httpOptions)(this.axios, this.basePath);
+    public customerReplaceByIdPutCustomersid(id: string, customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerReplaceByIdPutCustomersid(id, customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerReplaceOrCreatePostCustomersReplaceOrCreate(data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public customerReplaceOrCreatePostCustomersReplaceOrCreate(customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerReplaceOrCreatePostCustomersReplaceOrCreate(customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Customer} [data] Model instance data
+     * @param {Customer} [customer] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerReplaceOrCreatePutCustomers(data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerReplaceOrCreatePutCustomers(data, httpOptions)(this.axios, this.basePath);
+    public customerReplaceOrCreatePutCustomers(customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerReplaceOrCreatePutCustomers(customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update instances of the model matched by {{where}} from the data source.
      * @param {string} [where] Criteria to match model instances
-     * @param {Customer} [data] An object of model property name/value pairs
+     * @param {Customer} [customer] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerUpdateAll(where?: string, data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerUpdateAll(where, data, httpOptions)(this.axios, this.basePath);
+    public customerUpdateAll(where?: string, customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerUpdateAll(where, customer, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
      * @param {string} [where] Criteria to match model instances
-     * @param {Customer} [data] An object of model property name/value pairs
+     * @param {Customer} [customer] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public customerUpsertWithWhere(where?: string, data?: Customer, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerUpsertWithWhere(where, data, httpOptions)(this.axios, this.basePath);
+    public customerUpsertWithWhere(where?: string, customer?: Customer, httpOptions?: any) {
+        return CustomerApiFp(this.configuration).customerUpsertWithWhere(where, customer, httpOptions)(this.axios, this.basePath);
     }
 
 }
@@ -6532,11 +6564,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderCreate(data?: Order, httpOptions: any = {}): RequestArgs {
+        orderCreate(order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -6555,7 +6587,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6614,7 +6646,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             const localVarQueryParameter = {} as any;
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -6838,11 +6870,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPatchOrCreate(data?: Order, httpOptions: any = {}): RequestArgs {
+        orderPatchOrCreate(order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -6861,7 +6893,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6911,11 +6943,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Order id
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeCreateShipments(id: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        orderPrototypeCreateShipments(id: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling orderPrototypeCreateShipments.');
@@ -6939,7 +6971,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7142,11 +7174,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Order id
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypePatchAttributes(id: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        orderPrototypePatchAttributes(id: string, order?: Order, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling orderPrototypePatchAttributes.');
@@ -7170,7 +7202,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7182,11 +7214,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @summary shipments에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Order id
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeUpdateByIdShipments(id: string, fk: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        orderPrototypeUpdateByIdShipments(id: string, fk: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling orderPrototypeUpdateByIdShipments.');
@@ -7215,7 +7247,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7226,11 +7258,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPostOrdersidReplace(id: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        orderReplaceByIdPostOrdersidReplace(id: string, order?: Order, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling orderReplaceByIdPostOrdersidReplace.');
@@ -7254,7 +7286,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7265,11 +7297,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPutOrdersid(id: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        orderReplaceByIdPutOrdersid(id: string, order?: Order, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling orderReplaceByIdPutOrdersid.');
@@ -7293,7 +7325,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7303,11 +7335,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePostOrdersReplaceOrCreate(data?: Order, httpOptions: any = {}): RequestArgs {
+        orderReplaceOrCreatePostOrdersReplaceOrCreate(order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders/replaceOrCreate`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -7326,7 +7358,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7336,11 +7368,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePutOrders(data?: Order, httpOptions: any = {}): RequestArgs {
+        orderReplaceOrCreatePutOrders(order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -7359,7 +7391,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7370,11 +7402,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpdateAll(where?: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        orderUpdateAll(where?: string, order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders/update`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -7397,7 +7429,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7408,11 +7440,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpsertWithWhere(where?: string, data?: Order, httpOptions: any = {}): RequestArgs {
+        orderUpsertWithWhere(where?: string, order?: Order, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Orders/upsertWithWhere`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -7435,7 +7467,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7468,12 +7500,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderCreate(data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreate(data, httpOptions);
+        orderCreate(order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreate(order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7486,7 +7518,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreateChangeStreamGetOrdersChangeStream(options, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7500,7 +7532,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7528,7 +7560,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderExistsGetOrdersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        orderExistsGetOrdersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderExistsGetOrdersidExists(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7542,7 +7574,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderExistsHeadOrdersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        orderExistsHeadOrdersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderExistsHeadOrdersid(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7595,12 +7627,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPatchOrCreate(data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPatchOrCreate(data, httpOptions);
+        orderPatchOrCreate(order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPatchOrCreate(order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7625,12 +7657,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Order id
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeCreateShipments(id: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypeCreateShipments(id, data, httpOptions);
+        orderPrototypeCreateShipments(id: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypeCreateShipments(id, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7714,12 +7746,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Order id
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypePatchAttributes(id: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypePatchAttributes(id, data, httpOptions);
+        orderPrototypePatchAttributes(id: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypePatchAttributes(id, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7730,12 +7762,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @summary shipments에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Order id
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeUpdateByIdShipments(id: string, fk: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypeUpdateByIdShipments(id, fk, data, httpOptions);
+        orderPrototypeUpdateByIdShipments(id: string, fk: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderPrototypeUpdateByIdShipments(id, fk, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7745,12 +7777,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPostOrdersidReplace(id: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceByIdPostOrdersidReplace(id, data, httpOptions);
+        orderReplaceByIdPostOrdersidReplace(id: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceByIdPostOrdersidReplace(id, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7760,12 +7792,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPutOrdersid(id: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceByIdPutOrdersid(id, data, httpOptions);
+        orderReplaceByIdPutOrdersid(id: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceByIdPutOrdersid(id, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7774,12 +7806,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePostOrdersReplaceOrCreate(data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(data, httpOptions);
+        orderReplaceOrCreatePostOrdersReplaceOrCreate(order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7788,12 +7820,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePutOrders(data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceOrCreatePutOrders(data, httpOptions);
+        orderReplaceOrCreatePutOrders(order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderReplaceOrCreatePutOrders(order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7803,12 +7835,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpdateAll(where?: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderUpdateAll(where, data, httpOptions);
+        orderUpdateAll(where?: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderUpdateAll(where, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7818,12 +7850,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpsertWithWhere(where?: string, data?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderUpsertWithWhere(where, data, httpOptions);
+        orderUpsertWithWhere(where?: string, order?: Order, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order> {
+            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderUpsertWithWhere(where, order, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7851,12 +7883,12 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderCreate(data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderCreate(data, httpOptions)(axios, basePath);
+        orderCreate(order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderCreate(order, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -7942,12 +7974,12 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPatchOrCreate(data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderPatchOrCreate(data, httpOptions)(axios, basePath);
+        orderPatchOrCreate(order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderPatchOrCreate(order, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -7964,12 +7996,12 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * 
          * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
          * @param {string} id Order id
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeCreateShipments(id: string, data?: Shipment, httpOptions?: any) {
-            return OrderApiFp(configuration).orderPrototypeCreateShipments(id, data, httpOptions)(axios, basePath);
+        orderPrototypeCreateShipments(id: string, shipment?: Shipment, httpOptions?: any) {
+            return OrderApiFp(configuration).orderPrototypeCreateShipments(id, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -8029,88 +8061,88 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Order id
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypePatchAttributes(id: string, data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderPrototypePatchAttributes(id, data, httpOptions)(axios, basePath);
+        orderPrototypePatchAttributes(id: string, order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderPrototypePatchAttributes(id, order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary shipments에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id Order id
          * @param {string} fk shipments의 외부 키
-         * @param {Shipment} [data] 
+         * @param {Shipment} [shipment] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderPrototypeUpdateByIdShipments(id: string, fk: string, data?: Shipment, httpOptions?: any) {
-            return OrderApiFp(configuration).orderPrototypeUpdateByIdShipments(id, fk, data, httpOptions)(axios, basePath);
+        orderPrototypeUpdateByIdShipments(id: string, fk: string, shipment?: Shipment, httpOptions?: any) {
+            return OrderApiFp(configuration).orderPrototypeUpdateByIdShipments(id, fk, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPostOrdersidReplace(id: string, data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderReplaceByIdPostOrdersidReplace(id, data, httpOptions)(axios, basePath);
+        orderReplaceByIdPostOrdersidReplace(id: string, order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderReplaceByIdPostOrdersidReplace(id, order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceByIdPutOrdersid(id: string, data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderReplaceByIdPutOrdersid(id, data, httpOptions)(axios, basePath);
+        orderReplaceByIdPutOrdersid(id: string, order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderReplaceByIdPutOrdersid(id, order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePostOrdersReplaceOrCreate(data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(data, httpOptions)(axios, basePath);
+        orderReplaceOrCreatePostOrdersReplaceOrCreate(order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Order} [data] Model instance data
+         * @param {Order} [order] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderReplaceOrCreatePutOrders(data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderReplaceOrCreatePutOrders(data, httpOptions)(axios, basePath);
+        orderReplaceOrCreatePutOrders(order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderReplaceOrCreatePutOrders(order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpdateAll(where?: string, data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderUpdateAll(where, data, httpOptions)(axios, basePath);
+        orderUpdateAll(where?: string, order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderUpdateAll(where, order, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Order} [data] An object of model property name/value pairs
+         * @param {Order} [order] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        orderUpsertWithWhere(where?: string, data?: Order, httpOptions?: any) {
-            return OrderApiFp(configuration).orderUpsertWithWhere(where, data, httpOptions)(axios, basePath);
+        orderUpsertWithWhere(where?: string, order?: Order, httpOptions?: any) {
+            return OrderApiFp(configuration).orderUpsertWithWhere(where, order, httpOptions)(axios, basePath);
         },
     };
 };
@@ -8137,13 +8169,13 @@ export class OrderApi extends BaseAPI {
     /**
      * 
      * @summary Create a new instance of the model and persist it into the data source.
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderCreate(data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderCreate(data, httpOptions)(this.axios, this.basePath);
+    public orderCreate(order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderCreate(order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -8246,13 +8278,13 @@ export class OrderApi extends BaseAPI {
     /**
      * 
      * @summary Patch an existing model instance or insert a new one into the data source.
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderPatchOrCreate(data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderPatchOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public orderPatchOrCreate(order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderPatchOrCreate(order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -8272,13 +8304,13 @@ export class OrderApi extends BaseAPI {
      * 
      * @summary 이 모델의 shipments에서 새 인스턴스를 작성합니다.
      * @param {string} id Order id
-     * @param {Shipment} [data] 
+     * @param {Shipment} [shipment] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderPrototypeCreateShipments(id: string, data?: Shipment, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderPrototypeCreateShipments(id, data, httpOptions)(this.axios, this.basePath);
+    public orderPrototypeCreateShipments(id: string, shipment?: Shipment, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderPrototypeCreateShipments(id, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -8349,13 +8381,13 @@ export class OrderApi extends BaseAPI {
      * 
      * @summary Patch attributes for a model instance and persist it into the data source.
      * @param {string} id Order id
-     * @param {Order} [data] An object of model property name/value pairs
+     * @param {Order} [order] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderPrototypePatchAttributes(id: string, data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderPrototypePatchAttributes(id, data, httpOptions)(this.axios, this.basePath);
+    public orderPrototypePatchAttributes(id: string, order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderPrototypePatchAttributes(id, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -8363,89 +8395,89 @@ export class OrderApi extends BaseAPI {
      * @summary shipments에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id Order id
      * @param {string} fk shipments의 외부 키
-     * @param {Shipment} [data] 
+     * @param {Shipment} [shipment] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderPrototypeUpdateByIdShipments(id: string, fk: string, data?: Shipment, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderPrototypeUpdateByIdShipments(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public orderPrototypeUpdateByIdShipments(id: string, fk: string, shipment?: Shipment, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderPrototypeUpdateByIdShipments(id, fk, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderReplaceByIdPostOrdersidReplace(id: string, data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderReplaceByIdPostOrdersidReplace(id, data, httpOptions)(this.axios, this.basePath);
+    public orderReplaceByIdPostOrdersidReplace(id: string, order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderReplaceByIdPostOrdersidReplace(id, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderReplaceByIdPutOrdersid(id: string, data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderReplaceByIdPutOrdersid(id, data, httpOptions)(this.axios, this.basePath);
+    public orderReplaceByIdPutOrdersid(id: string, order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderReplaceByIdPutOrdersid(id, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderReplaceOrCreatePostOrdersReplaceOrCreate(data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public orderReplaceOrCreatePostOrdersReplaceOrCreate(order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderReplaceOrCreatePostOrdersReplaceOrCreate(order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Order} [data] Model instance data
+     * @param {Order} [order] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderReplaceOrCreatePutOrders(data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderReplaceOrCreatePutOrders(data, httpOptions)(this.axios, this.basePath);
+    public orderReplaceOrCreatePutOrders(order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderReplaceOrCreatePutOrders(order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update instances of the model matched by {{where}} from the data source.
      * @param {string} [where] Criteria to match model instances
-     * @param {Order} [data] An object of model property name/value pairs
+     * @param {Order} [order] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderUpdateAll(where?: string, data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderUpdateAll(where, data, httpOptions)(this.axios, this.basePath);
+    public orderUpdateAll(where?: string, order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderUpdateAll(where, order, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
      * @param {string} [where] Criteria to match model instances
-     * @param {Order} [data] An object of model property name/value pairs
+     * @param {Order} [order] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public orderUpsertWithWhere(where?: string, data?: Order, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderUpsertWithWhere(where, data, httpOptions)(this.axios, this.basePath);
+    public orderUpsertWithWhere(where?: string, order?: Order, httpOptions?: any) {
+        return OrderApiFp(this.configuration).orderUpsertWithWhere(where, order, httpOptions)(this.axios, this.basePath);
     }
 
 }
@@ -8493,11 +8525,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentCreate(data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentCreate(shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -8516,7 +8548,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8575,7 +8607,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -8799,11 +8831,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPatchOrCreate(data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentPatchOrCreate(shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -8822,7 +8854,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8872,11 +8904,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Shipment id
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPrototypePatchAttributes(id: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentPrototypePatchAttributes(id: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling shipmentPrototypePatchAttributes.');
@@ -8900,7 +8932,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8911,11 +8943,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPostShipmentsidReplace(id: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentReplaceByIdPostShipmentsidReplace(id: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling shipmentReplaceByIdPostShipmentsidReplace.');
@@ -8939,7 +8971,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8950,11 +8982,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPutShipmentsid(id: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentReplaceByIdPutShipmentsid(id: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling shipmentReplaceByIdPutShipmentsid.');
@@ -8978,7 +9010,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8988,11 +9020,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments/replaceOrCreate`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -9011,7 +9043,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9021,11 +9053,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePutShipments(data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentReplaceOrCreatePutShipments(shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -9044,7 +9076,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9055,11 +9087,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpdateAll(where?: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentUpdateAll(where?: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments/update`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -9082,7 +9114,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9093,11 +9125,11 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpsertWithWhere(where?: string, data?: Shipment, httpOptions: any = {}): RequestArgs {
+        shipmentUpsertWithWhere(where?: string, shipment?: Shipment, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Shipments/upsertWithWhere`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -9120,7 +9152,7 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9153,12 +9185,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentCreate(data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreate(data, httpOptions);
+        shipmentCreate(shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreate(shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9171,7 +9203,7 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreateChangeStreamGetShipmentsChangeStream(options, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -9185,7 +9217,7 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -9213,7 +9245,7 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentExistsGetShipmentsidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        shipmentExistsGetShipmentsidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentExistsGetShipmentsidExists(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -9227,7 +9259,7 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentExistsHeadShipmentsid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        shipmentExistsHeadShipmentsid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentExistsHeadShipmentsid(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -9280,12 +9312,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPatchOrCreate(data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentPatchOrCreate(data, httpOptions);
+        shipmentPatchOrCreate(shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentPatchOrCreate(shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9310,12 +9342,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Shipment id
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPrototypePatchAttributes(id: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentPrototypePatchAttributes(id, data, httpOptions);
+        shipmentPrototypePatchAttributes(id: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentPrototypePatchAttributes(id, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9325,12 +9357,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPostShipmentsidReplace(id: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceByIdPostShipmentsidReplace(id, data, httpOptions);
+        shipmentReplaceByIdPostShipmentsidReplace(id: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceByIdPostShipmentsidReplace(id, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9340,12 +9372,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPutShipmentsid(id: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceByIdPutShipmentsid(id, data, httpOptions);
+        shipmentReplaceByIdPutShipmentsid(id: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceByIdPutShipmentsid(id, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9354,12 +9386,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data, httpOptions);
+        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9368,12 +9400,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePutShipments(data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceOrCreatePutShipments(data, httpOptions);
+        shipmentReplaceOrCreatePutShipments(shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentReplaceOrCreatePutShipments(shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9383,12 +9415,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpdateAll(where?: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentUpdateAll(where, data, httpOptions);
+        shipmentUpdateAll(where?: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentUpdateAll(where, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9398,12 +9430,12 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpsertWithWhere(where?: string, data?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentUpsertWithWhere(where, data, httpOptions);
+        shipmentUpsertWithWhere(where?: string, shipment?: Shipment, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shipment> {
+            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentUpsertWithWhere(where, shipment, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -9431,12 +9463,12 @@ export const ShipmentApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentCreate(data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentCreate(data, httpOptions)(axios, basePath);
+        shipmentCreate(shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentCreate(shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -9522,12 +9554,12 @@ export const ShipmentApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPatchOrCreate(data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentPatchOrCreate(data, httpOptions)(axios, basePath);
+        shipmentPatchOrCreate(shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentPatchOrCreate(shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -9544,76 +9576,76 @@ export const ShipmentApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id Shipment id
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentPrototypePatchAttributes(id: string, data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentPrototypePatchAttributes(id, data, httpOptions)(axios, basePath);
+        shipmentPrototypePatchAttributes(id: string, shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentPrototypePatchAttributes(id, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPostShipmentsidReplace(id: string, data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentReplaceByIdPostShipmentsidReplace(id, data, httpOptions)(axios, basePath);
+        shipmentReplaceByIdPostShipmentsidReplace(id: string, shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentReplaceByIdPostShipmentsidReplace(id, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceByIdPutShipmentsid(id: string, data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentReplaceByIdPutShipmentsid(id, data, httpOptions)(axios, basePath);
+        shipmentReplaceByIdPutShipmentsid(id: string, shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentReplaceByIdPutShipmentsid(id, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data, httpOptions)(axios, basePath);
+        shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {Shipment} [data] Model instance data
+         * @param {Shipment} [shipment] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentReplaceOrCreatePutShipments(data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentReplaceOrCreatePutShipments(data, httpOptions)(axios, basePath);
+        shipmentReplaceOrCreatePutShipments(shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentReplaceOrCreatePutShipments(shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpdateAll(where?: string, data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentUpdateAll(where, data, httpOptions)(axios, basePath);
+        shipmentUpdateAll(where?: string, shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentUpdateAll(where, shipment, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {Shipment} [data] An object of model property name/value pairs
+         * @param {Shipment} [shipment] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        shipmentUpsertWithWhere(where?: string, data?: Shipment, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentUpsertWithWhere(where, data, httpOptions)(axios, basePath);
+        shipmentUpsertWithWhere(where?: string, shipment?: Shipment, httpOptions?: any) {
+            return ShipmentApiFp(configuration).shipmentUpsertWithWhere(where, shipment, httpOptions)(axios, basePath);
         },
     };
 };
@@ -9640,13 +9672,13 @@ export class ShipmentApi extends BaseAPI {
     /**
      * 
      * @summary Create a new instance of the model and persist it into the data source.
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentCreate(data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentCreate(data, httpOptions)(this.axios, this.basePath);
+    public shipmentCreate(shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentCreate(shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -9749,13 +9781,13 @@ export class ShipmentApi extends BaseAPI {
     /**
      * 
      * @summary Patch an existing model instance or insert a new one into the data source.
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentPatchOrCreate(data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentPatchOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public shipmentPatchOrCreate(shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentPatchOrCreate(shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -9775,89 +9807,89 @@ export class ShipmentApi extends BaseAPI {
      * 
      * @summary Patch attributes for a model instance and persist it into the data source.
      * @param {string} id Shipment id
-     * @param {Shipment} [data] An object of model property name/value pairs
+     * @param {Shipment} [shipment] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentPrototypePatchAttributes(id: string, data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentPrototypePatchAttributes(id, data, httpOptions)(this.axios, this.basePath);
+    public shipmentPrototypePatchAttributes(id: string, shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentPrototypePatchAttributes(id, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentReplaceByIdPostShipmentsidReplace(id: string, data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentReplaceByIdPostShipmentsidReplace(id, data, httpOptions)(this.axios, this.basePath);
+    public shipmentReplaceByIdPostShipmentsidReplace(id: string, shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentReplaceByIdPostShipmentsidReplace(id, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentReplaceByIdPutShipmentsid(id: string, data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentReplaceByIdPutShipmentsid(id, data, httpOptions)(this.axios, this.basePath);
+    public shipmentReplaceByIdPutShipmentsid(id: string, shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentReplaceByIdPutShipmentsid(id, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentReplaceOrCreatePostShipmentsReplaceOrCreate(shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {Shipment} [data] Model instance data
+     * @param {Shipment} [shipment] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentReplaceOrCreatePutShipments(data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentReplaceOrCreatePutShipments(data, httpOptions)(this.axios, this.basePath);
+    public shipmentReplaceOrCreatePutShipments(shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentReplaceOrCreatePutShipments(shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update instances of the model matched by {{where}} from the data source.
      * @param {string} [where] Criteria to match model instances
-     * @param {Shipment} [data] An object of model property name/value pairs
+     * @param {Shipment} [shipment] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentUpdateAll(where?: string, data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentUpdateAll(where, data, httpOptions)(this.axios, this.basePath);
+    public shipmentUpdateAll(where?: string, shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentUpdateAll(where, shipment, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
      * @param {string} [where] Criteria to match model instances
-     * @param {Shipment} [data] An object of model property name/value pairs
+     * @param {Shipment} [shipment] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ShipmentApi
      */
-    public shipmentUpsertWithWhere(where?: string, data?: Shipment, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentUpsertWithWhere(where, data, httpOptions)(this.axios, this.basePath);
+    public shipmentUpsertWithWhere(where?: string, shipment?: Shipment, httpOptions?: any) {
+        return ShipmentApiFp(this.configuration).shipmentUpsertWithWhere(where, shipment, httpOptions)(this.axios, this.basePath);
     }
 
 }
@@ -9872,14 +9904,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Change a user\'s password.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} oldPassword 
+         * @param {string} [newPassword] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userChangePassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            // verify required parameter 'UNKNOWN_BASE_TYPE' is not null or undefined
-            if (UNKNOWN_BASE_TYPE === null || UNKNOWN_BASE_TYPE === undefined) {
-                throw new RequiredError('UNKNOWN_BASE_TYPE','Required parameter UNKNOWN_BASE_TYPE was null or undefined when calling userChangePassword.');
+        userChangePassword(oldPassword: string, newPassword?: string, httpOptions: any = {}): RequestArgs {
+            // verify required parameter 'oldPassword' is not null or undefined
+            if (oldPassword === null || oldPassword === undefined) {
+                throw new RequiredError('oldPassword','Required parameter oldPassword was null or undefined when calling userChangePassword.');
             }
             const localVarPath = `/Users/change-password`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
@@ -9890,16 +9923,23 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
-
+            if (newPassword !== undefined) { 
+                localVarFormParams.set('newPassword', newPassword as any);
+            }
+    
+            if (oldPassword !== undefined) { 
+                localVarFormParams.set('oldPassword', oldPassword as any);
+            }
+    
+    
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
+            localVarRequestOptions.data = localVarFormParams.toString();
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9993,11 +10033,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userCreate(data?: User, httpOptions: any = {}): RequestArgs {
+        userCreate(user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -10016,7 +10056,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10075,7 +10115,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarQueryParameter = {} as any;
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -10299,15 +10339,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Login a user with username/email and password.
-         * @param {string} credentials 
+         * @param {string} body 
          * @param {string} [include] Related objects to include in the response. See the description of return value for more details.
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(credentials: string, include?: string, httpOptions: any = {}): RequestArgs {
-            // verify required parameter 'credentials' is not null or undefined
-            if (credentials === null || credentials === undefined) {
-                throw new RequiredError('credentials','Required parameter credentials was null or undefined when calling userLogin.');
+        userLogin(body: string, include?: string, httpOptions: any = {}): RequestArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling userLogin.');
             }
             const localVarPath = `/Users/login`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
@@ -10331,7 +10371,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"string" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(credentials !== undefined ? credentials : {}) : (credentials || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10369,11 +10409,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPatchOrCreate(data?: User, httpOptions: any = {}): RequestArgs {
+        userPatchOrCreate(user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -10392,7 +10432,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10442,11 +10482,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary 이 모델의 accessTokens에서 새 인스턴스를 작성합니다.
          * @param {string} id User id
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeCreateAccessTokens(id: string, data?: AccessToken, httpOptions: any = {}): RequestArgs {
+        userPrototypeCreateAccessTokens(id: string, accessToken?: AccessToken, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling userPrototypeCreateAccessTokens.');
@@ -10470,7 +10510,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"AccessToken" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(accessToken !== undefined ? accessToken : {}) : (accessToken || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10634,11 +10674,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id User id
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypePatchAttributes(id: string, data?: User, httpOptions: any = {}): RequestArgs {
+        userPrototypePatchAttributes(id: string, user?: User, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling userPrototypePatchAttributes.');
@@ -10662,7 +10702,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10674,11 +10714,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id User id
          * @param {string} fk accessTokens의 외부 키
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, data?: AccessToken, httpOptions: any = {}): RequestArgs {
+        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, accessToken?: AccessToken, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling userPrototypeUpdateByIdAccessTokens.');
@@ -10707,7 +10747,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"AccessToken" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(accessToken !== undefined ? accessToken : {}) : (accessToken || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10752,11 +10792,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPostUsersidReplace(id: string, data?: User, httpOptions: any = {}): RequestArgs {
+        userReplaceByIdPostUsersidReplace(id: string, user?: User, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling userReplaceByIdPostUsersidReplace.');
@@ -10780,7 +10820,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10791,11 +10831,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPutUsersid(id: string, data?: User, httpOptions: any = {}): RequestArgs {
+        userReplaceByIdPutUsersid(id: string, user?: User, httpOptions: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling userReplaceByIdPutUsersid.');
@@ -10819,7 +10859,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10829,11 +10869,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePostUsersReplaceOrCreate(data?: User, httpOptions: any = {}): RequestArgs {
+        userReplaceOrCreatePostUsersReplaceOrCreate(user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users/replaceOrCreate`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -10852,7 +10892,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10862,11 +10902,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePutUsers(data?: User, httpOptions: any = {}): RequestArgs {
+        userReplaceOrCreatePutUsers(user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -10885,7 +10925,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10895,14 +10935,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Reset password for a user with email.
-         * @param {object} options 
+         * @param {object} body 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userResetPassword(options: object, httpOptions: any = {}): RequestArgs {
-            // verify required parameter 'options' is not null or undefined
-            if (options === null || options === undefined) {
-                throw new RequiredError('options','Required parameter options was null or undefined when calling userResetPassword.');
+        userResetPassword(body: object, httpOptions: any = {}): RequestArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling userResetPassword.');
             }
             const localVarPath = `/Users/reset`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
@@ -10922,7 +10962,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"object" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(options !== undefined ? options : {}) : (options || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10932,14 +10972,14 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Reset user\'s password via a password-reset token.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} newPassword 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userSetPassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            // verify required parameter 'UNKNOWN_BASE_TYPE' is not null or undefined
-            if (UNKNOWN_BASE_TYPE === null || UNKNOWN_BASE_TYPE === undefined) {
-                throw new RequiredError('UNKNOWN_BASE_TYPE','Required parameter UNKNOWN_BASE_TYPE was null or undefined when calling userSetPassword.');
+        userSetPassword(newPassword: string, httpOptions: any = {}): RequestArgs {
+            // verify required parameter 'newPassword' is not null or undefined
+            if (newPassword === null || newPassword === undefined) {
+                throw new RequiredError('newPassword','Required parameter newPassword was null or undefined when calling userSetPassword.');
             }
             const localVarPath = `/Users/reset-password`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
@@ -10950,16 +10990,19 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
 
 
-                localVarHeaderParameter['Content-Type'] = 'application/json';
-
+            if (newPassword !== undefined) { 
+                localVarFormParams.set('newPassword', newPassword as any);
+            }
+    
+    
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
+            localVarRequestOptions.data = localVarFormParams.toString();
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -10970,11 +11013,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpdateAll(where?: string, data?: User, httpOptions: any = {}): RequestArgs {
+        userUpdateAll(where?: string, user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users/update`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -10997,7 +11040,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -11008,11 +11051,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpsertWithWhere(where?: string, data?: User, httpOptions: any = {}): RequestArgs {
+        userUpsertWithWhere(where?: string, user?: User, httpOptions: any = {}): RequestArgs {
             const localVarPath = `/Users/upsertWithWhere`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -11035,7 +11078,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(data !== undefined ? data : {}) : (data || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -11054,12 +11097,13 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Change a user\'s password.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} oldPassword 
+         * @param {string} [newPassword] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userChangePassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userChangePassword(UNKNOWN_BASE_TYPE, httpOptions);
+        userChangePassword(oldPassword: string, newPassword?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userChangePassword(oldPassword, newPassword, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11098,12 +11142,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userCreate(data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreate(data, httpOptions);
+        userCreate(user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreate(user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11116,7 +11160,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreateChangeStreamGetUsersChangeStream(options, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11130,7 +11174,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<any> {
+        userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
             const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11158,7 +11202,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userExistsGetUsersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        userExistsGetUsersidExists(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userExistsGetUsersidExists(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11172,7 +11216,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userExistsHeadUsersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+        userExistsHeadUsersid(id: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
             const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userExistsHeadUsersid(id, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11225,13 +11269,13 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Login a user with username/email and password.
-         * @param {string} credentials 
+         * @param {string} body 
          * @param {string} [include] Related objects to include in the response. See the description of return value for more details.
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(credentials: string, include?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userLogin(credentials, include, httpOptions);
+        userLogin(body: string, include?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userLogin(body, include, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11253,12 +11297,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPatchOrCreate(data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPatchOrCreate(data, httpOptions);
+        userPatchOrCreate(user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPatchOrCreate(user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11283,12 +11327,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary 이 모델의 accessTokens에서 새 인스턴스를 작성합니다.
          * @param {string} id User id
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeCreateAccessTokens(id: string, data?: AccessToken, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccessToken> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypeCreateAccessTokens(id, data, httpOptions);
+        userPrototypeCreateAccessTokens(id: string, accessToken?: AccessToken, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccessToken> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypeCreateAccessTokens(id, accessToken, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11357,12 +11401,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id User id
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypePatchAttributes(id: string, data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypePatchAttributes(id, data, httpOptions);
+        userPrototypePatchAttributes(id: string, user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypePatchAttributes(id, user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11373,12 +11417,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id User id
          * @param {string} fk accessTokens의 외부 키
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, data?: AccessToken, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccessToken> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypeUpdateByIdAccessTokens(id, fk, data, httpOptions);
+        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, accessToken?: AccessToken, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccessToken> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userPrototypeUpdateByIdAccessTokens(id, fk, accessToken, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11402,12 +11446,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPostUsersidReplace(id: string, data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceByIdPostUsersidReplace(id, data, httpOptions);
+        userReplaceByIdPostUsersidReplace(id: string, user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceByIdPostUsersidReplace(id, user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11417,12 +11461,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPutUsersid(id: string, data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceByIdPutUsersid(id, data, httpOptions);
+        userReplaceByIdPutUsersid(id: string, user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceByIdPutUsersid(id, user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11431,12 +11475,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePostUsersReplaceOrCreate(data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceOrCreatePostUsersReplaceOrCreate(data, httpOptions);
+        userReplaceOrCreatePostUsersReplaceOrCreate(user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceOrCreatePostUsersReplaceOrCreate(user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11445,12 +11489,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePutUsers(data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceOrCreatePutUsers(data, httpOptions);
+        userReplaceOrCreatePutUsers(user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userReplaceOrCreatePutUsers(user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11459,12 +11503,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Reset password for a user with email.
-         * @param {object} options 
+         * @param {object} body 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userResetPassword(options: object, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userResetPassword(options, httpOptions);
+        userResetPassword(body: object, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userResetPassword(body, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11473,12 +11517,12 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Reset user\'s password via a password-reset token.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} newPassword 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userSetPassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userSetPassword(UNKNOWN_BASE_TYPE, httpOptions);
+        userSetPassword(newPassword: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userSetPassword(newPassword, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11488,12 +11532,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpdateAll(where?: string, data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userUpdateAll(where, data, httpOptions);
+        userUpdateAll(where?: string, user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userUpdateAll(where, user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11503,12 +11547,12 @@ export const UserApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpsertWithWhere(where?: string, data?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userUpsertWithWhere(where, data, httpOptions);
+        userUpsertWithWhere(where?: string, user?: User, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userUpsertWithWhere(where, user, httpOptions);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11526,12 +11570,13 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Change a user\'s password.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} oldPassword 
+         * @param {string} [newPassword] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userChangePassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return UserApiFp(configuration).userChangePassword(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
+        userChangePassword(oldPassword: string, newPassword?: string, httpOptions?: any) {
+            return UserApiFp(configuration).userChangePassword(oldPassword, newPassword, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11558,12 +11603,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Create a new instance of the model and persist it into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userCreate(data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userCreate(data, httpOptions)(axios, basePath);
+        userCreate(user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userCreate(user, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11649,13 +11694,13 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Login a user with username/email and password.
-         * @param {string} credentials 
+         * @param {string} body 
          * @param {string} [include] Related objects to include in the response. See the description of return value for more details.
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(credentials: string, include?: string, httpOptions?: any) {
-            return UserApiFp(configuration).userLogin(credentials, include, httpOptions)(axios, basePath);
+        userLogin(body: string, include?: string, httpOptions?: any) {
+            return UserApiFp(configuration).userLogin(body, include, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11669,12 +11714,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Patch an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPatchOrCreate(data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userPatchOrCreate(data, httpOptions)(axios, basePath);
+        userPatchOrCreate(user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userPatchOrCreate(user, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11691,12 +11736,12 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary 이 모델의 accessTokens에서 새 인스턴스를 작성합니다.
          * @param {string} id User id
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeCreateAccessTokens(id: string, data?: AccessToken, httpOptions?: any) {
-            return UserApiFp(configuration).userPrototypeCreateAccessTokens(id, data, httpOptions)(axios, basePath);
+        userPrototypeCreateAccessTokens(id: string, accessToken?: AccessToken, httpOptions?: any) {
+            return UserApiFp(configuration).userPrototypeCreateAccessTokens(id, accessToken, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11745,24 +11790,24 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Patch attributes for a model instance and persist it into the data source.
          * @param {string} id User id
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypePatchAttributes(id: string, data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userPrototypePatchAttributes(id, data, httpOptions)(axios, basePath);
+        userPrototypePatchAttributes(id: string, user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userPrototypePatchAttributes(id, user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.
          * @param {string} id User id
          * @param {string} fk accessTokens의 외부 키
-         * @param {AccessToken} [data] 
+         * @param {AccessToken} [accessToken] 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, data?: AccessToken, httpOptions?: any) {
-            return UserApiFp(configuration).userPrototypeUpdateByIdAccessTokens(id, fk, data, httpOptions)(axios, basePath);
+        userPrototypeUpdateByIdAccessTokens(id: string, fk: string, accessToken?: AccessToken, httpOptions?: any) {
+            return UserApiFp(configuration).userPrototypeUpdateByIdAccessTokens(id, fk, accessToken, httpOptions)(axios, basePath);
         },
         /**
          * 
@@ -11778,85 +11823,85 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPostUsersidReplace(id: string, data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userReplaceByIdPostUsersidReplace(id, data, httpOptions)(axios, basePath);
+        userReplaceByIdPostUsersidReplace(id: string, user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userReplaceByIdPostUsersidReplace(id, user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace attributes for a model instance and persist it into the data source.
          * @param {string} id Model id
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceByIdPutUsersid(id: string, data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userReplaceByIdPutUsersid(id, data, httpOptions)(axios, basePath);
+        userReplaceByIdPutUsersid(id: string, user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userReplaceByIdPutUsersid(id, user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePostUsersReplaceOrCreate(data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userReplaceOrCreatePostUsersReplaceOrCreate(data, httpOptions)(axios, basePath);
+        userReplaceOrCreatePostUsersReplaceOrCreate(user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userReplaceOrCreatePostUsersReplaceOrCreate(user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Replace an existing model instance or insert a new one into the data source.
-         * @param {User} [data] Model instance data
+         * @param {User} [user] Model instance data
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userReplaceOrCreatePutUsers(data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userReplaceOrCreatePutUsers(data, httpOptions)(axios, basePath);
+        userReplaceOrCreatePutUsers(user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userReplaceOrCreatePutUsers(user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Reset password for a user with email.
-         * @param {object} options 
+         * @param {object} body 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userResetPassword(options: object, httpOptions?: any) {
-            return UserApiFp(configuration).userResetPassword(options, httpOptions)(axios, basePath);
+        userResetPassword(body: object, httpOptions?: any) {
+            return UserApiFp(configuration).userResetPassword(body, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Reset user\'s password via a password-reset token.
-         * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+         * @param {string} newPassword 
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userSetPassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return UserApiFp(configuration).userSetPassword(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
+        userSetPassword(newPassword: string, httpOptions?: any) {
+            return UserApiFp(configuration).userSetPassword(newPassword, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update instances of the model matched by {{where}} from the data source.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpdateAll(where?: string, data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userUpdateAll(where, data, httpOptions)(axios, basePath);
+        userUpdateAll(where?: string, user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userUpdateAll(where, user, httpOptions)(axios, basePath);
         },
         /**
          * 
          * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
          * @param {string} [where] Criteria to match model instances
-         * @param {User} [data] An object of model property name/value pairs
+         * @param {User} [user] An object of model property name/value pairs
          * @param {*} [httpOptions] Override http request option.
          * @throws {RequiredError}
          */
-        userUpsertWithWhere(where?: string, data?: User, httpOptions?: any) {
-            return UserApiFp(configuration).userUpsertWithWhere(where, data, httpOptions)(axios, basePath);
+        userUpsertWithWhere(where?: string, user?: User, httpOptions?: any) {
+            return UserApiFp(configuration).userUpsertWithWhere(where, user, httpOptions)(axios, basePath);
         },
     };
 };
@@ -11871,13 +11916,14 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @summary Change a user\'s password.
-     * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+     * @param {string} oldPassword 
+     * @param {string} [newPassword] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userChangePassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return UserApiFp(this.configuration).userChangePassword(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
+    public userChangePassword(oldPassword: string, newPassword?: string, httpOptions?: any) {
+        return UserApiFp(this.configuration).userChangePassword(oldPassword, newPassword, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -11909,13 +11955,13 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @summary Create a new instance of the model and persist it into the data source.
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userCreate(data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userCreate(data, httpOptions)(this.axios, this.basePath);
+    public userCreate(user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userCreate(user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12018,14 +12064,14 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @summary Login a user with username/email and password.
-     * @param {string} credentials 
+     * @param {string} body 
      * @param {string} [include] Related objects to include in the response. See the description of return value for more details.
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userLogin(credentials: string, include?: string, httpOptions?: any) {
-        return UserApiFp(this.configuration).userLogin(credentials, include, httpOptions)(this.axios, this.basePath);
+    public userLogin(body: string, include?: string, httpOptions?: any) {
+        return UserApiFp(this.configuration).userLogin(body, include, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12042,13 +12088,13 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @summary Patch an existing model instance or insert a new one into the data source.
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userPatchOrCreate(data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userPatchOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public userPatchOrCreate(user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userPatchOrCreate(user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12068,13 +12114,13 @@ export class UserApi extends BaseAPI {
      * 
      * @summary 이 모델의 accessTokens에서 새 인스턴스를 작성합니다.
      * @param {string} id User id
-     * @param {AccessToken} [data] 
+     * @param {AccessToken} [accessToken] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userPrototypeCreateAccessTokens(id: string, data?: AccessToken, httpOptions?: any) {
-        return UserApiFp(this.configuration).userPrototypeCreateAccessTokens(id, data, httpOptions)(this.axios, this.basePath);
+    public userPrototypeCreateAccessTokens(id: string, accessToken?: AccessToken, httpOptions?: any) {
+        return UserApiFp(this.configuration).userPrototypeCreateAccessTokens(id, accessToken, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12132,13 +12178,13 @@ export class UserApi extends BaseAPI {
      * 
      * @summary Patch attributes for a model instance and persist it into the data source.
      * @param {string} id User id
-     * @param {User} [data] An object of model property name/value pairs
+     * @param {User} [user] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userPrototypePatchAttributes(id: string, data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userPrototypePatchAttributes(id, data, httpOptions)(this.axios, this.basePath);
+    public userPrototypePatchAttributes(id: string, user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userPrototypePatchAttributes(id, user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12146,13 +12192,13 @@ export class UserApi extends BaseAPI {
      * @summary accessTokens에 대해 ID로 관련 항목을 업데이트하십시오.
      * @param {string} id User id
      * @param {string} fk accessTokens의 외부 키
-     * @param {AccessToken} [data] 
+     * @param {AccessToken} [accessToken] 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userPrototypeUpdateByIdAccessTokens(id: string, fk: string, data?: AccessToken, httpOptions?: any) {
-        return UserApiFp(this.configuration).userPrototypeUpdateByIdAccessTokens(id, fk, data, httpOptions)(this.axios, this.basePath);
+    public userPrototypeUpdateByIdAccessTokens(id: string, fk: string, accessToken?: AccessToken, httpOptions?: any) {
+        return UserApiFp(this.configuration).userPrototypeUpdateByIdAccessTokens(id, fk, accessToken, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -12171,100 +12217,100 @@ export class UserApi extends BaseAPI {
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userReplaceByIdPostUsersidReplace(id: string, data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userReplaceByIdPostUsersidReplace(id, data, httpOptions)(this.axios, this.basePath);
+    public userReplaceByIdPostUsersidReplace(id: string, user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userReplaceByIdPostUsersidReplace(id, user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace attributes for a model instance and persist it into the data source.
      * @param {string} id Model id
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userReplaceByIdPutUsersid(id: string, data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userReplaceByIdPutUsersid(id, data, httpOptions)(this.axios, this.basePath);
+    public userReplaceByIdPutUsersid(id: string, user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userReplaceByIdPutUsersid(id, user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userReplaceOrCreatePostUsersReplaceOrCreate(data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userReplaceOrCreatePostUsersReplaceOrCreate(data, httpOptions)(this.axios, this.basePath);
+    public userReplaceOrCreatePostUsersReplaceOrCreate(user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userReplaceOrCreatePostUsersReplaceOrCreate(user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Replace an existing model instance or insert a new one into the data source.
-     * @param {User} [data] Model instance data
+     * @param {User} [user] Model instance data
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userReplaceOrCreatePutUsers(data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userReplaceOrCreatePutUsers(data, httpOptions)(this.axios, this.basePath);
+    public userReplaceOrCreatePutUsers(user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userReplaceOrCreatePutUsers(user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Reset password for a user with email.
-     * @param {object} options 
+     * @param {object} body 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userResetPassword(options: object, httpOptions?: any) {
-        return UserApiFp(this.configuration).userResetPassword(options, httpOptions)(this.axios, this.basePath);
+    public userResetPassword(body: object, httpOptions?: any) {
+        return UserApiFp(this.configuration).userResetPassword(body, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Reset user\'s password via a password-reset token.
-     * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+     * @param {string} newPassword 
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userSetPassword(UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return UserApiFp(this.configuration).userSetPassword(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
+    public userSetPassword(newPassword: string, httpOptions?: any) {
+        return UserApiFp(this.configuration).userSetPassword(newPassword, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update instances of the model matched by {{where}} from the data source.
      * @param {string} [where] Criteria to match model instances
-     * @param {User} [data] An object of model property name/value pairs
+     * @param {User} [user] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userUpdateAll(where?: string, data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userUpdateAll(where, data, httpOptions)(this.axios, this.basePath);
+    public userUpdateAll(where?: string, user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userUpdateAll(where, user, httpOptions)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Update an existing model instance or insert a new one into the data source based on the where criteria.
      * @param {string} [where] Criteria to match model instances
-     * @param {User} [data] An object of model property name/value pairs
+     * @param {User} [user] An object of model property name/value pairs
      * @param {*} [httpOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public userUpsertWithWhere(where?: string, data?: User, httpOptions?: any) {
-        return UserApiFp(this.configuration).userUpsertWithWhere(where, data, httpOptions)(this.axios, this.basePath);
+    public userUpsertWithWhere(where?: string, user?: User, httpOptions?: any) {
+        return UserApiFp(this.configuration).userUpsertWithWhere(where, user, httpOptions)(this.axios, this.basePath);
     }
 
 }

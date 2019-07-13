@@ -109,8 +109,8 @@ export type BookInput = {
 }
 
 /** No description available. */
-export type Books2 = {
-  __typename?: 'Books2'
+export type Books3 = {
+  __typename?: 'Books3'
   /** No description available. */
   exists?: Maybe<Scalars['Boolean']>
 }
@@ -177,8 +177,8 @@ export type CustomerInput = {
 }
 
 /** No description available. */
-export type Customers2 = {
-  __typename?: 'Customers2'
+export type Customers3 = {
+  __typename?: 'Customers3'
   /** No description available. */
   exists?: Maybe<Scalars['Boolean']>
 }
@@ -290,11 +290,6 @@ export type Mutation = {
    * Equivalent to POST /Books
    */
   bookCreate?: Maybe<Book>
-  /** Create a change stream.
-   *
-   * Equivalent to POST /Books/change-stream
-   */
-  bookCreateChangeStreamPostBooksChangeStream?: Maybe<Scalars['String']>
   /** Delete a model instance by {{id}} from the data source.
    *
    * Equivalent to DELETE /Books/{id}
@@ -304,7 +299,7 @@ export type Mutation = {
    *
    * Equivalent to HEAD /Books/{id}
    */
-  bookExistsHeadBooksId?: Maybe<Books2>
+  bookExistsHeadBooksId?: Maybe<Books3>
   /** Patch an existing model instance or insert a new one into the data source.
    *
    * Equivalent to PATCH /Books
@@ -360,11 +355,6 @@ export type Mutation = {
    * Equivalent to POST /Customers
    */
   customerCreate?: Maybe<Customer>
-  /** Create a change stream.
-   *
-   * Equivalent to POST /Customers/change-stream
-   */
-  customerCreateChangeStreamPostCustomersChangeStream?: Maybe<Scalars['String']>
   /** Delete a model instance by {{id}} from the data source.
    *
    * Equivalent to DELETE /Customers/{id}
@@ -374,7 +364,7 @@ export type Mutation = {
    *
    * Equivalent to HEAD /Customers/{id}
    */
-  customerExistsHeadCustomersId?: Maybe<Customers2>
+  customerExistsHeadCustomersId?: Maybe<Customers3>
   /** Patch an existing model instance or insert a new one into the data source.
    *
    * Equivalent to PATCH /Customers
@@ -480,11 +470,6 @@ export type Mutation = {
    * Equivalent to POST /Orders
    */
   orderCreate?: Maybe<Order>
-  /** Create a change stream.
-   *
-   * Equivalent to POST /Orders/change-stream
-   */
-  orderCreateChangeStreamPostOrdersChangeStream?: Maybe<Scalars['String']>
   /** Delete a model instance by {{id}} from the data source.
    *
    * Equivalent to DELETE /Orders/{id}
@@ -494,7 +479,7 @@ export type Mutation = {
    *
    * Equivalent to HEAD /Orders/{id}
    */
-  orderExistsHeadOrdersId?: Maybe<Orders2>
+  orderExistsHeadOrdersId?: Maybe<Orders3>
   /** Patch an existing model instance or insert a new one into the data source.
    *
    * Equivalent to PATCH /Orders
@@ -550,11 +535,6 @@ export type Mutation = {
    * Equivalent to POST /Shipments
    */
   shipmentCreate?: Maybe<Shipment>
-  /** Create a change stream.
-   *
-   * Equivalent to POST /Shipments/change-stream
-   */
-  shipmentCreateChangeStreamPostShipmentsChangeStream?: Maybe<Scalars['String']>
   /** Delete a model instance by {{id}} from the data source.
    *
    * Equivalent to DELETE /Shipments/{id}
@@ -564,7 +544,7 @@ export type Mutation = {
    *
    * Equivalent to HEAD /Shipments/{id}
    */
-  shipmentExistsHeadShipmentsId?: Maybe<Shipments2>
+  shipmentExistsHeadShipmentsId?: Maybe<Shipments3>
   /** Patch an existing model instance or insert a new one into the data source.
    *
    * Equivalent to PATCH /Shipments
@@ -610,11 +590,6 @@ export type Mutation = {
    * Equivalent to POST /Users
    */
   userCreate?: Maybe<User>
-  /** Create a change stream.
-   *
-   * Equivalent to POST /Users/change-stream
-   */
-  userCreateChangeStreamPostUsersChangeStream?: Maybe<Scalars['String']>
   /** Delete a model instance by {{id}} from the data source.
    *
    * Equivalent to DELETE /Users/{id}
@@ -624,7 +599,7 @@ export type Mutation = {
    *
    * Equivalent to HEAD /Users/{id}
    */
-  userExistsHeadUsersId?: Maybe<Users2>
+  userExistsHeadUsersId?: Maybe<Users3>
   /** Login a user with username/email and password.
    *
    * Equivalent to POST /Users/login
@@ -685,11 +660,6 @@ export type Mutation = {
 /** The start of any mutation */
 export type MutationBookCreateArgs = {
   bookInput?: Maybe<BookInput>
-}
-
-/** The start of any mutation */
-export type MutationBookCreateChangeStreamPostBooksChangeStreamArgs = {
-  applicationXWwwFormUrlencodedInput?: Maybe<Scalars['String']>
 }
 
 /** The start of any mutation */
@@ -763,11 +733,6 @@ export type MutationBookUpsertWithWhereArgs = {
 /** The start of any mutation */
 export type MutationCustomerCreateArgs = {
   customerInput?: Maybe<CustomerInput>
-}
-
-/** The start of any mutation */
-export type MutationCustomerCreateChangeStreamPostCustomersChangeStreamArgs = {
-  applicationXWwwFormUrlencodedInput?: Maybe<Scalars['String']>
 }
 
 /** The start of any mutation */
@@ -909,11 +874,6 @@ export type MutationOrderCreateArgs = {
 }
 
 /** The start of any mutation */
-export type MutationOrderCreateChangeStreamPostOrdersChangeStreamArgs = {
-  applicationXWwwFormUrlencodedInput?: Maybe<Scalars['String']>
-}
-
-/** The start of any mutation */
 export type MutationOrderDeleteByIdArgs = {
   id: Scalars['String']
 }
@@ -987,11 +947,6 @@ export type MutationShipmentCreateArgs = {
 }
 
 /** The start of any mutation */
-export type MutationShipmentCreateChangeStreamPostShipmentsChangeStreamArgs = {
-  applicationXWwwFormUrlencodedInput?: Maybe<Scalars['String']>
-}
-
-/** The start of any mutation */
 export type MutationShipmentDeleteByIdArgs = {
   id: Scalars['String']
 }
@@ -1049,11 +1004,6 @@ export type MutationShipmentUpsertWithWhereArgs = {
 /** The start of any mutation */
 export type MutationUserCreateArgs = {
   userInput?: Maybe<UserInput>
-}
-
-/** The start of any mutation */
-export type MutationUserCreateChangeStreamPostUsersChangeStreamArgs = {
-  applicationXWwwFormUrlencodedInput?: Maybe<Scalars['String']>
 }
 
 /** The start of any mutation */
@@ -1156,8 +1106,8 @@ export type OrderInput = {
 }
 
 /** No description available. */
-export type Orders2 = {
-  __typename?: 'Orders2'
+export type Orders3 = {
+  __typename?: 'Orders3'
   /** No description available. */
   exists?: Maybe<Scalars['Boolean']>
 }
@@ -1223,11 +1173,6 @@ export type Query = {
    * Equivalent to GET /Books
    */
   books?: Maybe<Array<Maybe<Book>>>
-  /** Create a change stream.
-   *
-   * Equivalent to GET /Books/change-stream
-   */
-  booksChangeStream?: Maybe<Scalars['String']>
   /** Count instances of the model matched by where from the data source.
    *
    * Equivalent to GET /Books/count
@@ -1248,9 +1193,9 @@ export type Query = {
    * Equivalent to GET /Books/{id}/people/count
    */
   booksPeopleCount?: Maybe<BooksPeopleCount>
-  /** 페치가 관계 customer에 속합니다.
+  /** Find first instance of the model matched by filter from the data source.
    *
-   * Equivalent to GET /Orders/{id}/customer
+   * Equivalent to GET /Customers/findOne
    */
   customer?: Maybe<Customer>
   /** Find a model instance by {{id}} from the data source.
@@ -1258,21 +1203,6 @@ export type Query = {
    * Equivalent to GET /Customers/{id}
    */
   customerFindById?: Maybe<Customer>
-  /** Find first instance of the model matched by filter from the data source.
-   *
-   * Equivalent to GET /Customers/findOne
-   */
-  customerFindOne?: Maybe<Customer>
-  /** orders에 대해 ID로 관련 항목을 찾으십시오.
-   *
-   * Equivalent to GET /Customers/{id}/orders/{fk}
-   */
-  customerPrototypeFindByIdOrders?: Maybe<Order>
-  /** shipments에 대해 ID로 관련 항목을 찾으십시오.
-   *
-   * Equivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}
-   */
-  customerPrototypeFindByIdOrdersShipments?: Maybe<Shipment>
   /** 페치가 관계 customer에 속합니다.
    *
    * Equivalent to GET /Customers/{id}/orders/{nk}/customer
@@ -1293,11 +1223,6 @@ export type Query = {
    * Equivalent to GET /Customers/{id}/accounts/count
    */
   customersAccountsCount?: Maybe<CustomersAccountsCount>
-  /** Create a change stream.
-   *
-   * Equivalent to GET /Customers/change-stream
-   */
-  customersChangeStream?: Maybe<Scalars['String']>
   /** Count instances of the model matched by where from the data source.
    *
    * Equivalent to GET /Customers/count
@@ -1348,9 +1273,9 @@ export type Query = {
    * Equivalent to GET /Books/{id}/people/{fk}
    */
   link?: Maybe<Link>
-  /** 페치가 관계 order에 속합니다.
+  /** orders에 대해 ID로 관련 항목을 찾으십시오.
    *
-   * Equivalent to GET /Shipments/{id}/order
+   * Equivalent to GET /Customers/{id}/orders/{fk}
    */
   order?: Maybe<Order>
   /** Find a model instance by {{id}} from the data source.
@@ -1368,16 +1293,16 @@ export type Query = {
    * Equivalent to GET /Orders/{id}/shipments/{fk}
    */
   orderPrototypeFindByIdShipments?: Maybe<Shipment>
+  /** 페치가 관계 customer에 속합니다.
+   *
+   * Equivalent to GET /Orders/{id}/customer
+   */
+  orderPrototypeGetCustomer?: Maybe<Customer>
   /** Find all instances of the model matched by filter from the data source.
    *
    * Equivalent to GET /Orders
    */
   orders?: Maybe<Array<Maybe<Order>>>
-  /** Create a change stream.
-   *
-   * Equivalent to GET /Orders/change-stream
-   */
-  ordersChangeStream?: Maybe<Scalars['String']>
   /** Count instances of the model matched by where from the data source.
    *
    * Equivalent to GET /Orders/count
@@ -1398,9 +1323,9 @@ export type Query = {
    * Equivalent to GET /Orders/{id}/shipments/count
    */
   ordersShipmentsCount?: Maybe<OrdersShipmentsCount>
-  /** Find first instance of the model matched by filter from the data source.
+  /** shipments에 대해 ID로 관련 항목을 찾으십시오.
    *
-   * Equivalent to GET /Shipments/findOne
+   * Equivalent to GET /Customers/{id}/orders/{nk}/shipments/{fk}
    */
   shipment?: Maybe<Shipment>
   /** Find a model instance by {{id}} from the data source.
@@ -1408,16 +1333,21 @@ export type Query = {
    * Equivalent to GET /Shipments/{id}
    */
   shipmentFindById?: Maybe<Shipment>
+  /** Find first instance of the model matched by filter from the data source.
+   *
+   * Equivalent to GET /Shipments/findOne
+   */
+  shipmentFindOne?: Maybe<Shipment>
+  /** 페치가 관계 order에 속합니다.
+   *
+   * Equivalent to GET /Shipments/{id}/order
+   */
+  shipmentPrototypeGetOrder?: Maybe<Order>
   /** Find all instances of the model matched by filter from the data source.
    *
    * Equivalent to GET /Shipments
    */
   shipments?: Maybe<Array<Maybe<Shipment>>>
-  /** Create a change stream.
-   *
-   * Equivalent to GET /Shipments/change-stream
-   */
-  shipmentsChangeStream?: Maybe<Scalars['String']>
   /** Count instances of the model matched by where from the data source.
    *
    * Equivalent to GET /Shipments/count
@@ -1428,16 +1358,16 @@ export type Query = {
    * Equivalent to GET /Shipments/{id}/exists
    */
   shipmentsExists?: Maybe<ShipmentsExists>
-  /** Find a model instance by {{id}} from the data source.
-   *
-   * Equivalent to GET /Users/{id}
-   */
-  user?: Maybe<User>
   /** Find first instance of the model matched by filter from the data source.
    *
    * Equivalent to GET /Users/findOne
    */
-  userFindOne?: Maybe<User>
+  user?: Maybe<User>
+  /** Find a model instance by {{id}} from the data source.
+   *
+   * Equivalent to GET /Users/{id}
+   */
+  userFindById?: Maybe<User>
   /** Find all instances of the model matched by filter from the data source.
    *
    * Equivalent to GET /Users
@@ -1453,11 +1383,6 @@ export type Query = {
    * Equivalent to GET /Users/{id}/accessTokens/count
    */
   usersAccessTokensCount?: Maybe<UsersAccessTokensCount>
-  /** Create a change stream.
-   *
-   * Equivalent to GET /Users/change-stream
-   */
-  usersChangeStream?: Maybe<Scalars['String']>
   /** Count instances of the model matched by where from the data source.
    *
    * Equivalent to GET /Users/count
@@ -1505,11 +1430,6 @@ export type QueryBooksArgs = {
 }
 
 /** The start of any query */
-export type QueryBooksChangeStreamArgs = {
-  options?: Maybe<Scalars['String']>
-}
-
-/** The start of any query */
 export type QueryBooksCountArgs = {
   where?: Maybe<Scalars['String']>
 }
@@ -1533,32 +1453,13 @@ export type QueryBooksPeopleCountArgs = {
 
 /** The start of any query */
 export type QueryCustomerArgs = {
-  id: Scalars['String']
-  refresh?: Maybe<Scalars['Boolean']>
+  filter?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
 export type QueryCustomerFindByIdArgs = {
   filter?: Maybe<Scalars['String']>
   id: Scalars['String']
-}
-
-/** The start of any query */
-export type QueryCustomerFindOneArgs = {
-  filter?: Maybe<Scalars['String']>
-}
-
-/** The start of any query */
-export type QueryCustomerPrototypeFindByIdOrdersArgs = {
-  fk: Scalars['String']
-  id: Scalars['String']
-}
-
-/** The start of any query */
-export type QueryCustomerPrototypeFindByIdOrdersShipmentsArgs = {
-  fk: Scalars['String']
-  id: Scalars['String']
-  nk: Scalars['String']
 }
 
 /** The start of any query */
@@ -1583,11 +1484,6 @@ export type QueryCustomersAccountsArgs = {
 export type QueryCustomersAccountsCountArgs = {
   id: Scalars['String']
   where?: Maybe<Scalars['String']>
-}
-
-/** The start of any query */
-export type QueryCustomersChangeStreamArgs = {
-  options?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
@@ -1652,8 +1548,8 @@ export type QueryLinkArgs = {
 
 /** The start of any query */
 export type QueryOrderArgs = {
+  fk: Scalars['String']
   id: Scalars['String']
-  refresh?: Maybe<Scalars['Boolean']>
 }
 
 /** The start of any query */
@@ -1674,13 +1570,14 @@ export type QueryOrderPrototypeFindByIdShipmentsArgs = {
 }
 
 /** The start of any query */
-export type QueryOrdersArgs = {
-  filter?: Maybe<Scalars['String']>
+export type QueryOrderPrototypeGetCustomerArgs = {
+  id: Scalars['String']
+  refresh?: Maybe<Scalars['Boolean']>
 }
 
 /** The start of any query */
-export type QueryOrdersChangeStreamArgs = {
-  options?: Maybe<Scalars['String']>
+export type QueryOrdersArgs = {
+  filter?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
@@ -1707,7 +1604,9 @@ export type QueryOrdersShipmentsCountArgs = {
 
 /** The start of any query */
 export type QueryShipmentArgs = {
-  filter?: Maybe<Scalars['String']>
+  fk: Scalars['String']
+  id: Scalars['String']
+  nk: Scalars['String']
 }
 
 /** The start of any query */
@@ -1717,13 +1616,19 @@ export type QueryShipmentFindByIdArgs = {
 }
 
 /** The start of any query */
-export type QueryShipmentsArgs = {
+export type QueryShipmentFindOneArgs = {
   filter?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
-export type QueryShipmentsChangeStreamArgs = {
-  options?: Maybe<Scalars['String']>
+export type QueryShipmentPrototypeGetOrderArgs = {
+  id: Scalars['String']
+  refresh?: Maybe<Scalars['Boolean']>
+}
+
+/** The start of any query */
+export type QueryShipmentsArgs = {
+  filter?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
@@ -1739,12 +1644,12 @@ export type QueryShipmentsExistsArgs = {
 /** The start of any query */
 export type QueryUserArgs = {
   filter?: Maybe<Scalars['String']>
-  id: Scalars['String']
 }
 
 /** The start of any query */
-export type QueryUserFindOneArgs = {
+export type QueryUserFindByIdArgs = {
   filter?: Maybe<Scalars['String']>
+  id: Scalars['String']
 }
 
 /** The start of any query */
@@ -1762,11 +1667,6 @@ export type QueryUsersAccessTokensArgs = {
 export type QueryUsersAccessTokensCountArgs = {
   id: Scalars['String']
   where?: Maybe<Scalars['String']>
-}
-
-/** The start of any query */
-export type QueryUsersChangeStreamArgs = {
-  options?: Maybe<Scalars['String']>
 }
 
 /** The start of any query */
@@ -1805,8 +1705,8 @@ export type ShipmentInput = {
 }
 
 /** No description available. */
-export type Shipments2 = {
-  __typename?: 'Shipments2'
+export type Shipments3 = {
+  __typename?: 'Shipments3'
   /** No description available. */
   exists?: Maybe<Scalars['Boolean']>
 }
@@ -1862,8 +1762,8 @@ export type UserInput = {
 }
 
 /** No description available. */
-export type Users2 = {
-  __typename?: 'Users2'
+export type Users3 = {
+  __typename?: 'Users3'
   /** No description available. */
   exists?: Maybe<Scalars['Boolean']>
 }

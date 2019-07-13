@@ -25,6 +25,23 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Debug oas3-preprocess.ts",
+      "protocol": "inspector",
+      "cwd":"${workspaceRoot}/packages/example",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "args": [
+        "${workspaceRoot}/packages/example/tools/oas3-preprocess.ts",
+        "-i",
+        "tools/oas3-samples/loopback-example-relation.json",
+        "-o",
+        "src/openapi.json"
+      ],
+      "restart": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "example gql",
       "protocol": "inspector",
       "cwd":"${workspaceRoot}/packages/example",
