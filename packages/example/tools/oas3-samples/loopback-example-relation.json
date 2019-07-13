@@ -780,58 +780,6 @@
         "deprecated": false
       }
     },
-    "/Users/change-stream": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "User.createChangeStream__post_Users_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "formData",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "User.createChangeStream__get_Users_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/Users/login": {
       "post": {
         "tags": [
@@ -2513,58 +2461,6 @@
         "deprecated": false
       }
     },
-    "/Customers/change-stream": {
-      "post": {
-        "tags": [
-          "Customer"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Customer.createChangeStream__post_Customers_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "formData",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "get": {
-        "tags": [
-          "Customer"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Customer.createChangeStream__get_Customers_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/Customers/{id}/orders/{nk}/customer": {
       "get": {
         "tags": [
@@ -3682,58 +3578,6 @@
         "deprecated": false
       }
     },
-    "/Books/change-stream": {
-      "post": {
-        "tags": [
-          "Book"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Book.createChangeStream__post_Books_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "formData",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "get": {
-        "tags": [
-          "Book"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Book.createChangeStream__get_Books_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/Orders/{id}/customer": {
       "get": {
         "tags": [
@@ -4541,58 +4385,6 @@
         "deprecated": false
       }
     },
-    "/Orders/change-stream": {
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Order.createChangeStream__post_Orders_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "formData",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Order.createChangeStream__get_Orders_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/Shipments/{id}/order": {
       "get": {
         "tags": [
@@ -5148,58 +4940,6 @@
                   "format": "double"
                 }
               }
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
-    "/Shipments/change-stream": {
-      "post": {
-        "tags": [
-          "Shipment"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Shipment.createChangeStream__post_Shipments_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "formData",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "get": {
-        "tags": [
-          "Shipment"
-        ],
-        "summary": "Create a change stream.",
-        "operationId": "Shipment.createChangeStream__get_Shipments_change-stream",
-        "parameters": [
-          {
-            "name": "options",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "file"
             }
           }
         },

@@ -492,72 +492,6 @@ export const BookApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Books/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (options !== undefined) {
-                localVarQueryParameter['options'] = options;
-            }
-
-
-                localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Books/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -1370,34 +1304,6 @@ export const BookApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreateChangeStreamGetBooksChangeStream(options, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = BookApiAxiosParamCreator(configuration).bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -1734,26 +1640,6 @@ export const BookApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions?: any) {
-            return BookApiFp(configuration).bookCreateChangeStreamGetBooksChangeStream(options, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return BookApiFp(configuration).bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -2007,30 +1893,6 @@ export class BookApi extends BaseAPI {
      */
     public bookCreate(book?: Book, httpOptions?: any) {
         return BookApiFp(this.configuration).bookCreate(book, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {string} [options] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BookApi
-     */
-    public bookCreateChangeStreamGetBooksChangeStream(options?: string, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookCreateChangeStreamGetBooksChangeStream(options, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BookApi
-     */
-    public bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return BookApiFp(this.configuration).bookCreateChangeStreamPostBooksChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -2367,72 +2229,6 @@ export const CustomerApiAxiosParamCreator = function (configuration?: Configurat
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Customer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(customer !== undefined ? customer : {}) : (customer || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Customers/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (options !== undefined) {
-                localVarQueryParameter['options'] = options;
-            }
-
-
-                localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Customers/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -4439,34 +4235,6 @@ export const CustomerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreateChangeStreamGetCustomersChangeStream(options, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = CustomerApiAxiosParamCreator(configuration).customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -5245,26 +5013,6 @@ export const CustomerApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerCreateChangeStreamGetCustomersChangeStream(options, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return CustomerApiFp(configuration).customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -5844,30 +5592,6 @@ export class CustomerApi extends BaseAPI {
      */
     public customerCreate(customer?: Customer, httpOptions?: any) {
         return CustomerApiFp(this.configuration).customerCreate(customer, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {string} [options] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    public customerCreateChangeStreamGetCustomersChangeStream(options?: string, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerCreateChangeStreamGetCustomersChangeStream(options, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    public customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return CustomerApiFp(this.configuration).customerCreateChangeStreamPostCustomersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -6588,72 +6312,6 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(order !== undefined ? order : {}) : (order || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Orders/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (options !== undefined) {
-                localVarQueryParameter['options'] = options;
-            }
-
-
-                localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Orders/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7513,34 +7171,6 @@ export const OrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreateChangeStreamGetOrdersChangeStream(options, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = OrderApiAxiosParamCreator(configuration).orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -7892,26 +7522,6 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions?: any) {
-            return OrderApiFp(configuration).orderCreateChangeStreamGetOrdersChangeStream(options, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return OrderApiFp(configuration).orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -8176,30 +7786,6 @@ export class OrderApi extends BaseAPI {
      */
     public orderCreate(order?: Order, httpOptions?: any) {
         return OrderApiFp(this.configuration).orderCreate(order, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {string} [options] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApi
-     */
-    public orderCreateChangeStreamGetOrdersChangeStream(options?: string, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderCreateChangeStreamGetOrdersChangeStream(options, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApi
-     */
-    public orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return OrderApiFp(this.configuration).orderCreateChangeStreamPostOrdersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -8549,72 +8135,6 @@ export const ShipmentApiAxiosParamCreator = function (configuration?: Configurat
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"Shipment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(shipment !== undefined ? shipment : {}) : (shipment || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Shipments/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (options !== undefined) {
-                localVarQueryParameter['options'] = options;
-            }
-
-
-                localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Shipments/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -9198,34 +8718,6 @@ export const ShipmentApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreateChangeStreamGetShipmentsChangeStream(options, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = ShipmentApiAxiosParamCreator(configuration).shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -9472,26 +8964,6 @@ export const ShipmentApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentCreateChangeStreamGetShipmentsChangeStream(options, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return ShipmentApiFp(configuration).shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -9679,30 +9151,6 @@ export class ShipmentApi extends BaseAPI {
      */
     public shipmentCreate(shipment?: Shipment, httpOptions?: any) {
         return ShipmentApiFp(this.configuration).shipmentCreate(shipment, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {string} [options] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApi
-     */
-    public shipmentCreateChangeStreamGetShipmentsChangeStream(options?: string, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentCreateChangeStreamGetShipmentsChangeStream(options, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApi
-     */
-    public shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return ShipmentApiFp(this.configuration).shipmentCreateChangeStreamPostShipmentsChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
     }
 
     /**
@@ -10057,72 +9505,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
             const needsSerialization = (<any>"User" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(user !== undefined ? user : {}) : (user || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Users/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (options !== undefined) {
-                localVarQueryParameter['options'] = options;
-            }
-
-
-                localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions: any = {}): RequestArgs {
-            const localVarPath = `/Users/change-stream`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...httpOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...httpOptions.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...httpOptions.headers};
-            const needsSerialization = (<any>"UNKNOWN_BASE_TYPE" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(UNKNOWN_BASE_TYPE !== undefined ? UNKNOWN_BASE_TYPE : {}) : (UNKNOWN_BASE_TYPE || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -11155,34 +10537,6 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreateChangeStreamGetUsersChangeStream(options, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE, httpOptions);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -11612,26 +10966,6 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary Create a change stream.
-         * @param {string} [options] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions?: any) {
-            return UserApiFp(configuration).userCreateChangeStreamGetUsersChangeStream(options, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary Create a change stream.
-         * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-         * @param {*} [httpOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-            return UserApiFp(configuration).userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(axios, basePath);
-        },
-        /**
-         * 
          * @summary Delete a model instance by {{id}} from the data source.
          * @param {string} id Model id
          * @param {*} [httpOptions] Override http request option.
@@ -11962,30 +11296,6 @@ export class UserApi extends BaseAPI {
      */
     public userCreate(user?: User, httpOptions?: any) {
         return UserApiFp(this.configuration).userCreate(user, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {string} [options] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userCreateChangeStreamGetUsersChangeStream(options?: string, httpOptions?: any) {
-        return UserApiFp(this.configuration).userCreateChangeStreamGetUsersChangeStream(options, httpOptions)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Create a change stream.
-     * @param {UNKNOWN_BASE_TYPE} [UNKNOWN_BASE_TYPE] 
-     * @param {*} [httpOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, httpOptions?: any) {
-        return UserApiFp(this.configuration).userCreateChangeStreamPostUsersChangeStream(UNKNOWN_BASE_TYPE, httpOptions)(this.axios, this.basePath);
     }
 
     /**

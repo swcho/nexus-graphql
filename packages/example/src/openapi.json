@@ -209,62 +209,6 @@
         "summary": "Replace an existing model instance or insert a new one into the data source."
       }
     },
-    "/Books/change-stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "options",
-            "required": false,
-            "schema": {
-              "format": "JSON",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Book"
-        ],
-        "deprecated": false,
-        "operationId": "Book.createChangeStream__get_Books_change-stream",
-        "summary": "Create a change stream."
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Book"
-        ],
-        "deprecated": false,
-        "operationId": "Book.createChangeStream__post_Books_change-stream",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/User.createChangeStream__post_Users_change-stream"
-        },
-        "summary": "Create a change stream."
-      }
-    },
     "/Books/count": {
       "get": {
         "parameters": [
@@ -1773,62 +1717,6 @@
           "$ref": "#/components/requestBodies/Customer"
         },
         "summary": "Replace an existing model instance or insert a new one into the data source."
-      }
-    },
-    "/Customers/change-stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "options",
-            "required": false,
-            "schema": {
-              "format": "JSON",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Customer"
-        ],
-        "deprecated": false,
-        "operationId": "Customer.createChangeStream__get_Customers_change-stream",
-        "summary": "Create a change stream."
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Customer"
-        ],
-        "deprecated": false,
-        "operationId": "Customer.createChangeStream__post_Customers_change-stream",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/User.createChangeStream__post_Users_change-stream"
-        },
-        "summary": "Create a change stream."
       }
     },
     "/Customers/count": {
@@ -5257,62 +5145,6 @@
         "summary": "Replace an existing model instance or insert a new one into the data source."
       }
     },
-    "/Orders/change-stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "options",
-            "required": false,
-            "schema": {
-              "format": "JSON",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Order"
-        ],
-        "deprecated": false,
-        "operationId": "Order.createChangeStream__get_Orders_change-stream",
-        "summary": "Create a change stream."
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Order"
-        ],
-        "deprecated": false,
-        "operationId": "Order.createChangeStream__post_Orders_change-stream",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/User.createChangeStream__post_Users_change-stream"
-        },
-        "summary": "Create a change stream."
-      }
-    },
     "/Orders/count": {
       "get": {
         "parameters": [
@@ -6885,62 +6717,6 @@
         "summary": "Replace an existing model instance or insert a new one into the data source."
       }
     },
-    "/Shipments/change-stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "options",
-            "required": false,
-            "schema": {
-              "format": "JSON",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Shipment"
-        ],
-        "deprecated": false,
-        "operationId": "Shipment.createChangeStream__get_Shipments_change-stream",
-        "summary": "Create a change stream."
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "Shipment"
-        ],
-        "deprecated": false,
-        "operationId": "Shipment.createChangeStream__post_Shipments_change-stream",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/User.createChangeStream__post_Users_change-stream"
-        },
-        "summary": "Create a change stream."
-      }
-    },
     "/Shipments/count": {
       "get": {
         "parameters": [
@@ -8088,62 +7864,6 @@
           }
         },
         "summary": "Change a user's password."
-      }
-    },
-    "/Users/change-stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "options",
-            "required": false,
-            "schema": {
-              "format": "JSON",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "User"
-        ],
-        "deprecated": false,
-        "operationId": "User.createChangeStream__get_Users_change-stream",
-        "summary": "Create a change stream."
-      },
-      "post": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/javascript": {},
-              "application/json": {},
-              "application/xml": {},
-              "text/javascript": {},
-              "text/xml": {}
-            },
-            "description": "Request was successful"
-          }
-        },
-        "tags": [
-          "User"
-        ],
-        "deprecated": false,
-        "operationId": "User.createChangeStream__post_Users_change-stream",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/User.createChangeStream__post_Users_change-stream"
-        },
-        "summary": "Create a change stream."
       }
     },
     "/Users/confirm": {
@@ -10128,21 +9848,6 @@
           }
         },
         "description": "Model instance data"
-      },
-      "User.createChangeStream__post_Users_change-stream": {
-        "content": {
-          "application/x-www-form-urlencoded": {
-            "schema": {
-              "properties": {
-                "options": {
-                  "format": "JSON",
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          }
-        }
       },
       "User2": {
         "content": {
