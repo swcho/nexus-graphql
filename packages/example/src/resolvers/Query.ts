@@ -1,21 +1,6 @@
 import { stringArg } from 'nexus'
 import { prismaObjectType } from 'nexus-graphql'
-import { PetApi } from '../generated/tslib';
 import * as types from '../generated/types/types';
-
-export const Pet = prismaObjectType({
-  name: 'Pet',
-  definition(t) {
-    t.prismaFields(['*'])
-    t.field('noOfTags', {
-      type: 'Float',
-      resolve(root) {
-        const pet = root as types.Pet;
-        return pet && pet.tags && pet.tags.length || 0;
-      }
-    });
-  }
-})
 
 export const Query = prismaObjectType({
   name: 'Query',
@@ -26,40 +11,46 @@ export const Query = prismaObjectType({
      * - use `t.prismaFields({ filter: ['fieldName', ...] })` to filter and/or customize specific fields
      */
 
-    // An empty array removes all fields from the underlying object type
-    t.prismaFields(['*'])
+    t.prismaFields(['*']);
 
-    t.field('petFindByStatus', {
-      ...t.prismaType.petFindByStatus,
+    t.field('books', {
+      ...t.prismaType.books,
       resolve(root, args, ctx) {
-        return ctx.apis.pet.findPetsByStatus(args.status).then(r => r.data);
+        console.log({ root, args, })
+        return ctx.apis.book.bookFind(args.filter).then(r => r.data)
       }
     })
 
-    // t.list.field('feed', {
-    //   type: 'Post',
-    //   resolve: (parent, args, ctx) => {
-    //     return ctx.prisma.posts({
-    //       where: { published: true },
-    //     })
-    //   },
-    // })
+    t.field('customers', {
+      ...t.prismaType.customers,
+      resolve(root, args, ctx) {
+        console.log({ root, args, })
+        return ctx.apis.customer.customerFind(args.filter).then(r => r.data);
+      }
+    })
 
-    // t.list.field('filterPosts', {
-    //   type: 'Post',
-    //   args: {
-    //     searchString: stringArg(),
-    //   },
-    //   resolve: (parent, { searchString }, ctx) => {
-    //     return ctx.prisma.posts({
-    //       where: {
-    //         OR: [
-    //           { title_contains: searchString },
-    //           { content_contains: searchString },
-    //         ],
-    //       },
-    //     })
-    //   },
-    // })
+    t.field('orders', {
+      ...t.prismaType.orders,
+      resolve(root, args, ctx) {
+        console.log({ root, args, })
+        return ctx.apis.order.orderFind(args.filter).then(r => r.data)
+      }
+    })
+
+    t.field('shipments', {
+      ...t.prismaType.shipments,
+      resolve(root, args, ctx) {
+        console.log({ root, args, })
+        return ctx.apis.shipment.shipmentFind(args.filter).then(r => r.data)
+      }
+    })
+
+    t.field('users', {
+      ...t.prismaType.users,
+      resolve(root, args, ctx) {
+        console.log({ root, args, })
+        return ctx.apis.user.userFind(args.filter).then(r => r.data)
+      }
+    })
   },
 })

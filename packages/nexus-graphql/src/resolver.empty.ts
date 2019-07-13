@@ -124,7 +124,8 @@ export function generateEmptyResolver(
       return root[fieldName];
     }
 
-    debugger;
-    throw "Should implement resolver";
+    console.log('resolve undefined', `${typeName}.${fieldName}`)
+    return undefined;
+    // throw "Should implement resolver";
   }
 }
