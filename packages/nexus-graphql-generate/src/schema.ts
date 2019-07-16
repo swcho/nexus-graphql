@@ -94,7 +94,7 @@ export async function generateFromSchema(pathSchema: string, typePath: string, p
   // )
 
   //
-  const nexusPrismaTypesPath = join(resolvedOutput, 'nexus-prisma.ts')
+  const nexusPrismaTypesPath = join(resolvedOutput, 'nexus-wrapper-types.ts')
   const nexusPrismaTypes = renderNexusPrismaTypes(
     schema,
     typePath,
