@@ -1,5 +1,5 @@
 declare global {
-  interface NexusPrismaGen {}
+  interface NexusWrapperGen {}
 }
 
 export type PrismaShapeKeys = 'objectTypes' | 'inputTypes' | 'enumTypes'
@@ -18,7 +18,7 @@ export interface PrismaGenTypesShape {
 export type GetGen<
   K extends PrismaShapeKeys,
   Fallback = any
-> = NexusPrismaGen extends infer GenTypes
+> = NexusWrapperGen extends infer GenTypes
   ? GenTypes extends PrismaGenTypesShape
     ? GenTypes[K]
     : Fallback
@@ -27,7 +27,7 @@ export type GetGen<
 export type GetGen2<
   K extends PrismaShapeKeys,
   K2 extends keyof PrismaGenTypesShape[K]
-> = NexusPrismaGen extends infer GenTypes
+> = NexusWrapperGen extends infer GenTypes
   ? GenTypes extends PrismaGenTypesShape
     ? K extends keyof GenTypes
       ? K2 extends keyof GenTypes[K]
@@ -41,7 +41,7 @@ export type GetGen3<
   K extends PrismaShapeKeys,
   K2 extends Extract<keyof PrismaGenTypesShape[K], string>,
   K3 extends Extract<keyof PrismaGenTypesShape[K][K2], string>
-> = NexusPrismaGen extends infer GenTypes
+> = NexusWrapperGen extends infer GenTypes
   ? GenTypes extends PrismaGenTypesShape
     ? K extends keyof GenTypes
       ? K2 extends keyof GenTypes[K]

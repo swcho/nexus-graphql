@@ -8,10 +8,10 @@ import { GraphQLResolveInfo } from 'graphql'
 import * as types from '../types/types'
 
 declare global {
-  interface NexusPrismaGen extends NexusPrismaTypes {}
+  interface NexusWrapperGen extends NexusWrapperTypes {}
 }
 
-export interface NexusPrismaTypes {
+export interface NexusWrapperTypes {
   objectTypes: {
     fields: {
       Query: QueryObject

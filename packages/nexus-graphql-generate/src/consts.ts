@@ -6,4 +6,7 @@ export const NEXUS_GRAPHQL_HEADER = `\
  * Do not make changes to this file directly
  */`
 
-export const TYPE_NAMESPACE = 'types';
+export const IMPORT_TYPE_NAMESPACE = 'types';
+
+export const NAMESPACE = 'NexusWrapperTypes';
+export const NAMESPACE_GLOBAL = 'NexusWrapperGen';

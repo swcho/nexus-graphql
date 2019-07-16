@@ -3,7 +3,7 @@ import { buildSchema, GraphQLSchema, GraphQLObjectType, GraphQLEnumType, isObjec
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { findRootDirectory } from './config';
-import { NEXUS_GRAPHQL_HEADER, TYPE_NAMESPACE } from './consts';
+import { NEXUS_GRAPHQL_HEADER, IMPORT_TYPE_NAMESPACE, NAMESPACE, NAMESPACE_GLOBAL } from './consts';
 import { EOL } from 'os';
 import { getObjectTypeFieldsName, getObjectTypeFieldsDetailsName, getInputObjectTypeName, getInputObjectTypeFieldsName, getEnumTypeName } from './schema.names';
 import { renderObjectType } from './schema.renderobject';
@@ -30,13 +30,13 @@ ${NEXUS_GRAPHQL_HEADER}
 
 import { core } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
-import * as ${TYPE_NAMESPACE} from '${prismaClientPath}'
+import * as ${IMPORT_TYPE_NAMESPACE} from '${prismaClientPath}'
 
 declare global {
-  interface NexusPrismaGen extends NexusPrismaTypes {}
+  interface ${NAMESPACE_GLOBAL} extends ${NAMESPACE} {}
 }
 
-export interface NexusPrismaTypes {
+export interface ${NAMESPACE} {
   objectTypes: {
     fields: {
 ${objectTypes

@@ -37,7 +37,7 @@ export type ObjectTypeDetails<TypeName extends string> = GetGen3<
 type InputField<
   GraphQLType extends PrismaShapeKeys,
   TypeName extends string
-> = NexusPrismaGen extends infer GenTypes
+> = NexusWrapperGen extends infer GenTypes
   ? GenTypes extends PrismaGenTypesShape
     ? GraphQLType extends keyof GenTypes
       ? 'fields' extends infer Fields
