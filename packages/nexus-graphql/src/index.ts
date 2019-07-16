@@ -10,7 +10,7 @@ interface PrismaSchemaConfigRequiredTypes extends PrismaSchemaConfig {
   types: any
 }
 
-export function makePrismaSchema(options: PrismaSchemaConfig): GraphQLSchema {
+export function makeGraphqlSchema(options: PrismaSchemaConfig): GraphQLSchema {
   // validateOptions(options)
 
   const builder = new PrismaSchemaBuilder(options)

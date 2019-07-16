@@ -1,13 +1,13 @@
 import * as path from 'path'
 import * as allTypes from './resolvers'
 import { makeSchema } from 'nexus';
-import { makePrismaSchema } from 'nexus-graphql';
+import { makeGraphqlSchema } from 'nexus-graphql';
 
 /**
  * Finally, we construct our schema (whose starting query type is the query
  * type we defined above) and export it.
  */
-export const schema = makePrismaSchema({
+export const schema = makeGraphqlSchema({
   types: allTypes,
 
   prisma: {
