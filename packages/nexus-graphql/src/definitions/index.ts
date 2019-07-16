@@ -1,4 +1,4 @@
 export { graphqlObjectType } from './objectType'
-export { prismaInputObjectType } from './inputObjectType'
-export { prismaExtendType } from './extendType'
-export { prismaEnumType } from './enumType'
+export { graphqlInputObjectType } from './inputObjectType'
+export { graphqlExtendType } from './extendType'
+export { graphqlEnumType } from './enumType'

@@ -8,7 +8,7 @@ interface PrismaEnumTypeConfig<TypeName extends string>
   members: PrismaEnumTypeValues<TypeName>[]
 }
 
-export function prismaEnumType<TypeName extends PrismaEnumTypeNames>(
+export function graphqlEnumType<TypeName extends PrismaEnumTypeNames>(
   typeConfig: PrismaEnumTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusEnumTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {

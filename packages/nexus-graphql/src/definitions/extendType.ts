@@ -15,7 +15,7 @@ export interface PrismaExtendTypeConfig<TypeName extends string>
 /**
  * Extend a previously defined object type. Mainly meant to split the Query/Mutation types in several files if needed.
  */
-export function prismaExtendType<TypeName extends PrismaObjectTypeNames>(
+export function graphqlExtendType<TypeName extends PrismaObjectTypeNames>(
   typeConfig: PrismaExtendTypeConfig<TypeName>,
   // @ts-ignore
 ): core.NexusWrappedType<core.NexusExtendTypeDef<TypeName>> {

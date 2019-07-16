@@ -16,7 +16,7 @@ export interface PrismaInputObjectTypeConfig<TypeName extends string>
 /**
  * Exposes an input object type based on the datamodel
  */
-export function prismaInputObjectType<
+export function graphqlInputObjectType<
   TypeName extends PrismaInputObjectTypeNames
 >(
   typeConfig: PrismaInputObjectTypeConfig<TypeName>,
