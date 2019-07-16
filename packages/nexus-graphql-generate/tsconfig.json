@@ -9,6 +9,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
+    "declaration": true,
     "declarationMap": true
   },
   "include": ["./src/**/*.ts"],
