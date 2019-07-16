@@ -3,7 +3,7 @@ import { buildSchema, GraphQLSchema, GraphQLObjectType, GraphQLEnumType, isObjec
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { findRootDirectory } from './config';
-import { NEXUS_PRISMA_HEADER } from './header';
+import { NEXUS_GRAPHQL_HEADER, TYPE_NAMESPACE } from './consts';
 import { EOL } from 'os';
 import { getObjectTypeFieldsName, getObjectTypeFieldsDetailsName, getInputObjectTypeName, getInputObjectTypeFieldsName, getEnumTypeName } from './schema.names';
 import { renderObjectType } from './schema.renderobject';
@@ -26,11 +26,11 @@ function renderNexusPrismaTypes(
   ) as GraphQLEnumType[]
 
   return `\
-${NEXUS_PRISMA_HEADER}
+${NEXUS_GRAPHQL_HEADER}
 
 import { core } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
-import * as prisma from '${prismaClientPath}'
+import * as ${TYPE_NAMESPACE} from '${prismaClientPath}'
 
 declare global {
   interface NexusPrismaGen extends NexusPrismaTypes {}

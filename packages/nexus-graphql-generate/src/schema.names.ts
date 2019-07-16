@@ -1,5 +1,6 @@
 import { GraphQLObjectType, GraphQLInputObjectType, GraphQLEnumType, GraphQLField, GraphQLInputField, isScalarType, isInputObjectType } from "graphql";
 import { getFinalType, getTypeName, isList, isRequired } from "./graphql";
+import { TYPE_NAMESPACE } from "./consts";
 
 
 function upperFirst(s: string) {
@@ -55,7 +56,7 @@ export function getTSType(graphqlType: GraphQLField<any, any> | GraphQLInputFiel
   } else if (isInputObjectType(finalType)) {
     returnType = getInputObjectTypeName(finalType)
   } else {
-    returnType = `prisma.${getTypeName(finalType)}`
+    returnType = `${TYPE_NAMESPACE}.${getTypeName(finalType)}`
   }
 
   if (isList(graphqlType.type)) {
