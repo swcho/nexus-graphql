@@ -2,6 +2,21 @@ import { stringArg } from 'nexus'
 import { prismaObjectType } from 'nexus-graphql'
 import * as types from '../generated/types/types';
 
+export const Order = prismaObjectType({
+  name: 'Order',
+  definition(t) {
+    t.prismaFields(['*']);
+    t.field('customer', {
+      type: 'Customer',
+      async resolve(root: types.Order, args, ctx) {
+        const ret = await ctx.apis.customer.customerFindById(`${root.customerId}`).then(r => r.data);
+        console.log(ret);
+        return ret;
+      }
+    })
+  }
+})
+
 export const Query = prismaObjectType({
   name: 'Query',
   definition(t) {

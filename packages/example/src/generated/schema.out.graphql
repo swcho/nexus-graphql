@@ -1179,6 +1179,8 @@ type Mutation {
 }
 
 type Order {
+  customer: Customer!
+
   """No description available."""
   customerId: Float
 

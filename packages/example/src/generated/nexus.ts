@@ -300,6 +300,7 @@ export interface NexusGenFieldTypes {
     userUpsertWithWhere: NexusGenRootTypes['User'] | null; // User
   }
   Order: { // field return type
+    customer: NexusGenRootTypes['Customer']; // Customer!
     customerId: number | null; // Float
     date: string | null; // String
     description: string | null; // String
