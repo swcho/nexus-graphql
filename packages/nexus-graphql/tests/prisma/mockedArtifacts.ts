@@ -1,4 +1,3 @@
-import { prisma } from './prisma-client'
 import datamodelInfo from './nexus-prisma'
 import { makePrismaSchema } from '../../src'
 import { buildClientSchema } from 'graphql'
@@ -12,7 +11,7 @@ export function mockSchema(types: any) {
       typegen: false,
     },
     prisma: {
-      client: prisma,
+      client: null,
       datamodelInfo,
     },
   })

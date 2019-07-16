@@ -58,38 +58,22 @@
       ],
       "restart": true
     },
+    // Ref: https://medium.com/@jakubsynowiec/debugging-typescript-jest-unit-tests-with-visual-studio-code-36cd16865bb0
+    // Ref: https://patrickdesjardins.com/blog/debug-typescript-unit-test-with-jest-and-vscode
     {
+      "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
-      "name": "example",
-      "protocol": "inspector",
-      "cwd":"${workspaceRoot}/examples",
-      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-      "sourceMaps": true,
+      "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
+      "cwd": "${workspaceRoot}/packages/nexus-graphql",
       "args": [
-        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts",
-        "--output",
-        "temp"
+        "--runInBand"
       ],
-      "restart": true
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "[Not Working] Debug with ts-node-dev",
-      "protocol": "inspector",
-      // "cwd":"${workspaceRoot}/examples",
-      "cwd":"${workspaceRoot}",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
-      "sourceMaps": true,
-      "args": [
-        // "--inspect",
-        // "--no-notify",
-        // "--respawn",
-        "--transpileOnly",
-        "${workspaceRoot}/packages/nexus-prisma-generate/src/index.ts"
+      "runtimeArgs": [
+        "--nolazy"
       ],
-      "restart": true
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
