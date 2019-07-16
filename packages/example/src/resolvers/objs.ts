@@ -1,6 +1,6 @@
-import { prismaObjectType } from "nexus-graphql";
+import {  graphqlObjectType } from "nexus-graphql";
 
-export const User = prismaObjectType({
+export const User = graphqlObjectType({
   name: "User",
   definition(t) {
     t.prismaFields(['*']);

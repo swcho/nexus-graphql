@@ -15,7 +15,7 @@ export interface PrismaObjectTypeConfig<TypeName extends string>
 /**
  * Exposes an object type based on the datamodel
  */
-export function prismaObjectType<TypeName extends PrismaObjectTypeNames>(
+export function graphqlObjectType<TypeName extends PrismaObjectTypeNames>(
   typeConfig: PrismaObjectTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusObjectTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {

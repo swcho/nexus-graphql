@@ -1,7 +1,7 @@
 import { idArg, stringArg } from 'nexus'
-import { prismaObjectType } from 'nexus-graphql'
+import { graphqlObjectType } from 'nexus-graphql'
 
-export const Mutation = prismaObjectType({
+export const Mutation = graphqlObjectType({
   name: 'Mutation',
   definition(t) {
     /**

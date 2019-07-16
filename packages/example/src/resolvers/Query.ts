@@ -1,8 +1,8 @@
 import { stringArg } from 'nexus'
-import { prismaObjectType } from 'nexus-graphql'
+import { graphqlObjectType } from 'nexus-graphql'
 import * as types from '../generated/types/types';
 
-export const Order = prismaObjectType({
+export const Order = graphqlObjectType({
   name: 'Order',
   definition(t) {
     t.prismaFields(['*']);
@@ -17,7 +17,7 @@ export const Order = prismaObjectType({
   }
 })
 
-export const Query = prismaObjectType({
+export const Query = graphqlObjectType({
   name: 'Query',
   definition(t) {
     /**
