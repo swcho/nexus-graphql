@@ -2,7 +2,7 @@ import { GraphQLSchema } from 'graphql'
 import { core, inputObjectType } from 'nexus'
 import {
   GraphqlInputDefinitionBlock,
-  prismaInputDefinitionBlock,
+  graphqlInputDefinitionBlock,
   prismaTypeInputObject,
 } from '../blocks/inputObjectType'
 import { isPrismaSchemaBuilder } from '../builder'
@@ -43,7 +43,7 @@ function nexusInputObjectType<TypeName extends string>(
   return inputObjectType({
     ...rest,
     definition(block) {
-      const prismaBlock = prismaInputDefinitionBlock(
+      const prismaBlock = graphqlInputDefinitionBlock(
         typeConfig.name,
         block,
         prismaType,

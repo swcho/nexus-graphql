@@ -40,23 +40,23 @@ export interface GraphqlInputDefinitionBlock<TypeName extends string>
   useOriginalFields(inputFields: AddFieldInput<'inputTypes', TypeName>): void
 }
 
-export function prismaInputDefinitionBlock<TypeName extends string>(
+export function graphqlInputDefinitionBlock<TypeName extends string>(
   typeName: string,
   t: core.InputDefinitionBlock<TypeName> | core.OutputDefinitionBlock<TypeName>,
-  prismaType: Record<string, core.NexusInputFieldConfig<string, string>>,
-  prismaSchema: GraphQLSchema,
+  originalType: Record<string, core.NexusInputFieldConfig<string, string>>,
+  schema: GraphQLSchema,
 ): GraphqlInputDefinitionBlock<TypeName> {
-  const prismaBlock = t as GraphqlInputDefinitionBlock<TypeName>
+  const definitionBlock = t as GraphqlInputDefinitionBlock<TypeName>
 
-  prismaBlock.useOriginalFields = (inputFields: any) => {
-    const fields = getFields(inputFields, typeName, prismaSchema)
+  definitionBlock.useOriginalFields = (inputFields: any) => {
+    const fields = getFields(inputFields, typeName, schema)
 
     fields.forEach(field => {
       const aliasName = field.alias ? field.alias : field.name
-      const fieldType = findGraphQLTypeField(typeName, field.name, prismaSchema)
-      const { list, ...rest } = prismaType[field.name]
+      const fieldType = findGraphQLTypeField(typeName, field.name, schema)
+      const { list, ...rest } = originalType[field.name]
 
-      prismaBlock.field(aliasName, {
+      definitionBlock.field(aliasName, {
         ...rest,
         type: getTypeName(fieldType.type),
         list: list ? true : undefined,
@@ -64,7 +64,7 @@ export function prismaInputDefinitionBlock<TypeName extends string>(
     })
   }
 
-  return prismaBlock
+  return definitionBlock
 }
 
 export function prismaTypeInputObject(
