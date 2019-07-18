@@ -1,6 +1,6 @@
 import { core, objectType } from 'nexus'
 import {
-  PrismaObjectDefinitionBlock,
+  GraphqlObjectDefinitionBlock,
   prismaObjectDefinitionBlock,
   prismaTypeObject,
 } from '../blocks/objectType'
@@ -9,7 +9,7 @@ import { PrismaObjectTypeNames } from '../types'
 
 export interface PrismaObjectTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusObjectTypeConfig<TypeName>, 'definition'> {
-  definition: (t: PrismaObjectDefinitionBlock<TypeName>) => void
+  definition: (t: GraphqlObjectDefinitionBlock<TypeName>) => void
 }
 
 /**
@@ -45,7 +45,7 @@ function nexusObjectType<TypeName extends string>(
     definition(block) {
       const prismaBlock = prismaObjectDefinitionBlock(
         typeConfig.name,
-        block as PrismaObjectDefinitionBlock<TypeName>,
+        block as GraphqlObjectDefinitionBlock<TypeName>,
         prismaType,
         prismaSchema,
       )
