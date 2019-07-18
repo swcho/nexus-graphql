@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLSchema, isObjectType } from 'graphql'
 import { core } from 'nexus'
-import { PrismaObjectTypeConfig } from '../definitions/objectType'
+import { GraphqlObjectTypeConfig } from '../definitions/objectType'
 import { findGraphQLTypeField, getTypeName } from '../graphql'
 import { objectTypeFieldsToNexus } from '../graphqlToNexus/objectType'
 import {
@@ -137,9 +137,9 @@ export function graphqlObjectDefinitionBlock<TypeName extends string>(
   return definitionBlock
 }
 
-export function prismaTypeObject(
+export function graphqlTypeObject(
   datamodelInfo: InternalDatamodelInfo,
-  objectConfig: PrismaObjectTypeConfig<any>,
+  objectConfig: GraphqlObjectTypeConfig<any>,
   builderConfig: GraphqlSchemaConfig,
 ) {
   const typeName = objectConfig.name
@@ -149,7 +149,7 @@ export function prismaTypeObject(
     throw new Error(
       `\
 Must select a GraphQLObjectType, saw ${typeName} which is ${graphqlType}.
-Are you trying to create a new type? Use \`objectType\` instead of \`prismaObjectType\`
+Are you trying to create a new type? Use \`objectType\` instead of \`graphqlObjectType\`
 `,
     )
   }
