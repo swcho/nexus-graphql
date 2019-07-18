@@ -11,7 +11,7 @@ import {
 } from '../types'
 import { getFields } from '../utils'
 
-export interface PrismaInputDefinitionBlock<TypeName extends string>
+export interface GraphqlInputDefinitionBlock<TypeName extends string>
   extends core.InputDefinitionBlock<TypeName> {
   prismaFields(inputFields: InputFieldsWithStar<'inputTypes', TypeName>[]): void
   prismaFields(pickFields: PickInputField<'inputTypes', TypeName>): void
@@ -45,8 +45,8 @@ export function prismaInputDefinitionBlock<TypeName extends string>(
   t: core.InputDefinitionBlock<TypeName> | core.OutputDefinitionBlock<TypeName>,
   prismaType: Record<string, core.NexusInputFieldConfig<string, string>>,
   prismaSchema: GraphQLSchema,
-): PrismaInputDefinitionBlock<TypeName> {
-  const prismaBlock = t as PrismaInputDefinitionBlock<TypeName>
+): GraphqlInputDefinitionBlock<TypeName> {
+  const prismaBlock = t as GraphqlInputDefinitionBlock<TypeName>
 
   prismaBlock.prismaFields = (inputFields: any) => {
     const fields = getFields(inputFields, typeName, prismaSchema)

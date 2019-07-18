@@ -1,7 +1,7 @@
 import { GraphQLSchema } from 'graphql'
 import { core, inputObjectType } from 'nexus'
 import {
-  PrismaInputDefinitionBlock,
+  GraphqlInputDefinitionBlock,
   prismaInputDefinitionBlock,
   prismaTypeInputObject,
 } from '../blocks/inputObjectType'
@@ -10,7 +10,7 @@ import { PrismaInputObjectTypeNames } from '../types'
 
 export interface GraphqlInputObjectTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusInputObjectTypeConfig<TypeName>, 'definition'> {
-  definition: (t: PrismaInputDefinitionBlock<TypeName>) => void
+  definition: (t: GraphqlInputDefinitionBlock<TypeName>) => void
 }
 
 /**
