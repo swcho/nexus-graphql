@@ -1,7 +1,7 @@
 import { core, objectType } from 'nexus'
 import {
   GraphqlObjectDefinitionBlock,
-  prismaObjectDefinitionBlock,
+  graphqlObjectDefinitionBlock,
   prismaTypeObject,
 } from '../blocks/objectType'
 import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
@@ -43,7 +43,7 @@ function nexusObjectType<TypeName extends string>(
   return objectType({
     ...rest,
     definition(block) {
-      const prismaBlock = prismaObjectDefinitionBlock(
+      const prismaBlock = graphqlObjectDefinitionBlock(
         typeConfig.name,
         block as GraphqlObjectDefinitionBlock<TypeName>,
         prismaType,

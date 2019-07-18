@@ -104,28 +104,28 @@ export interface GraphqlObjectDefinitionBlock<TypeName extends string>
   useOriginalFields(inputFields: AddFieldInput<'objectTypes', TypeName>): void
 }
 
-export function prismaObjectDefinitionBlock<TypeName extends string>(
+export function graphqlObjectDefinitionBlock<TypeName extends string>(
   typeName: string,
   t: core.ObjectDefinitionBlock<TypeName>,
-  prismaType: Record<string, core.NexusOutputFieldConfig<string, string>>,
-  prismaSchema: GraphQLSchema,
+  originalType: Record<string, core.NexusOutputFieldConfig<string, string>>,
+  schema: GraphQLSchema,
 ): GraphqlObjectDefinitionBlock<TypeName> {
-  const prismaBlock = t as GraphqlObjectDefinitionBlock<TypeName>
+  const definitionBlock = t as GraphqlObjectDefinitionBlock<TypeName>
 
-  prismaBlock.orignalType = prismaType
-  prismaBlock.useOriginalFields = (inputFields: any) => {
-    const graphqlType = prismaSchema.getType(typeName) as GraphQLObjectType
-    const fields = getFields(inputFields, typeName, prismaSchema)
+  definitionBlock.orignalType = originalType
+  definitionBlock.useOriginalFields = (inputFields: any) => {
+    const graphqlType = schema.getType(typeName) as GraphQLObjectType
+    const fields = getFields(inputFields, typeName, schema)
 
     graphqlType.getInterfaces().forEach(interfaceType => {
-      prismaBlock.implements(interfaceType.name)
+      definitionBlock.implements(interfaceType.name)
     })
     fields.forEach(field => {
       const aliasName = field.alias ? field.alias : field.name
-      const fieldType = findGraphQLTypeField(typeName, field.name, prismaSchema)
-      const { list, ...rest } = prismaType[fieldType.name]
+      const fieldType = findGraphQLTypeField(typeName, field.name, schema)
+      const { list, ...rest } = originalType[fieldType.name]
       const args = whitelistArgs(rest.args!, field.args)
-      prismaBlock.field(aliasName, {
+      definitionBlock.field(aliasName, {
         ...rest,
         type: getTypeName(fieldType.type),
         list: list ? true : undefined,
@@ -134,7 +134,7 @@ export function prismaObjectDefinitionBlock<TypeName extends string>(
     })
   }
 
-  return prismaBlock
+  return definitionBlock
 }
 
 export function prismaTypeObject(
