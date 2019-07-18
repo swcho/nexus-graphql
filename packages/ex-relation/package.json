@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "ex-relation",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,9 @@
     "gen:openapi-to-tslib": "openapi-generator generate --skip-validate-spec --template-dir tools/typescript-axios-templates -g typescript-axios -i src/openapi.json -o src/generated/tslib",
     "gen:graphql-to-types": "graphql-codegen --config codegen.yml",
     "gen:nexus-graphql": "nexus-graphql-generate --schema src/generated/graphql/schema.graphql --typepath ../types/types --output src/generated/nexus-graphql",
-    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
+    "start": "concurrently 'yarn start:rest' 'yarn start:self'",
+    "start:rest": "cd ../../examples/loopback-example-relations; yarn start",
+    "start:self": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "build": "tsc",
     "watch": "tsc -w"
   },
@@ -31,6 +33,7 @@
     "@types/node": "^12.6.4",
     "api-spec-converter": "^2.8.3",
     "commander": "^2.20.0",
+    "concurrently": "^4.1.1",
     "js-yaml": "^3.13.1",
     "openapi-to-graphql-cli": "^1.1.0",
     "openapi3-ts": "^1.3.0",
