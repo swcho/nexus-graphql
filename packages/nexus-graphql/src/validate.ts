@@ -10,8 +10,8 @@ function validateDatamodelInfo(datamodelInfo: DatamodelInfo) {
   ) {
     throw new Error(
       `\
-Invalid \`prisma.datamodelInfo\` property. This should be imported from the \`nexus-prisma-generate\` output directory.
-If you just updated nexus-prisma, try re-running \`nexus-prisma-generate\`.
+Invalid \`wrapperOptions.datamodelInfo\` property. This should be imported from the \`nexus-graphql-generate\` output directory.
+If you just updated nexus-graphql, try re-running \`nexus-graphql-generate\`.
       `,
     )
   }
@@ -24,7 +24,7 @@ function validateClient(client: PrismaClientInput) {
   ) {
     throw new Error(
       `\
-Invalid \`prisma.client\` property in \`makePrismaSchema({ prisma: { client: ... } })\`.
+Invalid \`wrapperOptions.client\` property in \`makeGraphqlSchema({ wrapperOptions: { client: ... } })\`.
 This should either be an instance of the generated prisma-client, or a function that returns the prisma-client instance from your GraphQL server context
 `,
     )
@@ -34,13 +34,13 @@ This should either be an instance of the generated prisma-client, or a function 
 export function validateOptions(options: GraphqlSchemaConfig): void {
   if (!options.wrapperOptions) {
     throw new Error(
-      'Missing `prisma` property in `makePrismaSchema({ prisma: { ... } })`',
+      'Missing `wrapperOptions` property in `makeGraphqlSchema({ wrapperOptions: { ... } })`',
     )
   }
 
   if (!options.wrapperOptions.datamodelInfo) {
     throw new Error(
-      'Missing `prisma.datamodelInfo` property in `makePrismaSchema({ prisma: { datamodelInfo: ... } })`',
+      'Missing `wrapperOptions.datamodelInfo` property in `makeGraphqlSchema({ wrapperOptions: { datamodelInfo: ... } })`',
     )
   }
 
@@ -55,7 +55,7 @@ export function validateOptions(options: GraphqlSchemaConfig): void {
 
   if (!options.wrapperOptions.client) {
     throw new Error(
-      'Missing `prisma.client` property in `makePrismaSchema({ prisma: { client: ... } })`',
+      'Missing `wrapperOptions.client` property in `makeGraphqlSchema({ wrapperOptions: { client: ... } })`',
     )
   }
 

@@ -48,11 +48,11 @@ function isPickInputField<TypeName extends string = any>(
 
 function allOrInputFields(
   fields: AnonymousField[],
-  prismaFieldsNames: string[],
+  fieldsNames: string[],
 ) {
   const hasWhitelist = fields.filter(f => typeof f === 'string').includes('*')
 
-  return hasWhitelist ? prismaFieldsNames : fields
+  return hasWhitelist ? fieldsNames : fields
 }
 
 function extractFields<TypeName extends string>(
@@ -60,19 +60,19 @@ function extractFields<TypeName extends string>(
   typeName: string,
   schema: GraphQLSchema,
 ): AnonymousField[] {
-  let prismaFieldsNames = getAllFields(typeName, schema).map(f => f.name)
+  let fieldsNames = getAllFields(typeName, schema).map(f => f.name)
 
   // TODO: Remove that once `node` is removed from the Prisma API
   if (typeName === 'Query') {
-    prismaFieldsNames = prismaFieldsNames.filter(field => field !== 'node')
+    fieldsNames = fieldsNames.filter(field => field !== 'node')
   }
 
   if (Array.isArray(fields)) {
-    return allOrInputFields(fields as AnonymousField[], prismaFieldsNames)
+    return allOrInputFields(fields as AnonymousField[], fieldsNames)
   }
 
   if (isPickInputField(fields)) {
-    return allOrInputFields(fields.pick as AnonymousField[], prismaFieldsNames)
+    return allOrInputFields(fields.pick as AnonymousField[], fieldsNames)
   }
 
   if (Array.isArray(fields.filter)) {
@@ -85,11 +85,11 @@ function extractFields<TypeName extends string>(
       return []
     }
 
-    return prismaFieldsNames.filter(
+    return fieldsNames.filter(
       fieldName => !fieldsNamesToFilter.includes(fieldName),
     )
   } else {
-    return fields.filter(prismaFieldsNames)
+    return fields.filter(fieldsNames)
   }
 }
 

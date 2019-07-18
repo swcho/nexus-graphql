@@ -22,7 +22,7 @@ export function graphqlExtendType<TypeName extends GraphqlObjectTypeNames>(
   // @ts-ignore
   return core.nexusWrappedType(typeConfig.type, builder => {
     if (!isGraphqlSchemaBuilder(builder)) {
-      throw new Error('prismaExtendType can only be used by `makePrismaSchema`')
+      throw new Error('graphqlExtendType can only be used by `makeGraphqlSchema`')
     }
 
     return nexusExtendType(typeConfig, builder)
@@ -35,24 +35,24 @@ function nexusExtendType<TypeName extends string>(
 ): core.NexusExtendTypeDef<TypeName> {
   let { definition, ...rest } = typeConfig
   const datamodelInfo = builder.getDatamodelInfo()
-  const prismaType = graphqlTypeExtend(
+  const originalType = graphqlTypeExtend(
     datamodelInfo,
     typeConfig,
     builder.getConfig(),
   )
-  const prismaSchema = datamodelInfo.schema
+  const schema = datamodelInfo.schema
 
   return extendType({
     ...rest,
     definition(block) {
-      const prismaBlock = graphqlExtendTypeBlock(
+      const extendTypeBlock = graphqlExtendTypeBlock(
         typeConfig.type,
         block,
-        prismaType,
-        prismaSchema,
+        originalType,
+        schema,
       )
 
-      definition(prismaBlock)
+      definition(extendTypeBlock)
     },
   })
 }

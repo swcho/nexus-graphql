@@ -6,7 +6,7 @@ import { GraphqlSchemaConfig } from './types'
 
 export * from './definitions'
 
-interface PrismaSchemaConfigRequiredTypes extends GraphqlSchemaConfig {
+interface GraphqlSchemaConfigRequiredTypes extends GraphqlSchemaConfig {
   types: any
 }
 
@@ -20,7 +20,7 @@ export function makeGraphqlSchema(options: GraphqlSchemaConfig): GraphQLSchema {
   }
 
   const { schema } = core.makeSchemaInternal(
-    options as PrismaSchemaConfigRequiredTypes,
+    options as GraphqlSchemaConfigRequiredTypes,
     builder,
   )
 

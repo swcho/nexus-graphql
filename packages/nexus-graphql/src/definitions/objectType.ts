@@ -33,24 +33,24 @@ function nexusObjectType<TypeName extends string>(
 ): core.NexusObjectTypeDef<TypeName> {
   let { definition, ...rest } = typeConfig
   const datamodelInfo = builder.getDatamodelInfo()
-  const prismaType = graphqlTypeObject(
+  const originalType = graphqlTypeObject(
     datamodelInfo,
     typeConfig,
     builder.getConfig(),
   )
-  const prismaSchema = datamodelInfo.schema
+  const schema = datamodelInfo.schema
 
   return objectType({
     ...rest,
     definition(block) {
-      const prismaBlock = graphqlObjectDefinitionBlock(
+      const definitionBlock = graphqlObjectDefinitionBlock(
         typeConfig.name,
         block as GraphqlObjectDefinitionBlock<TypeName>,
-        prismaType,
-        prismaSchema,
+        originalType,
+        schema,
       )
 
-      definition(prismaBlock)
+      definition(definitionBlock)
     },
   })
 }
