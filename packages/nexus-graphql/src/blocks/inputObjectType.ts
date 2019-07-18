@@ -13,31 +13,31 @@ import { getFields } from '../utils'
 
 export interface GraphqlInputDefinitionBlock<TypeName extends string>
   extends core.InputDefinitionBlock<TypeName> {
-  prismaFields(inputFields: InputFieldsWithStar<'inputTypes', TypeName>[]): void
-  prismaFields(pickFields: PickInputField<'inputTypes', TypeName>): void
-  prismaFields(filterFields: FilterInputField<'inputTypes', TypeName>): void
+  useOriginalFields(inputFields: InputFieldsWithStar<'inputTypes', TypeName>[]): void
+  useOriginalFields(pickFields: PickInputField<'inputTypes', TypeName>): void
+  useOriginalFields(filterFields: FilterInputField<'inputTypes', TypeName>): void
   /**
    * Pick, filter or customize the fields of the underlying input object type
    * @param inputFields The fields you want to pick/filter or customize
    *
    * @example Exposes all fields
    *
-   * t.prismaField(['*'])
+   * t.useOriginalFields(['*'])
    *
    * @example Exposes only the `first` and `last` field
    *
-   * t.prismaField(['first', 'last'])
+   * t.useOriginalFields(['first', 'last'])
    *
    * @example Exposes only the `first` and `last` field (idem-potent with above example)
    *
-   * t.prismaFields({ pick: ['first', 'last'] })
+   * t.useOriginalFields({ pick: ['first', 'last'] })
    *
    * @example Exposes all fields but the `first` and `last`
    *
-   * t.prismaFields({ filter: ['first', 'last'] })
+   * t.useOriginalFields({ filter: ['first', 'last'] })
    *
    */
-  prismaFields(inputFields: AddFieldInput<'inputTypes', TypeName>): void
+  useOriginalFields(inputFields: AddFieldInput<'inputTypes', TypeName>): void
 }
 
 export function prismaInputDefinitionBlock<TypeName extends string>(
@@ -48,7 +48,7 @@ export function prismaInputDefinitionBlock<TypeName extends string>(
 ): GraphqlInputDefinitionBlock<TypeName> {
   const prismaBlock = t as GraphqlInputDefinitionBlock<TypeName>
 
-  prismaBlock.prismaFields = (inputFields: any) => {
+  prismaBlock.useOriginalFields = (inputFields: any) => {
     const fields = getFields(inputFields, typeName, prismaSchema)
 
     fields.forEach(field => {
