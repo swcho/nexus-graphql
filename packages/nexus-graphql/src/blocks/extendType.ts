@@ -14,7 +14,7 @@ import {
 } from '../types'
 import { getFields, whitelistArgs } from '../utils'
 
-export interface PrismaExtendTypeBlock<TypeName extends string>
+export interface GraphqlExtendTypeBlock<TypeName extends string>
   extends core.OutputDefinitionBlock<TypeName> {
   /**
    * Contains all the options to use native `nexus` methods with `nexus-prisma` generated schema
@@ -109,8 +109,8 @@ export function prismaExtendTypeBlock<TypeName extends string>(
   t: core.OutputDefinitionBlock<TypeName>,
   prismaType: Record<string, core.NexusOutputFieldConfig<string, string>>,
   prismaSchema: GraphQLSchema,
-): PrismaExtendTypeBlock<TypeName> {
-  const prismaBlock = t as PrismaExtendTypeBlock<TypeName>
+): GraphqlExtendTypeBlock<TypeName> {
+  const prismaBlock = t as GraphqlExtendTypeBlock<TypeName>
 
   prismaBlock.prismaType = prismaType
   prismaBlock.prismaFields = (inputFields: any) => {

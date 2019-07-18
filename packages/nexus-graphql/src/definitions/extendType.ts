@@ -1,6 +1,6 @@
 import { core, extendType } from 'nexus'
 import {
-  PrismaExtendTypeBlock,
+  GraphqlExtendTypeBlock,
   prismaExtendTypeBlock,
   prismaTypeExtend,
 } from '../blocks/extendType'
@@ -9,7 +9,7 @@ import { PrismaObjectTypeNames } from '../types'
 
 export interface PrismaExtendTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusExtendTypeConfig<TypeName>, 'definition'> {
-  definition: (t: PrismaExtendTypeBlock<TypeName>) => void
+  definition: (t: GraphqlExtendTypeBlock<TypeName>) => void
 }
 
 /**
