@@ -1,14 +1,14 @@
 import { GraphQLEnumValue, GraphQLNamedType, isEnumType } from 'graphql'
 import { core } from 'nexus'
 import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
-import { PrismaEnumTypeNames, PrismaEnumTypeValues } from '../types'
+import { GraphqlEnumTypeNames, GraphqlEnumTypeValues } from '../types'
 
 interface PrismaEnumTypeConfig<TypeName extends string>
   extends core.Omit<core.EnumTypeConfig<TypeName>, 'members'> {
-  members: PrismaEnumTypeValues<TypeName>[]
+  members: GraphqlEnumTypeValues<TypeName>[]
 }
 
-export function graphqlEnumType<TypeName extends PrismaEnumTypeNames>(
+export function graphqlEnumType<TypeName extends GraphqlEnumTypeNames>(
   typeConfig: PrismaEnumTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusEnumTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {

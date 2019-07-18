@@ -5,7 +5,7 @@ import {
   graphqlTypeObject,
 } from '../blocks/objectType'
 import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
-import { PrismaObjectTypeNames } from '../types'
+import { GraphqlObjectTypeNames } from '../types'
 
 export interface GraphqlObjectTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusObjectTypeConfig<TypeName>, 'definition'> {
@@ -15,7 +15,7 @@ export interface GraphqlObjectTypeConfig<TypeName extends string>
 /**
  * Exposes an object type based on the datamodel
  */
-export function graphqlObjectType<TypeName extends PrismaObjectTypeNames>(
+export function graphqlObjectType<TypeName extends GraphqlObjectTypeNames>(
   typeConfig: GraphqlObjectTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusObjectTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {

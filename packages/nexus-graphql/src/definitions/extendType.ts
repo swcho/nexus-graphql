@@ -5,7 +5,7 @@ import {
   graphqlTypeExtend,
 } from '../blocks/extendType'
 import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
-import { PrismaObjectTypeNames } from '../types'
+import { GraphqlObjectTypeNames } from '../types'
 
 export interface GraphqlExtendTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusExtendTypeConfig<TypeName>, 'definition'> {
@@ -15,7 +15,7 @@ export interface GraphqlExtendTypeConfig<TypeName extends string>
 /**
  * Extend a previously defined object type. Mainly meant to split the Query/Mutation types in several files if needed.
  */
-export function graphqlExtendType<TypeName extends PrismaObjectTypeNames>(
+export function graphqlExtendType<TypeName extends GraphqlObjectTypeNames>(
   typeConfig: GraphqlExtendTypeConfig<TypeName>,
   // @ts-ignore
 ): core.NexusWrappedType<core.NexusExtendTypeDef<TypeName>> {

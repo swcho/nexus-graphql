@@ -6,7 +6,7 @@ import {
   graphqlTypeInputObject,
 } from '../blocks/inputObjectType'
 import { isPrismaSchemaBuilder } from '../builder'
-import { PrismaInputObjectTypeNames } from '../types'
+import { GraphqlInputObjectTypeNames } from '../types'
 
 export interface GraphqlInputObjectTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusInputObjectTypeConfig<TypeName>, 'definition'> {
@@ -17,7 +17,7 @@ export interface GraphqlInputObjectTypeConfig<TypeName extends string>
  * Exposes an input object type based on the datamodel
  */
 export function graphqlInputObjectType<
-  TypeName extends PrismaInputObjectTypeNames
+  TypeName extends GraphqlInputObjectTypeNames
 >(
   typeConfig: GraphqlInputObjectTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusInputObjectTypeDef<TypeName>> {

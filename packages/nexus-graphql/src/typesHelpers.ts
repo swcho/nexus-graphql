@@ -2,9 +2,9 @@ declare global {
   interface NexusWrapperGen {}
 }
 
-export type PrismaShapeKeys = 'objectTypes' | 'inputTypes' | 'enumTypes'
+export type GraphqlShapeKeys = 'objectTypes' | 'inputTypes' | 'enumTypes'
 
-export interface PrismaGenTypesShape {
+export interface GraphqlGenTypesShape {
   objectTypes: {
     fields: Record<string, any>
     fieldsDetails: Record<string, any>
@@ -16,19 +16,19 @@ export interface PrismaGenTypesShape {
 }
 
 export type GetGen<
-  K extends PrismaShapeKeys,
+  K extends GraphqlShapeKeys,
   Fallback = any
 > = NexusWrapperGen extends infer GenTypes
-  ? GenTypes extends PrismaGenTypesShape
+  ? GenTypes extends GraphqlGenTypesShape
     ? GenTypes[K]
     : Fallback
   : Fallback
 
 export type GetGen2<
-  K extends PrismaShapeKeys,
-  K2 extends keyof PrismaGenTypesShape[K]
+  K extends GraphqlShapeKeys,
+  K2 extends keyof GraphqlGenTypesShape[K]
 > = NexusWrapperGen extends infer GenTypes
-  ? GenTypes extends PrismaGenTypesShape
+  ? GenTypes extends GraphqlGenTypesShape
     ? K extends keyof GenTypes
       ? K2 extends keyof GenTypes[K]
         ? GenTypes[K][K2]
@@ -38,11 +38,11 @@ export type GetGen2<
   : any
 
 export type GetGen3<
-  K extends PrismaShapeKeys,
-  K2 extends Extract<keyof PrismaGenTypesShape[K], string>,
-  K3 extends Extract<keyof PrismaGenTypesShape[K][K2], string>
+  K extends GraphqlShapeKeys,
+  K2 extends Extract<keyof GraphqlGenTypesShape[K], string>,
+  K3 extends Extract<keyof GraphqlGenTypesShape[K][K2], string>
 > = NexusWrapperGen extends infer GenTypes
-  ? GenTypes extends PrismaGenTypesShape
+  ? GenTypes extends GraphqlGenTypesShape
     ? K extends keyof GenTypes
       ? K2 extends keyof GenTypes[K]
         ? K3 extends keyof GenTypes[K][K2]

@@ -3,27 +3,27 @@ import {
   GetGen,
   GetGen2,
   GetGen3,
-  PrismaGenTypesShape,
-  PrismaShapeKeys,
+  GraphqlGenTypesShape,
+  GraphqlShapeKeys,
 } from './typesHelpers'
 import { GraphQLSchema } from 'graphql'
 
-export type PrismaObjectTypeNames = Extract<
+export type GraphqlObjectTypeNames = Extract<
   keyof GetGen2<'objectTypes', 'fields'>,
   string
 >
 
-export type PrismaInputObjectTypeNames = Extract<
+export type GraphqlInputObjectTypeNames = Extract<
   keyof GetGen2<'inputTypes', 'fields'>,
   string
 >
 
-export type PrismaEnumTypeNames = Extract<
+export type GraphqlEnumTypeNames = Extract<
   keyof GetGen<'enumTypes', any>,
   string
 >
 
-export type PrismaEnumTypeValues<TypeName extends string> = GetGen2<
+export type GraphqlEnumTypeValues<TypeName extends string> = GetGen2<
   'enumTypes',
   TypeName
 >
@@ -35,10 +35,10 @@ export type ObjectTypeDetails<TypeName extends string> = GetGen3<
 >
 
 type InputField<
-  GraphQLType extends PrismaShapeKeys,
+  GraphQLType extends GraphqlShapeKeys,
   TypeName extends string
 > = NexusWrapperGen extends infer GenTypes
-  ? GenTypes extends PrismaGenTypesShape
+  ? GenTypes extends GraphqlGenTypesShape
     ? GraphQLType extends keyof GenTypes
       ? 'fields' extends infer Fields
         ? Fields extends keyof GenTypes[GraphQLType]
@@ -52,19 +52,19 @@ type InputField<
   : any
 
 export type InputFieldsWithStar<
-  GraphQLType extends PrismaShapeKeys,
+  GraphQLType extends GraphqlShapeKeys,
   TypeName extends string
 > = ('*' | InputField<GraphQLType, TypeName>)[]
 
 export interface PickInputField<
-  GraphQLType extends PrismaShapeKeys,
+  GraphQLType extends GraphqlShapeKeys,
   TypeName extends string
 > {
   pick: InputFieldsWithStar<GraphQLType, TypeName>
 }
 
 export interface FilterInputField<
-  GraphQLType extends PrismaShapeKeys,
+  GraphQLType extends GraphqlShapeKeys,
   TypeName extends string
 > {
   filter:
@@ -73,7 +73,7 @@ export interface FilterInputField<
 }
 
 export type AddFieldInput<
-  GraphQLType extends PrismaShapeKeys,
+  GraphQLType extends GraphqlShapeKeys,
   TypeName extends string
 > =
   | InputFieldsWithStar<GraphQLType, TypeName>
