@@ -1,9 +1,9 @@
 import { GraphQLEnumType, GraphQLEnumValue } from 'graphql/type'
 import { core } from 'nexus'
-import { PrismaSchemaBuilder } from '../builder'
+import { GraphqlSchemaBuilder } from '../builder'
 
 export function enumTypeToNexus(
-  builder: PrismaSchemaBuilder,
+  builder: GraphqlSchemaBuilder,
   type: GraphQLEnumType,
 ) {
   const nexusEnumTypeMembers = enumTypeMembersToNexus(type)

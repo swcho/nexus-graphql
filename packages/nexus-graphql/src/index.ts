@@ -1,6 +1,6 @@
 import { GraphQLSchema } from 'graphql'
 import { core } from 'nexus'
-import { PrismaSchemaBuilder } from './builder'
+import { GraphqlSchemaBuilder } from './builder'
 import { GraphqlSchemaConfig } from './types'
 // import { validateOptions } from './validate'
 
@@ -13,7 +13,7 @@ interface PrismaSchemaConfigRequiredTypes extends GraphqlSchemaConfig {
 export function makeGraphqlSchema(options: GraphqlSchemaConfig): GraphQLSchema {
   // validateOptions(options)
 
-  const builder = new PrismaSchemaBuilder(options)
+  const builder = new GraphqlSchemaBuilder(options)
 
   if (!options.types) {
     options.types = []

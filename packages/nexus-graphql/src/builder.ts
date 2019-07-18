@@ -3,7 +3,7 @@ import { core } from 'nexus'
 import { graphqlTypeToNexus } from './graphqlToNexus'
 import { GraphqlSchemaConfig, InternalDatamodelInfo } from './types'
 
-export class PrismaSchemaBuilder extends core.SchemaBuilder {
+export class GraphqlSchemaBuilder extends core.SchemaBuilder {
   private datamodelInfo: InternalDatamodelInfo
 
   constructor(protected config: GraphqlSchemaConfig) {
@@ -38,6 +38,6 @@ export class PrismaSchemaBuilder extends core.SchemaBuilder {
   }
 }
 
-export function isPrismaSchemaBuilder(obj: any): obj is PrismaSchemaBuilder {
-  return obj && obj instanceof PrismaSchemaBuilder
+export function isGraphqlSchemaBuilder(obj: any): obj is GraphqlSchemaBuilder {
+  return obj && obj instanceof GraphqlSchemaBuilder
 }

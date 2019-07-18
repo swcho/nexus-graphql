@@ -1,11 +1,11 @@
 import { GraphQLInputField, GraphQLInputObjectType } from 'graphql/type'
 import { core } from 'nexus'
-import { PrismaSchemaBuilder } from '../builder'
+import { GraphqlSchemaBuilder } from '../builder'
 import { getTypeName } from '../graphql'
 import { graphqlTypeToCommonNexus } from './common'
 
 export function inputObjectTypeToNexus(
-  builder: PrismaSchemaBuilder,
+  builder: GraphqlSchemaBuilder,
   type: GraphQLInputObjectType,
 ) {
   const nexusFieldsConfig = inputObjectTypeFieldsToNexus(type)

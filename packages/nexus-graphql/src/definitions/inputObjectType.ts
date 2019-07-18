@@ -5,7 +5,7 @@ import {
   graphqlInputDefinitionBlock,
   graphqlTypeInputObject,
 } from '../blocks/inputObjectType'
-import { isPrismaSchemaBuilder } from '../builder'
+import { isGraphqlSchemaBuilder } from '../builder'
 import { GraphqlInputObjectTypeNames } from '../types'
 
 export interface GraphqlInputObjectTypeConfig<TypeName extends string>
@@ -22,7 +22,7 @@ export function graphqlInputObjectType<
   typeConfig: GraphqlInputObjectTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusInputObjectTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {
-    if (!isPrismaSchemaBuilder(builder)) {
+    if (!isGraphqlSchemaBuilder(builder)) {
       throw new Error(
         'prismaInputObjectType can only be used by `makePrismaSchema`',
       )

@@ -1,6 +1,6 @@
 import { GraphQLEnumValue, GraphQLNamedType, isEnumType } from 'graphql'
 import { core } from 'nexus'
-import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
+import { isGraphqlSchemaBuilder, GraphqlSchemaBuilder } from '../builder'
 import { GraphqlEnumTypeNames, GraphqlEnumTypeValues } from '../types'
 
 interface PrismaEnumTypeConfig<TypeName extends string>
@@ -12,7 +12,7 @@ export function graphqlEnumType<TypeName extends GraphqlEnumTypeNames>(
   typeConfig: PrismaEnumTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusEnumTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {
-    if (!isPrismaSchemaBuilder(builder)) {
+    if (!isGraphqlSchemaBuilder(builder)) {
       throw new Error('prismaEnumType can only be used by `makePrismaSchema`')
     }
 
@@ -22,7 +22,7 @@ export function graphqlEnumType<TypeName extends GraphqlEnumTypeNames>(
 
 function nexusEnumType<TypeName extends string>(
   typeConfig: PrismaEnumTypeConfig<TypeName>,
-  builder: PrismaSchemaBuilder,
+  builder: GraphqlSchemaBuilder,
 ): core.NexusEnumTypeDef<TypeName> {
   const typeName = typeConfig.name
   const prismaSchema = builder.getDatamodelInfo().schema

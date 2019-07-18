@@ -1,10 +1,10 @@
 import { GraphQLNamedType, isInputObjectType, isObjectType } from 'graphql/type'
-import { PrismaSchemaBuilder } from '../builder'
+import { GraphqlSchemaBuilder } from '../builder'
 import { inputObjectTypeToNexus } from './inputObjectType'
 import { objectTypeToNexus } from './objectType'
 
 export function graphqlTypeToNexus(
-  builder: PrismaSchemaBuilder,
+  builder: GraphqlSchemaBuilder,
   type: GraphQLNamedType,
 ): GraphQLNamedType {
   if (isObjectType(type)) {

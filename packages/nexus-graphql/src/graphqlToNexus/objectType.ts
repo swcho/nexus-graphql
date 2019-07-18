@@ -1,12 +1,12 @@
 import { GraphQLField, GraphQLObjectType } from 'graphql/type'
 import { core } from 'nexus'
-import { PrismaSchemaBuilder } from '../builder'
+import { GraphqlSchemaBuilder } from '../builder'
 import { getTypeName } from '../graphql'
 import { graphqlArgsToNexusArgs, graphqlTypeToCommonNexus } from './common'
 import { generateEmptyResolver } from '../resolver.empty';
 
 export function objectTypeToNexus(
-  builder: PrismaSchemaBuilder,
+  builder: GraphqlSchemaBuilder,
   type: GraphQLObjectType<any, any>,
 ) {
   const nexusFieldsConfig = objectTypeFieldsToNexus(
