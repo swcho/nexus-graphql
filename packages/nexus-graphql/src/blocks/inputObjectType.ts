@@ -67,18 +67,18 @@ export function graphqlInputDefinitionBlock<TypeName extends string>(
   return definitionBlock
 }
 
-export function prismaTypeInputObject(
-  prismaSchema: GraphQLSchema,
+export function graphqlTypeInputObject(
+  schema: GraphQLSchema,
   inputObjectConfig: GraphqlInputObjectTypeConfig<any>,
 ) {
   const typeName = inputObjectConfig.name
-  const graphqlType = prismaSchema.getType(typeName)
+  const graphqlType = schema.getType(typeName)
 
   if (!isInputObjectType(graphqlType)) {
     throw new Error(
       `\
 Must select a GraphQLInputObjectType, saw ${typeName} which is ${graphqlType}.
-Are you trying to create a new type? Use \`inputObjectType\` instead of \`prismaInputObjectType\`
+Are you trying to create a new type? Use \`inputObjectType\` instead of \`graphqlInputObjectType\`
 `,
     )
   }
