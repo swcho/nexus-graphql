@@ -17,11 +17,11 @@ import { getFields, whitelistArgs } from '../utils'
 export interface GraphqlExtendTypeBlock<TypeName extends string>
   extends core.OutputDefinitionBlock<TypeName> {
   /**
-   * Contains all the options to use native `nexus` methods with `nexus-prisma` generated schema
+   * Contains all the options to use native `nexus` methods with `nexus-graphql` generated schema
    *
    * @example Pass in all the options as-is
    * ```
-   * prismaExtendType({
+   * graphqlExtendType({
    *   name: 'Query',
    *   definition(t) {
    *     t.field(
@@ -34,7 +34,7 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    * @example Use all the options, but overide the resolver
    *
    * ```
-   * prismaExtendType({
+   * graphqlExtendType({
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
@@ -49,7 +49,7 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    * @example Use all the options, add more arguments with a custom resolver
    *
    * ```
-   * prismaExtendType({
+   * graphqlExtendType({
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
@@ -66,62 +66,62 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    * })
    * ```
    */
-  prismaType: ObjectTypeDetails<TypeName>
-  prismaFields(
+  originalType: ObjectTypeDetails<TypeName>
+  useOriginalFields(
     inputFields: InputFieldsWithStar<'objectTypes', TypeName>[],
   ): void
-  prismaFields(pickFields: PickInputField<'objectTypes', TypeName>): void
-  prismaFields(filterFields: FilterInputField<'objectTypes', TypeName>): void
+  useOriginalFields(pickFields: PickInputField<'objectTypes', TypeName>): void
+  useOriginalFields(filterFields: FilterInputField<'objectTypes', TypeName>): void
   /**
    * Pick, filter or customize the fields of the underlying object type
    * @param inputFields The fields you want to pick/filter/customize
    *
    * @example Exposes all fields
    *
-   * t.prismaField(['*'])
+   * t.useOriginalFields(['*'])
    *
    * @example Exposes only the `id` and `name` field
    *
-   * t.prismaField(['id', 'name'])
+   * t.useOriginalFields(['id', 'name'])
    *
    * @example Exposes only the `id` and `name` field (idem-potent with above example)
    *
-   * t.prismaFields({ pick: ['id', 'name'] })
+   * t.useOriginalFields({ pick: ['id', 'name'] })
    *
    * @example Exposes all fields but the `id` and `name`
    *
-   * t.prismaFields({ filter: ['id', 'name'] })
+   * t.useOriginalFields({ filter: ['id', 'name'] })
    *
    * @example Exposes the only the `users` field, and alias it to `customers`
    *
-   * t.prismaFields([{ name: 'users', alias: 'customers' }])
+   * t.useOriginalFields([{ name: 'users', alias: 'customers' }])
    *
    * @example Exposes only the `users` field, and only the `first` and `last` args
    *
-   * t.prismaFields([{ name: 'users', args: ['first', 'last'] }])
+   * t.useOriginalFields([{ name: 'users', args: ['first', 'last'] }])
    *
    */
-  prismaFields(inputFields: AddFieldInput<'objectTypes', TypeName>): void
+  useOriginalFields(inputFields: AddFieldInput<'objectTypes', TypeName>): void
 }
 
-export function prismaExtendTypeBlock<TypeName extends string>(
+export function graphqlExtendTypeBlock<TypeName extends string>(
   typeName: string,
   t: core.OutputDefinitionBlock<TypeName>,
-  prismaType: Record<string, core.NexusOutputFieldConfig<string, string>>,
-  prismaSchema: GraphQLSchema,
+  originalType: Record<string, core.NexusOutputFieldConfig<string, string>>,
+  schema: GraphQLSchema,
 ): GraphqlExtendTypeBlock<TypeName> {
-  const prismaBlock = t as GraphqlExtendTypeBlock<TypeName>
+  const extendBlock = t as GraphqlExtendTypeBlock<TypeName>
 
-  prismaBlock.prismaType = prismaType
-  prismaBlock.prismaFields = (inputFields: any) => {
-    const fields = getFields(inputFields, typeName, prismaSchema)
+  extendBlock.originalType = originalType
+  extendBlock.useOriginalFields = (inputFields: any) => {
+    const fields = getFields(inputFields, typeName, schema)
 
     fields.forEach(field => {
       const aliasName = field.alias ? field.alias : field.name
-      const fieldType = findGraphQLTypeField(typeName, field.name, prismaSchema)
-      const { list, ...rest } = prismaType[fieldType.name]
+      const fieldType = findGraphQLTypeField(typeName, field.name, schema)
+      const { list, ...rest } = originalType[fieldType.name]
       const args = whitelistArgs(rest.args!, field.args)
-      prismaBlock.field(aliasName, {
+      extendBlock.field(aliasName, {
         ...rest,
         type: getTypeName(fieldType.type),
         list: list ? true : undefined,
@@ -130,7 +130,7 @@ export function prismaExtendTypeBlock<TypeName extends string>(
     })
   }
 
-  return prismaBlock
+  return extendBlock
 }
 
 export function prismaTypeExtend(

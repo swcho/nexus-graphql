@@ -1,7 +1,7 @@
 import { core, extendType } from 'nexus'
 import {
   GraphqlExtendTypeBlock,
-  prismaExtendTypeBlock,
+  graphqlExtendTypeBlock,
   prismaTypeExtend,
 } from '../blocks/extendType'
 import { isPrismaSchemaBuilder, PrismaSchemaBuilder } from '../builder'
@@ -45,7 +45,7 @@ function nexusExtendType<TypeName extends string>(
   return extendType({
     ...rest,
     definition(block) {
-      const prismaBlock = prismaExtendTypeBlock(
+      const prismaBlock = graphqlExtendTypeBlock(
         typeConfig.type,
         block,
         prismaType,
