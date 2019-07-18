@@ -1,0 +1,12 @@
+# codegen.yml
+schema: http://localhost:4000
+documents: ./src/graphql/*.graphql
+overwrite: true
+generates:
+  ./src/generated/index.ts:
+    plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo']
+    config: {
+      withComponent: false,
+      withHooks: true,
+      withHOC: false,
+    }

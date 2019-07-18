@@ -1,0 +1,31 @@
+# Write your query or mutation here
+query getAll {
+  customers {
+    id
+    age
+    name
+  }
+  orders {
+    id
+    customerId
+    customer {
+      name
+    }
+  }
+  books {
+    id
+    name
+    links {
+      id
+      name
+      linkedType
+      linkedId
+    }
+  }
+  # users {
+  #   id
+  # }
+  shipments {
+    id
+  }
+}

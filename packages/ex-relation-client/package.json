@@ -4,9 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "dependencies": {},
+  "scripts": {
+    "gen": "gql-gen"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-apollo-hooks": "^0.5.0"
+  },
   "devDependencies": {
-    "apollo-hooks-codegen": "^1.2.0",
-    "graphql-code-generator": "^0.18.2"
+    "@graphql-codegen/typescript-operations": "^1.4.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.4.0"
   }
 }
