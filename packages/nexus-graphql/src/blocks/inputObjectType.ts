@@ -1,6 +1,6 @@
 import { GraphQLSchema, isInputObjectType } from 'graphql'
 import { core } from 'nexus'
-import { PrismaInputObjectTypeConfig } from '../definitions/inputObjectType'
+import { GraphqlInputObjectTypeConfig } from '../definitions/inputObjectType'
 import { findGraphQLTypeField, getTypeName } from '../graphql'
 import { inputObjectTypeFieldsToNexus } from '../graphqlToNexus/inputObjectType'
 import {
@@ -69,7 +69,7 @@ export function prismaInputDefinitionBlock<TypeName extends string>(
 
 export function prismaTypeInputObject(
   prismaSchema: GraphQLSchema,
-  inputObjectConfig: PrismaInputObjectTypeConfig<any>,
+  inputObjectConfig: GraphqlInputObjectTypeConfig<any>,
 ) {
   const typeName = inputObjectConfig.name
   const graphqlType = prismaSchema.getType(typeName)

@@ -26,7 +26,7 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    *   definition(t) {
    *     t.field(
    *       'users',
-   *       t.prismaType.users
+   *       t.originalType.users
    *     )
    *   }
    * })
@@ -38,7 +38,7 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
-   *       ...t.prismaType.users,
+   *       ...t.originalType.users,
    *       resolve(root, args, ctx) {
    *         // Custom implementation
    *       }
@@ -53,9 +53,9 @@ export interface GraphqlExtendTypeBlock<TypeName extends string>
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
-   *       ...t.prismaType.users,
+   *       ...t.originalType.users,
    *       args: {
-   *         ...t.prismaType.users.args,
+   *         ...t.originalType.users.args,
    *         newArg: stringArg()
    *       },
    *       resolve(root, args, ctx) {

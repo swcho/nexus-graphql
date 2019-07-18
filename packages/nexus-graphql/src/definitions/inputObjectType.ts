@@ -8,7 +8,7 @@ import {
 import { isPrismaSchemaBuilder } from '../builder'
 import { PrismaInputObjectTypeNames } from '../types'
 
-export interface PrismaInputObjectTypeConfig<TypeName extends string>
+export interface GraphqlInputObjectTypeConfig<TypeName extends string>
   extends core.Omit<core.NexusInputObjectTypeConfig<TypeName>, 'definition'> {
   definition: (t: PrismaInputDefinitionBlock<TypeName>) => void
 }
@@ -19,7 +19,7 @@ export interface PrismaInputObjectTypeConfig<TypeName extends string>
 export function graphqlInputObjectType<
   TypeName extends PrismaInputObjectTypeNames
 >(
-  typeConfig: PrismaInputObjectTypeConfig<TypeName>,
+  typeConfig: GraphqlInputObjectTypeConfig<TypeName>,
 ): core.NexusWrappedType<core.NexusInputObjectTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {
     if (!isPrismaSchemaBuilder(builder)) {
@@ -34,7 +34,7 @@ export function graphqlInputObjectType<
 }
 
 function nexusInputObjectType<TypeName extends string>(
-  typeConfig: PrismaInputObjectTypeConfig<TypeName>,
+  typeConfig: GraphqlInputObjectTypeConfig<TypeName>,
   prismaSchema: GraphQLSchema,
 ): core.NexusInputObjectTypeDef<TypeName> {
   let { definition, ...rest } = typeConfig
