@@ -11,7 +11,7 @@ export const Mutation = graphqlObjectType({
      */
 
     // An empty array removes all fields from the underlying object type
-    t.prismaFields(['*'])
+    t.useOriginalFields(['*'])
 
     // t.field('deletePost', {
     //   type: 'Post',

@@ -5,7 +5,7 @@ import * as types from '../generated/types/types';
 export const Order = graphqlObjectType({
   name: 'Order',
   definition(t) {
-    t.prismaFields(['*']);
+    t.useOriginalFields(['*']);
     t.field('customer', {
       type: 'Customer',
       async resolve(root: types.Order, args, ctx) {
@@ -26,10 +26,10 @@ export const Query = graphqlObjectType({
      * - use `t.prismaFields({ filter: ['fieldName', ...] })` to filter and/or customize specific fields
      */
 
-    t.prismaFields(['*']);
+    t.useOriginalFields(['*']);
 
     t.field('books', {
-      ...t.prismaType.books,
+      ...t.originalType.books,
       resolve(root, args, ctx) {
         console.log({ root, args, })
         return ctx.apis.book.bookFind(args.filter).then(r => r.data)
@@ -37,7 +37,7 @@ export const Query = graphqlObjectType({
     })
 
     t.field('customers', {
-      ...t.prismaType.customers,
+      ...t.originalType.customers,
       resolve(root, args, ctx) {
         console.log({ root, args, })
         return ctx.apis.customer.customerFind(args.filter).then(r => r.data);
@@ -45,7 +45,7 @@ export const Query = graphqlObjectType({
     })
 
     t.field('orders', {
-      ...t.prismaType.orders,
+      ...t.originalType.orders,
       resolve(root, args, ctx) {
         console.log({ root, args, })
         return ctx.apis.order.orderFind(args.filter).then(r => r.data)
@@ -53,7 +53,7 @@ export const Query = graphqlObjectType({
     })
 
     t.field('shipments', {
-      ...t.prismaType.shipments,
+      ...t.originalType.shipments,
       resolve(root, args, ctx) {
         console.log({ root, args, })
         return ctx.apis.shipment.shipmentFind(args.filter).then(r => r.data)
@@ -61,7 +61,7 @@ export const Query = graphqlObjectType({
     })
 
     t.field('users', {
-      ...t.prismaType.users,
+      ...t.originalType.users,
       resolve(root, args, ctx) {
         console.log({ root, args, })
         return ctx.apis.user.userFind(args.filter).then(r => r.data)

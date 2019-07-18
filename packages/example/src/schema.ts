@@ -10,7 +10,7 @@ import { makeGraphqlSchema } from 'nexus-graphql';
 export const schema = makeGraphqlSchema({
   types: allTypes,
 
-  prisma: {
+  wrapperOptions: {
     datamodelInfo: {
       uniqueFieldsByModel: {
         User: ['id', 'email'],
