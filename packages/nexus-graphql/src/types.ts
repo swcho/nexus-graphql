@@ -148,7 +148,7 @@ export interface PrismaOptions {
   client: PrismaClientInput
 }
 
-export interface PrismaSchemaConfig extends core.BuilderConfig {
+export interface GraphqlSchemaConfig extends core.BuilderConfig {
   types?: any
   prisma: PrismaOptions
 }

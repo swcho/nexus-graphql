@@ -1,4 +1,4 @@
-import { DatamodelInfo, PrismaSchemaConfig, PrismaClientInput } from './types'
+import { DatamodelInfo, GraphqlSchemaConfig, PrismaClientInput } from './types'
 
 
 function validateDatamodelInfo(datamodelInfo: DatamodelInfo) {
@@ -31,7 +31,7 @@ This should either be an instance of the generated prisma-client, or a function 
   }
 }
 
-export function validateOptions(options: PrismaSchemaConfig): void {
+export function validateOptions(options: GraphqlSchemaConfig): void {
   if (!options.prisma) {
     throw new Error(
       'Missing `prisma` property in `makePrismaSchema({ prisma: { ... } })`',

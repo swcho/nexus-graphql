@@ -9,7 +9,7 @@ import {
   InputFieldsWithStar,
   ObjectTypeDetails,
   PickInputField,
-  PrismaSchemaConfig,
+  GraphqlSchemaConfig,
   InternalDatamodelInfo,
 } from '../types'
 import { getFields, whitelistArgs } from '../utils'
@@ -140,7 +140,7 @@ export function prismaObjectDefinitionBlock<TypeName extends string>(
 export function prismaTypeObject(
   datamodelInfo: InternalDatamodelInfo,
   objectConfig: PrismaObjectTypeConfig<any>,
-  builderConfig: PrismaSchemaConfig,
+  builderConfig: GraphqlSchemaConfig,
 ) {
   const typeName = objectConfig.name
   const graphqlType = datamodelInfo.schema.getType(typeName)

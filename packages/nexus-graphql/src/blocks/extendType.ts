@@ -1,6 +1,6 @@
 import { GraphQLSchema, isObjectType } from 'graphql'
 import { core } from 'nexus'
-import { PrismaExtendTypeConfig } from '../definitions/extendType'
+import { GraphqlExtendTypeConfig } from '../definitions/extendType'
 import { findGraphQLTypeField, getTypeName } from '../graphql'
 import { objectTypeFieldsToNexus } from '../graphqlToNexus/objectType'
 import {
@@ -9,7 +9,7 @@ import {
   InputFieldsWithStar,
   ObjectTypeDetails,
   PickInputField,
-  PrismaSchemaConfig,
+  GraphqlSchemaConfig,
   InternalDatamodelInfo,
 } from '../types'
 import { getFields, whitelistArgs } from '../utils'
@@ -133,10 +133,10 @@ export function graphqlExtendTypeBlock<TypeName extends string>(
   return extendBlock
 }
 
-export function prismaTypeExtend(
+export function graphqlTypeExtend(
   datamodelInfo: InternalDatamodelInfo,
-  objectConfig: PrismaExtendTypeConfig<any>,
-  builderConfig: PrismaSchemaConfig,
+  objectConfig: GraphqlExtendTypeConfig<any>,
+  builderConfig: GraphqlSchemaConfig,
 ) {
   const typeName = objectConfig.type
   const graphqlType = datamodelInfo.schema.getType(typeName)

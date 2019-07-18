@@ -1,12 +1,12 @@
 import { buildClientSchema, GraphQLNamedType } from 'graphql'
 import { core } from 'nexus'
 import { graphqlTypeToNexus } from './graphqlToNexus'
-import { PrismaSchemaConfig, InternalDatamodelInfo } from './types'
+import { GraphqlSchemaConfig, InternalDatamodelInfo } from './types'
 
 export class PrismaSchemaBuilder extends core.SchemaBuilder {
   private datamodelInfo: InternalDatamodelInfo
 
-  constructor(protected config: PrismaSchemaConfig) {
+  constructor(protected config: GraphqlSchemaConfig) {
     super(config)
 
     this.datamodelInfo = {
