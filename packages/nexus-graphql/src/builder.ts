@@ -10,8 +10,8 @@ export class PrismaSchemaBuilder extends core.SchemaBuilder {
     super(config)
 
     this.datamodelInfo = {
-      ...this.config.prisma.datamodelInfo,
-      schema: buildClientSchema(this.config.prisma.datamodelInfo.schema),
+      ...this.config.wrapperOptions.datamodelInfo,
+      schema: buildClientSchema(this.config.wrapperOptions.datamodelInfo.schema),
     }
   }
 

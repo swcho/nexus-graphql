@@ -32,13 +32,13 @@ This should either be an instance of the generated prisma-client, or a function 
 }
 
 export function validateOptions(options: GraphqlSchemaConfig): void {
-  if (!options.prisma) {
+  if (!options.wrapperOptions) {
     throw new Error(
       'Missing `prisma` property in `makePrismaSchema({ prisma: { ... } })`',
     )
   }
 
-  if (!options.prisma.datamodelInfo) {
+  if (!options.wrapperOptions.datamodelInfo) {
     throw new Error(
       'Missing `prisma.datamodelInfo` property in `makePrismaSchema({ prisma: { datamodelInfo: ... } })`',
     )
@@ -47,17 +47,17 @@ export function validateOptions(options: GraphqlSchemaConfig): void {
   // Do not pass the object as is to enforce a type error if one of the properties aren't checked
   // /!\ Passing a new property doesn't guaranty that it is checked within the function
   validateDatamodelInfo({
-    clientPath: options.prisma.datamodelInfo.clientPath,
-    embeddedTypes: options.prisma.datamodelInfo.embeddedTypes,
-    schema: options.prisma.datamodelInfo.schema,
-    uniqueFieldsByModel: options.prisma.datamodelInfo.uniqueFieldsByModel,
+    clientPath: options.wrapperOptions.datamodelInfo.clientPath,
+    embeddedTypes: options.wrapperOptions.datamodelInfo.embeddedTypes,
+    schema: options.wrapperOptions.datamodelInfo.schema,
+    uniqueFieldsByModel: options.wrapperOptions.datamodelInfo.uniqueFieldsByModel,
   })
 
-  if (!options.prisma.client) {
+  if (!options.wrapperOptions.client) {
     throw new Error(
       'Missing `prisma.client` property in `makePrismaSchema({ prisma: { client: ... } })`',
     )
   }
 
-  validateClient(options.prisma.client)
+  validateClient(options.wrapperOptions.client)
 }
