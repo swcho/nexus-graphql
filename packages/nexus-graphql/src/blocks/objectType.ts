@@ -26,7 +26,7 @@ export interface GraphqlObjectDefinitionBlock<TypeName extends string>
    *   definition(t) {
    *     t.field(
    *       'users',
-   *       t.prismaType.users
+   *       t.originalType.users
    *     )
    *   }
    * })
@@ -38,7 +38,7 @@ export interface GraphqlObjectDefinitionBlock<TypeName extends string>
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
-   *       ...t.prismaType.users,
+   *       ...t.originalType.users,
    *       resolve(root, args, ctx) {
    *         // Custom implementation
    *       }
@@ -53,9 +53,9 @@ export interface GraphqlObjectDefinitionBlock<TypeName extends string>
    *   name: 'Query',
    *   definition(t) {
    *     t.field('users', {
-   *       ...t.prismaType.users,
+   *       ...t.originalType.users,
    *       args: {
-   *         ...t.prismaType.users.args,
+   *         ...t.originalType.users.args,
    *         newArg: stringArg()
    *       },
    *       resolve(root, args, ctx) {
@@ -66,7 +66,7 @@ export interface GraphqlObjectDefinitionBlock<TypeName extends string>
    * })
    * ```
    */
-  orignalType: ObjectTypeDetails<TypeName>
+  originalType: ObjectTypeDetails<TypeName>
   useOriginalFields(
     inputFields: InputFieldsWithStar<'objectTypes', TypeName>[],
   ): void
@@ -112,7 +112,7 @@ export function graphqlObjectDefinitionBlock<TypeName extends string>(
 ): GraphqlObjectDefinitionBlock<TypeName> {
   const definitionBlock = t as GraphqlObjectDefinitionBlock<TypeName>
 
-  definitionBlock.orignalType = originalType
+  definitionBlock.originalType = originalType
   definitionBlock.useOriginalFields = (inputFields: any) => {
     const graphqlType = schema.getType(typeName) as GraphQLObjectType
     const fields = getFields(inputFields, typeName, schema)

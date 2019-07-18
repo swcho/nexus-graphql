@@ -24,32 +24,32 @@ export function graphqlInputObjectType<
   return core.nexusWrappedType(typeConfig.name, builder => {
     if (!isGraphqlSchemaBuilder(builder)) {
       throw new Error(
-        'prismaInputObjectType can only be used by `makePrismaSchema`',
+        'graphqlInputObjectType can only be used by `makeGraphqlSchema`',
       )
     }
-    const prismaSchema = builder.getDatamodelInfo().schema
+    const schema = builder.getDatamodelInfo().schema
 
-    return nexusInputObjectType(typeConfig, prismaSchema)
+    return nexusInputObjectType(typeConfig, schema)
   })
 }
 
 function nexusInputObjectType<TypeName extends string>(
   typeConfig: GraphqlInputObjectTypeConfig<TypeName>,
-  prismaSchema: GraphQLSchema,
+  schema: GraphQLSchema,
 ): core.NexusInputObjectTypeDef<TypeName> {
   let { definition, ...rest } = typeConfig
-  const prismaType = graphqlTypeInputObject(prismaSchema, typeConfig)
+  const originalType = graphqlTypeInputObject(schema, typeConfig)
 
   return inputObjectType({
     ...rest,
     definition(block) {
-      const prismaBlock = graphqlInputDefinitionBlock(
+      const definitionBlock = graphqlInputDefinitionBlock(
         typeConfig.name,
         block,
-        prismaType,
-        prismaSchema,
+        originalType,
+        schema,
       )
-      definition(prismaBlock)
+      definition(definitionBlock)
     },
   })
 }

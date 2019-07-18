@@ -20,7 +20,7 @@ export function graphqlObjectType<TypeName extends GraphqlObjectTypeNames>(
 ): core.NexusWrappedType<core.NexusObjectTypeDef<TypeName>> {
   return core.nexusWrappedType(typeConfig.name, builder => {
     if (!isGraphqlSchemaBuilder(builder)) {
-      throw new Error('prismaObjectType can only be used by `makePrismaSchema`')
+      throw new Error('graphqlObjectType can only be used by `makeGraphqlSchema`')
     }
 
     return nexusObjectType(typeConfig, builder)
