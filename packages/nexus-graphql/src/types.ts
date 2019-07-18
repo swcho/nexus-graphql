@@ -104,7 +104,6 @@ export type PrismaClientInput =
 export interface DatamodelInfo {
   uniqueFieldsByModel: Record<string, string[]>
   embeddedTypes: string[]
-  clientPath: string
   schema: { __schema: any }
 }
 

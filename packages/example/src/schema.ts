@@ -18,7 +18,6 @@ export const schema = makeGraphqlSchema({
         GENDER: []
       },
       embeddedTypes: [],
-      clientPath: 'does not mean',
       schema: require('./generated/types/graphql.schema.json'),
     },
     client: {} as any,

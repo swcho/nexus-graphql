@@ -8,7 +8,7 @@
     "clean:root": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "yarn clean && yarn bootstrap",
     "build": "lerna run build",
-    "watch": "lerna run watch"
+    "watch": "lerna run --parallel watch"
   },
   "workspaces": [
     "packages/*"

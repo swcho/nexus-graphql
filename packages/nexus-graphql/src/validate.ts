@@ -4,7 +4,6 @@ import { DatamodelInfo, GraphqlSchemaConfig, PrismaClientInput } from './types'
 function validateDatamodelInfo(datamodelInfo: DatamodelInfo) {
   if (
     !datamodelInfo.uniqueFieldsByModel ||
-    !datamodelInfo.clientPath ||
     !datamodelInfo.schema ||
     !datamodelInfo.embeddedTypes
   ) {
@@ -47,7 +46,6 @@ export function validateOptions(options: GraphqlSchemaConfig): void {
   // Do not pass the object as is to enforce a type error if one of the properties aren't checked
   // /!\ Passing a new property doesn't guaranty that it is checked within the function
   validateDatamodelInfo({
-    clientPath: options.wrapperOptions.datamodelInfo.clientPath,
     embeddedTypes: options.wrapperOptions.datamodelInfo.embeddedTypes,
     schema: options.wrapperOptions.datamodelInfo.schema,
     uniqueFieldsByModel: options.wrapperOptions.datamodelInfo.uniqueFieldsByModel,

@@ -12,7 +12,7 @@
     "gen:nexus-graphql": "nexus-graphql-generate --schema src/generated/graphql/schema.graphql --typepath ../types/types --output src/generated/nexus-graphql",
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "build": "tsc",
-    "watch": "tsc -d -w"
+    "watch": "tsc -w"
   },
   "dependencies": {
     "axios": "^0.19.0",
