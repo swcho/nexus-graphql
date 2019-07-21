@@ -21,9 +21,9 @@ export const Query = graphqlObjectType({
   name: 'Query',
   definition(t) {
     /**
-     * - use `t.prismaFields(['*'])` to expose all the underlying object type fields
-     * - use `t.primaFields(['fieldName', ...])` to pick and/or customize specific fields
-     * - use `t.prismaFields({ filter: ['fieldName', ...] })` to filter and/or customize specific fields
+     * - use `t.useOriginalFields(['*'])` to expose all the underlying object type fields
+     * - use `t.useOriginalFields(['fieldName', ...])` to pick and/or customize specific fields
+     * - use `t.useOriginalFields({ filter: ['fieldName', ...] })` to filter and/or customize specific fields
      */
 
     t.useOriginalFields(['*']);
