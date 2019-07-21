@@ -1,6 +1,9 @@
 import gql from 'graphql-tag'
+import * as React from 'react'
+import * as ReactApollo from 'react-apollo'
 import * as ReactApolloHooks from 'react-apollo-hooks'
 export type Maybe<T> = T | null
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -1684,6 +1687,40 @@ export const GetAllDocument = gql`
     }
   }
 `
+export type GetAllComponentProps = Omit<
+  ReactApollo.QueryProps<GetAllQuery, GetAllQueryVariables>,
+  'query'
+>
+
+export const GetAllComponent = (props: GetAllComponentProps) => (
+  <ReactApollo.Query<GetAllQuery, GetAllQueryVariables>
+    query={GetAllDocument}
+    {...props}
+  />
+)
+
+export type GetAllProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<GetAllQuery, GetAllQueryVariables>
+> &
+  TChildProps
+export function withGetAll<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    GetAllQuery,
+    GetAllQueryVariables,
+    GetAllProps<TChildProps>
+  >,
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    GetAllQuery,
+    GetAllQueryVariables,
+    GetAllProps<TChildProps>
+  >(GetAllDocument, {
+    alias: 'withGetAll',
+    ...operationOptions,
+  })
+}
 
 export function useGetAllQuery(
   baseOptions?: ReactApolloHooks.QueryHookOptions<GetAllQueryVariables>,

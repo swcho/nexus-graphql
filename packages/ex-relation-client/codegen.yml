@@ -3,10 +3,10 @@ schema: http://localhost:4000
 documents: ./src/graphql/*.graphql
 overwrite: true
 generates:
-  ./src/generated/index.ts:
+  ./src/generated/index.tsx:
     plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo']
     config: {
-      withComponent: false,
+      withComponent: true,
       withHooks: true,
-      withHOC: false,
+      withHOC: true,
     }

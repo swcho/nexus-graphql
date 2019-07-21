@@ -13,6 +13,7 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import { ApolloClient, ApolloClientOptions, NormalizedCacheObject } from "apollo-boost";
 import { createHttpLink } from 'apollo-link-http';
 import { renderToString } from 'react-dom/server';
+import { GetAllComponent } from '../src/generated';
 
 configure({ adapter: new Adapter() });
 
@@ -89,17 +90,28 @@ describe('Test', () => {
 
     function TestApolloQuery() {
       return (
-        <Query query={GetAllDocument}>
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error :(</p>;
-            return (
-              <pre>
-                {JSON.stringify(data, null, 2)}
-              </pre>
-            )
-          }}
-        </Query>
+        <GetAllComponent>
+           {({ loading, error, data }) => {
+             if (loading) return <p>Loading...</p>;
+             if (error) return <p>Error :(</p>;
+             return (
+               <pre>
+                 {JSON.stringify(data, null, 2)}
+               </pre>
+             )
+           }}
+        </GetAllComponent>
+        // <Query query={GetAllDocument}>
+        //   {({ loading, error, data }) => {
+        //     if (loading) return <p>Loading...</p>;
+        //     if (error) return <p>Error :(</p>;
+        //     return (
+        //       <pre>
+        //         {JSON.stringify(data, null, 2)}
+        //       </pre>
+        //     )
+        //   }}
+        // </Query>
       )
     }
     const el = (
