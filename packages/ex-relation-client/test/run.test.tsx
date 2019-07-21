@@ -20,10 +20,6 @@ function createBoostClient() {
   return new ApolloBoostClient({ uri: 'http:localhost:4000' });
 }
 
-function createApolloClient(options: Partial<ApolloClientOptions<NormalizedCacheObject>>) {
-  return 
-}
-
 function Apollo(props: React.PropsWithChildren<{}>) {
   const {
     children,
@@ -36,16 +32,6 @@ function Apollo(props: React.PropsWithChildren<{}>) {
       {children}
     </ApolloProvider>
   )
-}
-
-function TestGetAllQeury(props: Parameters<typeof useGetAllQuery>[0]) {
-  console.log(`TestGetAllQeury`, props)
-  const all = useGetAllQuery(props);
-  return (
-    <pre>
-      {JSON.stringify(all, null, 2)}
-    </pre>
-  );
 }
 
 describe('Test', () => {
@@ -125,13 +111,34 @@ describe('Test', () => {
     const html = renderToString(el);
     console.log(html);
   })
-  // it('SSR react-apollo-hooks way', async (done) {
-  //   getMarkupFromTree({
-  //     renderFunction: renderToString,
-  //     // onBeforeRender: () => console.log('onBeforeRender'),
-  //     tree: (
-  //       <ApolloSSR><TestGetAllQeury ssr/></ApolloSSR>
-  //     )
-  //   }).then(html => console.log('html', { html })).then(done);
-  // })
+
+  it('SSR react-apollo-hooks way', async () => {
+    const client = new ApolloClient({
+      link: createHttpLink({
+        uri: 'http://localhost:4000',
+      }),
+      cache: new InMemoryCache(),
+      ssrMode: true,
+      ssrForceFetchDelay: 0,
+    });
+
+    function TestGetAllQeury(props: Parameters<typeof useGetAllQuery>[0]) {
+      const all = useGetAllQuery(props);
+      return (
+        <pre>
+          {JSON.stringify(all, null, 2)}
+        </pre>
+      );
+    }
+
+    const html = await getMarkupFromTree({
+      renderFunction: renderToString,
+      // onBeforeRender: () => console.log('onBeforeRender'),
+      tree: (
+        <ApolloHooksProvider client={client}><TestGetAllQeury ssr/></ApolloHooksProvider>
+      )
+    });
+
+    console.log(html);
+  })
 })
