@@ -61,6 +61,22 @@
     // Ref: https://medium.com/@jakubsynowiec/debugging-typescript-jest-unit-tests-with-visual-studio-code-36cd16865bb0
     // Ref: https://patrickdesjardins.com/blog/debug-typescript-unit-test-with-jest-and-vscode
     {
+      "name": "Debug ex-relation-client test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
+      "cwd": "${workspaceRoot}/packages/ex-relation-client",
+      "args": [
+        "--runInBand"
+      ],
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "console": "integratedTerminal",
+      "restart": true,
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
       "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
