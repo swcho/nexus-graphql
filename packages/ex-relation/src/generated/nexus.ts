@@ -4,6 +4,7 @@
  */
 
 import * as ctx from "../context"
+import * as types from "./types/types"
 
 
 declare global {
@@ -80,45 +81,45 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
-  AccessToken: {};
-  Account: {};
-  Address: {};
-  Book: {};
-  Books3: {};
-  BooksCount: {};
-  BooksExists: {};
-  BooksPeopleCount: {};
-  BooksUpdate: {};
-  Customer: {};
-  Customers3: {};
-  CustomersAccountsCount: {};
-  CustomersCount: {};
-  CustomersEmailsCount: {};
-  CustomersExists: {};
-  CustomersOrdersCount: {};
-  CustomersOrdersShipmentsCount: {};
-  CustomersUpdate: {};
-  EmailAddress: {};
-  Link: {};
+  AccessToken: types.AccessToken;
+  Account: types.Account;
+  Address: types.Address;
+  Book: types.Book;
+  Books3: types.Books3;
+  BooksCount: types.BooksCount;
+  BooksExists: types.BooksExists;
+  BooksPeopleCount: types.BooksPeopleCount;
+  BooksUpdate: types.BooksUpdate;
+  Customer: types.Customer;
+  Customers3: types.Customers3;
+  CustomersAccountsCount: types.CustomersAccountsCount;
+  CustomersCount: types.CustomersCount;
+  CustomersEmailsCount: types.CustomersEmailsCount;
+  CustomersExists: types.CustomersExists;
+  CustomersOrdersCount: types.CustomersOrdersCount;
+  CustomersOrdersShipmentsCount: types.CustomersOrdersShipmentsCount;
+  CustomersUpdate: types.CustomersUpdate;
+  EmailAddress: types.EmailAddress;
+  Link: types.Link;
   Mutation: {};
-  Order: {};
-  Orders3: {};
-  OrdersCount: {};
-  OrdersExists: {};
-  OrdersShipmentsCount: {};
-  OrdersUpdate: {};
+  Order: types.Order;
+  Orders3: types.Orders3;
+  OrdersCount: types.OrdersCount;
+  OrdersExists: types.OrdersExists;
+  OrdersShipmentsCount: types.OrdersShipmentsCount;
+  OrdersUpdate: types.OrdersUpdate;
   Query: {};
-  Shipment: {};
-  Shipments3: {};
-  ShipmentsCount: {};
-  ShipmentsExists: {};
-  ShipmentsUpdate: {};
-  User: {};
-  Users3: {};
-  UsersAccessTokensCount: {};
-  UsersCount: {};
-  UsersExists: {};
-  UsersUpdate: {};
+  Shipment: types.Shipment;
+  Shipments3: types.Shipments3;
+  ShipmentsCount: types.ShipmentsCount;
+  ShipmentsExists: types.ShipmentsExists;
+  ShipmentsUpdate: types.ShipmentsUpdate;
+  User: types.User;
+  Users3: types.Users3;
+  UsersAccessTokensCount: types.UsersAccessTokensCount;
+  UsersCount: types.UsersCount;
+  UsersExists: types.UsersExists;
+  UsersUpdate: types.UsersUpdate;
   String: string;
   Int: number;
   Float: number;

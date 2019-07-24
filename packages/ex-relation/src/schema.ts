@@ -36,6 +36,10 @@ export const schema = makeGraphqlSchema({
   typegenAutoConfig: {
     sources: [
       {
+        source: path.join(__dirname, './generated/types/types.ts'),
+        alias: 'types',
+      },
+      {
         source: path.join(__dirname, './context.ts'),
         alias: 'ctx',
       },
