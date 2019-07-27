@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/swcho/nexus-graphql#readme",
   "scripts": {
+    "postinstall": "yarn build",
     "prepublish": "rm -rf example/node_modules && npm test && npm run build",
     "build": "tsc --declaration",
     "watch": "tsc -d -w",
