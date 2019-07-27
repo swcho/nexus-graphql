@@ -1,10 +1,10 @@
 import { GraphQLEnumType } from 'graphql'
-import { prismaEnumType } from '../src'
+import { graphqlEnumType } from '../src'
 import { mockSchema } from './prisma/mockedArtifacts'
 
-describe('prismaEnumType', () => {
+describe('graphqlEnumType', () => {
   it('exposes only id_ASC and id_DESC', () => {
-    const PostOrderByInput = prismaEnumType({
+    const PostOrderByInput = graphqlEnumType({
       name: 'PostOrderByInput',
       members: ['id_ASC', 'id_DESC'],
     })

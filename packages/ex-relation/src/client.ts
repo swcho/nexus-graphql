@@ -1,5 +1,6 @@
 import { NexusGenObjectNames, NexusGenFieldTypes } from "./generated/nexus";
 import { ResultValue, GetGen2 } from "nexus/dist/core";
+// import { Order } from "./resolvers";
 
 declare global {
   interface NexusGen {}
@@ -90,7 +91,7 @@ type ResultValueNonArray<
 
 type test2 = ResultValueNonArray<'Query', 'orders'>;
 export const query = <Q extends QueryFields>(params: QueryParams<Q>) => {
-
+  // params.select()
 }
 
 type CustomerReturn = QueryFieldReturn<'customers'>
@@ -98,7 +99,9 @@ type CustomerReturn = QueryFieldReturn<'customers'>
 query({
   name: 'orders',
   select: (t) => {
-    t.customerId
+    return {
+      t
+    };
     // return t({
     //   'xxx': {},
     //   'yyy': {

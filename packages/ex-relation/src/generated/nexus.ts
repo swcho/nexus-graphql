@@ -5,7 +5,12 @@
 
 import * as ctx from "../context"
 import * as types from "./types/types"
-
+import { core } from "nexus"
+declare global {
+  interface NexusGenCustomDefinitionMethods<TypeName extends string> {
+    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DATE";
+  }
+}
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
@@ -125,6 +130,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DATE: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -303,7 +309,7 @@ export interface NexusGenFieldTypes {
   Order: { // field return type
     customer: NexusGenRootTypes['Customer']; // Customer!
     customerId: number | null; // Float
-    date: string | null; // String
+    date: any | null; // DATE
     description: string | null; // String
     id: number | null; // Float
   }
@@ -895,7 +901,7 @@ export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "DATE" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

@@ -1,11 +1,27 @@
-import { stringArg } from 'nexus'
+import { stringArg, scalarType } from 'nexus'
 import { graphqlObjectType } from 'nexus-graphql'
 import * as types from '../generated/types/types';
+import { ResultValue } from 'nexus/dist/core';
+
+export const DATE = scalarType({
+  name: "DATE",
+  asNexusMethod: "date",
+  serialize() { /* Todo */ },
+  parseValue() { /* Todo */ },
+  parseLiteral() { /* Todo */ }
+});
 
 export const Order = graphqlObjectType({
   name: 'Order',
   definition(t) {
     t.useOriginalFields(['*']);
+    // t.date('date', {
+    //   nullable: true,
+    // })
+    t.field('date', {
+      type: DATE,
+      nullable: true,
+    })
     t.field('customer', {
       type: 'Customer',
       async resolve(root: types.Order, args, ctx) {
@@ -16,6 +32,8 @@ export const Order = graphqlObjectType({
     })
   }
 })
+
+type Test = ResultValue<'Query', 'order'>;
 
 export const Query = graphqlObjectType({
   name: 'Query',

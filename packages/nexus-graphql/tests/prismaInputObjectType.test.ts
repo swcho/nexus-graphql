@@ -1,13 +1,13 @@
 import { GraphQLInputObjectType, GraphQLObjectType } from 'graphql'
-import { prismaInputObjectType } from '../src'
+import { graphqlInputObjectType } from '../src'
 import { mockSchema } from './prisma/mockedArtifacts'
 
 describe('prismaInputObjectType', () => {
   it('exposes all fields of PostWhereInput', () => {
-    const PostWhereInput = prismaInputObjectType({
+    const PostWhereInput = graphqlInputObjectType({
       name: 'PostWhereInput',
       definition(t) {
-        t.prismaFields(['*'])
+        t.useOriginalFields(['*'])
       },
     })
 
@@ -135,10 +135,10 @@ describe('prismaInputObjectType', () => {
   })
 
   it('exposes only the `PostWhereInput.title` and `PostWhereInput.content` fields', () => {
-    const PostWhereInput = prismaInputObjectType({
+    const PostWhereInput = graphqlInputObjectType({
       name: 'PostWhereInput',
       definition(t) {
-        t.prismaFields(['title', 'content'])
+        t.useOriginalFields(['title', 'content'])
       },
     })
 

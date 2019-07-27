@@ -13,7 +13,7 @@
     "start": "concurrently 'yarn start:rest' 'yarn start:self'",
     "start:rest": "cd ../../examples/loopback-example-relations; yarn start",
     "start:self": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
-    "build": "tsc",
+    "build": "ts-node src/schema.ts && tsc",
     "watch": "tsc -w"
   },
   "dependencies": {

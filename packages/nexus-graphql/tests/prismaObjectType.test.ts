@@ -1,13 +1,13 @@
 import { GraphQLObjectType } from 'graphql'
-import { prismaObjectType } from '../src'
+import { graphqlObjectType } from '../src'
 import { mockSchema } from './prisma/mockedArtifacts'
 
-describe('prismaObjectType', () => {
+describe('graphqlObjectType', () => {
   it('exposes all fields from the `Query` type', () => {
-    const Query = prismaObjectType({
+    const Query = graphqlObjectType({
       name: 'Query',
       definition(t) {
-        t.prismaFields(['*'])
+        t.useOriginalFields(['*'])
       },
     })
 
@@ -84,10 +84,10 @@ describe('prismaObjectType', () => {
   })
 
   it('exposes only the `Query.post` and `Query.posts` field', () => {
-    const Query = prismaObjectType({
+    const Query = graphqlObjectType({
       name: 'Query',
       definition(t) {
-        t.prismaFields(['post', 'posts'])
+        t.useOriginalFields(['post', 'posts'])
       },
     })
 
@@ -126,10 +126,10 @@ describe('prismaObjectType', () => {
   })
 
   test('it exposes the `Query.posts` field as `Query.feed`', async () => {
-    const Query = prismaObjectType({
+    const Query = graphqlObjectType({
       name: 'Query',
       definition(t) {
-        t.prismaFields([{ name: 'posts', alias: 'feed' }])
+        t.useOriginalFields([{ name: 'posts', alias: 'feed' }])
       },
     })
 

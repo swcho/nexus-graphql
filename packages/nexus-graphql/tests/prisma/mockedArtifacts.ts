@@ -1,16 +1,16 @@
 import datamodelInfo from './nexus-prisma'
-import { makePrismaSchema } from '../../src'
+import { makeGraphqlSchema } from '../../src'
 import { buildClientSchema } from 'graphql'
 import { InternalDatamodelInfo } from '../../src/types'
 
 export function mockSchema(types: any) {
-  return makePrismaSchema({
+  return makeGraphqlSchema({
     types,
     outputs: {
       schema: false,
       typegen: false,
     },
-    prisma: {
+    wrapperOptions: {
       client: null,
       datamodelInfo,
     },
