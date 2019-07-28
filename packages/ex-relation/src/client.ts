@@ -50,13 +50,25 @@ declare global {
 //     : any
 //   : any
 
+type ResultValueNonArray<
+  TypeName extends string,
+  FieldName extends string
+> = ResultValue<TypeName, FieldName> extends infer A
+  ? A extends (infer B)[]
+    ? B
+    : A
+  : never;
+
+// type test2 = ResultValueNonArray<'Query', 'orders'>;
+
 type QueryFields = keyof NexusGenFieldTypes['Query'];
 
 type QueryFieldReturn<Q extends QueryFields> = NexusGenFieldTypes['Query'][Q];
 
 type QueryParams<Q extends QueryFields> = {
   name: Q;
-  select: (t: ResultValueNonArray<'Query', Q>) => void;
+  select?(t: ResultValueNonArray<'Query', Q>): void;
+  select2?(): void;
 }
 
 // type test = ResultValue<'Query', 'customers'>;
@@ -70,26 +82,6 @@ export declare type ReturnValue<
   TypeName extends string,
 > = GetGen2<"fieldTypes", TypeName>;
 
-
-type ReturnValueNonArray<
-  TypeName extends string,
-  FieldName extends string
-> = ResultValue<TypeName, FieldName> extends infer A
-  ? A extends (infer B)[]
-    ? B
-    : A
-  : never;
-
-type ResultValueNonArray<
-  TypeName extends string,
-  FieldName extends string
-> = ResultValue<TypeName, FieldName> extends infer A
-  ? A extends (infer B)[]
-    ? B
-    : A
-  : never;
-
-type test2 = ResultValueNonArray<'Query', 'orders'>;
 export const query = <Q extends QueryFields>(params: QueryParams<Q>) => {
   // params.select()
 }
