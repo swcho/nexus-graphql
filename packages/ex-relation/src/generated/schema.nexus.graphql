@@ -219,8 +219,6 @@ type CustomersUpdate {
   count: Float
 }
 
-scalar DATE
-
 type EmailAddress {
   """No description available."""
   address: String
@@ -1185,7 +1183,9 @@ type Order {
 
   """No description available."""
   customerId: Float
-  date: DATE
+
+  """No description available."""
+  date: String
 
   """No description available."""
   description: String

@@ -3,13 +3,13 @@ import { graphqlObjectType } from 'nexus-graphql'
 import * as types from '../generated/types/types';
 import { ResultValue } from 'nexus/dist/core';
 
-export const DATE = scalarType({
-  name: "DATE",
-  asNexusMethod: "date",
-  serialize() { /* Todo */ },
-  parseValue() { /* Todo */ },
-  parseLiteral() { /* Todo */ }
-});
+// export const DATE = scalarType({
+//   name: "DATE",
+//   asNexusMethod: "date",
+//   serialize() { /* Todo */ },
+//   parseValue() { /* Todo */ },
+//   parseLiteral() { /* Todo */ }
+// });
 
 export const Order = graphqlObjectType({
   name: 'Order',
@@ -18,10 +18,10 @@ export const Order = graphqlObjectType({
     // t.date('date', {
     //   nullable: true,
     // })
-    t.field('date', {
-      type: DATE,
-      nullable: true,
-    })
+    // t.field('date', {
+    //   type: DATE,
+    //   nullable: true,
+    // })
     t.field('customer', {
       type: 'Customer',
       async resolve(root: types.Order, args, ctx) {
