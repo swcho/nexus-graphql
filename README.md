@@ -17,7 +17,7 @@ Here is the use case.
 # Installation
 
 ```sh
-$ yarn install & yarn bootstrap
+$ yarn install
 ```
 
 # ex-relation as demo
@@ -26,6 +26,7 @@ Using `loopback-example-relations` for legacy REST API, demonstrates how you can
 Let's start with running `loopback-example-relations` and it's nexus graphql server.
 
 ```sh
+$ yarn ex-relation-install
 $ yarn ex-relation
 ```
 

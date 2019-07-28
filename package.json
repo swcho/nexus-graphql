@@ -10,6 +10,7 @@
     "reset": "yarn clean && yarn bootstrap",
     "build": "lerna run build",
     "watch": "lerna run --parallel watch",
+    "ex-relation-install": "cd examples/loopback-example-relations; npm install",
     "ex-relation": "yarn workspace ex-relation start"
   },
   "workspaces": [
