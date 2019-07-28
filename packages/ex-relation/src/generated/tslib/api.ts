@@ -26,10 +26,10 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface AccessToken {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof AccessToken
      */
-    created?: Date;
+    created?: string;
     /**
      * 
      * @type {string}
@@ -332,10 +332,10 @@ export interface Order {
     customerId?: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Order
      */
-    date?: Date;
+    date?: string;
     /**
      * 
      * @type {string}
@@ -357,10 +357,10 @@ export interface Order {
 export interface Shipment {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Shipment
      */
-    date?: Date;
+    date?: string;
     /**
      * 
      * @type {string}
