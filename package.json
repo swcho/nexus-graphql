@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "postinstall": "lerna run prepublish && ln -s ../nexus-graphql-generate/dist/index.js node_modules/.bin/nexus-graphql-generate && chmod +x node_modules/.bin/nexus-graphql-generate",
+    "postinstall": "lerna run prepublish && ln -sfn ../nexus-graphql-generate/dist/index.js node_modules/.bin/nexus-graphql-generate && chmod +x node_modules/.bin/nexus-graphql-generate",
     "dev": "lerna run start",
     "bootstrap": "yarn install && lerna bootstrap",
     "clean": "lerna clean -y && yarn clean:packages && yarn clean:root",

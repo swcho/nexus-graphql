@@ -68,6 +68,11 @@ type QueryFieldReturn<Q extends QueryFields> = NexusGenFieldTypes['Query'][Q];
 type QueryParams<Q extends QueryFields> = {
   name: Q;
   select?(t: ResultValueNonArray<'Query', Q>): void;
+
+  /**
+   * 배열로 selection 해보기,
+   * [ 'field', 'field2' ]
+   */
   select2?(): void;
 }
 
