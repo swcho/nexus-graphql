@@ -5,7 +5,7 @@
     "dev": "lerna run start",
     "bootstrap": "yarn install && lerna bootstrap",
     "clean": "lerna clean -y && yarn clean:packages && yarn clean:root",
-    "clean:packages": "lerna exec -- rm -rf node_modules yarn.lock package-lock.json dist",
+    "clean:packages": "lerna exec -- rm -rf node_modules package-lock.json dist",
     "clean:root": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "yarn clean && yarn bootstrap",
     "build": "lerna run build",
@@ -26,6 +26,7 @@
     "lerna": "3.13.4"
   },
   "resolutions": {
-    "graphql": "14.2.1"
+    "graphql": "14.2.1",
+    "@types/graphql": "14.2.3"
   }
 }
