@@ -416,6 +416,137 @@ export interface NexusGenFieldTypes {
   }
 }
 
+export interface NexusGenFinalFieldTypes {
+  Mutation: { // field return type info
+    bookCreate: NexusGenFieldTypes['Book'] | null; // Book
+    bookDeleteById: string | null; // String
+    bookExistsHeadBooksId: NexusGenFieldTypes['Books3'] | null; // Books3
+    bookPatchOrCreate: NexusGenFieldTypes['Book'] | null; // Book
+    bookPrototypeCreatePeople: NexusGenFieldTypes['Link'] | null; // Link
+    bookPrototypePatchAttributes: NexusGenFieldTypes['Book'] | null; // Book
+    bookPrototypeUpdateByIdPeople: NexusGenFieldTypes['Link'] | null; // Link
+    bookReplaceByIdPostBooksIdReplace: NexusGenFieldTypes['Book'] | null; // Book
+    bookReplaceByIdPutBooksId: NexusGenFieldTypes['Book'] | null; // Book
+    bookReplaceOrCreatePostBooksReplaceOrCreate: NexusGenFieldTypes['Book'] | null; // Book
+    bookReplaceOrCreatePutBooks: NexusGenFieldTypes['Book'] | null; // Book
+    bookUpdateAll: NexusGenFieldTypes['BooksUpdate'] | null; // BooksUpdate
+    bookUpsertWithWhere: NexusGenFieldTypes['Book'] | null; // Book
+    customerCreate: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerDeleteById: string | null; // String
+    customerExistsHeadCustomersId: NexusGenFieldTypes['Customers3'] | null; // Customers3
+    customerPatchOrCreate: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerPrototypeCreateAccounts: NexusGenFieldTypes['Account'] | null; // Account
+    customerPrototypeCreateAddress: NexusGenFieldTypes['Address'] | null; // Address
+    customerPrototypeCreateEmails: NexusGenFieldTypes['EmailAddress'] | null; // EmailAddress
+    customerPrototypeCreateOrders: NexusGenFieldTypes['Order'] | null; // Order
+    customerPrototypeCreateOrdersShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    customerPrototypeExistsAccounts: boolean | null; // Boolean
+    customerPrototypeLinkAccounts: NexusGenFieldTypes['Account'] | null; // Account
+    customerPrototypePatchAttributes: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerPrototypeUpdateAddress: NexusGenFieldTypes['Address'] | null; // Address
+    customerPrototypeUpdateByIdAccounts: NexusGenFieldTypes['Account'] | null; // Account
+    customerPrototypeUpdateByIdEmails: NexusGenFieldTypes['EmailAddress'] | null; // EmailAddress
+    customerPrototypeUpdateByIdOrders: NexusGenFieldTypes['Order'] | null; // Order
+    customerPrototypeUpdateByIdOrdersShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    customerReplaceByIdPostCustomersIdReplace: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerReplaceByIdPutCustomersId: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerReplaceOrCreatePostCustomersReplaceOrCreate: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerReplaceOrCreatePutCustomers: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerUpdateAll: NexusGenFieldTypes['CustomersUpdate'] | null; // CustomersUpdate
+    customerUpsertWithWhere: NexusGenFieldTypes['Customer'] | null; // Customer
+    orderCreate: NexusGenFieldTypes['Order'] | null; // Order
+    orderDeleteById: string | null; // String
+    orderExistsHeadOrdersId: NexusGenFieldTypes['Orders3'] | null; // Orders3
+    orderPatchOrCreate: NexusGenFieldTypes['Order'] | null; // Order
+    orderPrototypeCreateShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    orderPrototypePatchAttributes: NexusGenFieldTypes['Order'] | null; // Order
+    orderPrototypeUpdateByIdShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    orderReplaceByIdPostOrdersIdReplace: NexusGenFieldTypes['Order'] | null; // Order
+    orderReplaceByIdPutOrdersId: NexusGenFieldTypes['Order'] | null; // Order
+    orderReplaceOrCreatePostOrdersReplaceOrCreate: NexusGenFieldTypes['Order'] | null; // Order
+    orderReplaceOrCreatePutOrders: NexusGenFieldTypes['Order'] | null; // Order
+    orderUpdateAll: NexusGenFieldTypes['OrdersUpdate'] | null; // OrdersUpdate
+    orderUpsertWithWhere: NexusGenFieldTypes['Order'] | null; // Order
+    shipmentCreate: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentDeleteById: string | null; // String
+    shipmentExistsHeadShipmentsId: NexusGenFieldTypes['Shipments3'] | null; // Shipments3
+    shipmentPatchOrCreate: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentPrototypePatchAttributes: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentReplaceByIdPostShipmentsIdReplace: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentReplaceByIdPutShipmentsId: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentReplaceOrCreatePostShipmentsReplaceOrCreate: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentReplaceOrCreatePutShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentUpdateAll: NexusGenFieldTypes['ShipmentsUpdate'] | null; // ShipmentsUpdate
+    shipmentUpsertWithWhere: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    userCreate: NexusGenFieldTypes['User'] | null; // User
+    userDeleteById: string | null; // String
+    userExistsHeadUsersId: NexusGenFieldTypes['Users3'] | null; // Users3
+    userLogin: string | null; // String
+    userPatchOrCreate: NexusGenFieldTypes['User'] | null; // User
+    userPrototypeCreateAccessTokens: NexusGenFieldTypes['AccessToken'] | null; // AccessToken
+    userPrototypePatchAttributes: NexusGenFieldTypes['User'] | null; // User
+    userPrototypeUpdateByIdAccessTokens: NexusGenFieldTypes['AccessToken'] | null; // AccessToken
+    userReplaceByIdPostUsersIdReplace: NexusGenFieldTypes['User'] | null; // User
+    userReplaceByIdPutUsersId: NexusGenFieldTypes['User'] | null; // User
+    userReplaceOrCreatePostUsersReplaceOrCreate: NexusGenFieldTypes['User'] | null; // User
+    userReplaceOrCreatePutUsers: NexusGenFieldTypes['User'] | null; // User
+    userUpdateAll: NexusGenFieldTypes['UsersUpdate'] | null; // UsersUpdate
+    userUpsertWithWhere: NexusGenFieldTypes['User'] | null; // User
+  }
+  Query: { // field return type info
+    accessToken: NexusGenFieldTypes['AccessToken'] | null; // AccessToken
+    account: NexusGenFieldTypes['Account'] | null; // Account
+    address: NexusGenFieldTypes['Address'] | null; // Address
+    book: NexusGenFieldTypes['Book'] | null; // Book
+    bookFindById: NexusGenFieldTypes['Book'] | null; // Book
+    books: NexusGenFieldTypes['Book'][] | null; // [Book!]
+    booksCount: NexusGenFieldTypes['BooksCount'] | null; // BooksCount
+    booksExists: NexusGenFieldTypes['BooksExists'] | null; // BooksExists
+    booksPeople: NexusGenFieldTypes['Link'][] | null; // [Link!]
+    booksPeopleCount: NexusGenFieldTypes['BooksPeopleCount'] | null; // BooksPeopleCount
+    customer: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerFindById: NexusGenFieldTypes['Customer'] | null; // Customer
+    customerPrototypeGetOrdersCustomer: NexusGenFieldTypes['Customer'] | null; // Customer
+    customers: NexusGenFieldTypes['Customer'][] | null; // [Customer!]
+    customersAccounts: NexusGenFieldTypes['Account'][] | null; // [Account!]
+    customersAccountsCount: NexusGenFieldTypes['CustomersAccountsCount'] | null; // CustomersAccountsCount
+    customersCount: NexusGenFieldTypes['CustomersCount'] | null; // CustomersCount
+    customersEmails: NexusGenFieldTypes['EmailAddress'][] | null; // [EmailAddress!]
+    customersEmailsCount: NexusGenFieldTypes['CustomersEmailsCount'] | null; // CustomersEmailsCount
+    customersExists: NexusGenFieldTypes['CustomersExists'] | null; // CustomersExists
+    customersOrders: NexusGenFieldTypes['Order'][] | null; // [Order!]
+    customersOrdersCount: NexusGenFieldTypes['CustomersOrdersCount'] | null; // CustomersOrdersCount
+    customersOrdersShipments: NexusGenFieldTypes['Shipment'][] | null; // [Shipment!]
+    customersOrdersShipmentsCount: NexusGenFieldTypes['CustomersOrdersShipmentsCount'] | null; // CustomersOrdersShipmentsCount
+    emailAddress: NexusGenFieldTypes['EmailAddress'] | null; // EmailAddress
+    link: NexusGenFieldTypes['Link'] | null; // Link
+    order: NexusGenFieldTypes['Order'] | null; // Order
+    orderFindById: NexusGenFieldTypes['Order'] | null; // Order
+    orderFindOne: NexusGenFieldTypes['Order'] | null; // Order
+    orderPrototypeFindByIdShipments: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    orderPrototypeGetCustomer: NexusGenFieldTypes['Customer'] | null; // Customer
+    orders: NexusGenFieldTypes['Order'][] | null; // [Order!]
+    ordersCount: NexusGenFieldTypes['OrdersCount'] | null; // OrdersCount
+    ordersExists: NexusGenFieldTypes['OrdersExists'] | null; // OrdersExists
+    ordersShipments: NexusGenFieldTypes['Shipment'][] | null; // [Shipment!]
+    ordersShipmentsCount: NexusGenFieldTypes['OrdersShipmentsCount'] | null; // OrdersShipmentsCount
+    shipment: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentFindById: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentFindOne: NexusGenFieldTypes['Shipment'] | null; // Shipment
+    shipmentPrototypeGetOrder: NexusGenFieldTypes['Order'] | null; // Order
+    shipments: NexusGenFieldTypes['Shipment'][] | null; // [Shipment!]
+    shipmentsCount: NexusGenFieldTypes['ShipmentsCount'] | null; // ShipmentsCount
+    shipmentsExists: NexusGenFieldTypes['ShipmentsExists'] | null; // ShipmentsExists
+    user: NexusGenFieldTypes['User'] | null; // User
+    userFindById: NexusGenFieldTypes['User'] | null; // User
+    users: NexusGenFieldTypes['User'][] | null; // [User!]
+    usersAccessTokens: NexusGenFieldTypes['AccessToken'][] | null; // [AccessToken!]
+    usersAccessTokensCount: NexusGenFieldTypes['UsersAccessTokensCount'] | null; // UsersAccessTokensCount
+    usersCount: NexusGenFieldTypes['UsersCount'] | null; // UsersCount
+    usersExists: NexusGenFieldTypes['UsersExists'] | null; // UsersExists
+  }
+}
+
 export interface NexusGenArgTypes {
   Mutation: {
     bookCreate: { // args

@@ -1,14 +1,19 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "type": "node",
-    //   "request": "launch",
-    //   "name": "Debug example",
-    //   "preLaunchTask": "typescript",
-    //   "program": "${workspaceFolder}/example/src/index.ts",
-    //   "outFiles": ["${workspaceFolder}/example/dist/**/*.js"]
-    // },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run ex-relation schema",
+      "protocol": "inspector",
+      "cwd":"${workspaceRoot}/packages/ex-relation",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "args": [
+        "${workspaceRoot}/packages/ex-relation/src/schema.ts"
+      ],
+      "restart": true
+    },
     {
       "type": "node",
       "request": "launch",
