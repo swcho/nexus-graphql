@@ -72,6 +72,7 @@ type QueryParams<Q extends QueryFields> = {
   /**
    * 배열로 selection 해보기,
    * [ 'field', 'field2' ]
+   * NexusGenFinalFieldTypes 을 이용해보자.
    */
   select2?(): void;
 }
