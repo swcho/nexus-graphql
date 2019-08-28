@@ -17,7 +17,7 @@ Here is the use case.
 # Installation
 
 ```sh
-$ yarn install
+$ yarn bootstrap
 ```
 
 # ex-relation as demo
